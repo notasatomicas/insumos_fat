@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="utf-8">
     <title><?= lang('Errors.pageNotFound') ?></title>
@@ -70,8 +70,7 @@
 </head>
 <body>
     <div class="wrap">
-        <h1>404</h1>
-
+    <img src="./public/assets/img/404_1.gif" alt="" srcset="" width="300rem">
         <p>
             <?php if (ENVIRONMENT !== 'production') : ?>
                 <?= nl2br(esc($message)) ?>
