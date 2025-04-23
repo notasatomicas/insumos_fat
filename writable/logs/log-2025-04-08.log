@@ -1,0 +1,91 @@
+CRITICAL - 2025-04-08 14:30:44 --> CodeIgniter\View\Exceptions\ViewException: Invalid file: "leaflet.php"
+[Method: GET, Route: contacto]
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 39.
+ 1 SYSTEMPATH\View\View.php(212): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('leaflet.php')
+ 2 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('leaflet', [], true)
+ 3 APPPATH\Controllers\Contacto.php(9): view('leaflet')
+ 4 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Contacto->index()
+ 5 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Contacto))
+ 6 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-04-08 15:32:46 --> CodeIgniter\View\Exceptions\ViewException: Invalid file: "leaflet.html"
+[Method: GET, Route: contacto]
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 39.
+ 1 SYSTEMPATH\View\View.php(212): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('leaflet.html')
+ 2 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('leaflet.html', [], true)
+ 3 APPPATH\Controllers\Contacto.php(9): view('leaflet.html')
+ 4 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Contacto->index()
+ 5 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Contacto))
+ 6 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-04-08 18:25:04 --> ErrorException: Undefined variable $activo
+[Method: GET, Route: inicio]
+in APPPATH\Views\plantilla.php on line 54.
+ 1 APPPATH\Views\plantilla.php(54): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $activo', 'C:\\xampp\\htdocs\\proyecto_insumos_fat\\app\\Views\\plantilla.php', 54)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\proyecto_insumos_fat\\app\\Views\\plantilla.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('plantilla', [], true)
+ 5 APPPATH\Controllers\Inicio.php(34): view('plantilla', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Inicio->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Inicio))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-04-08 18:26:40 --> ErrorException: Undefined variable $activo
+[Method: GET, Route: inicio]
+in APPPATH\Views\plantilla.php on line 54.
+ 1 APPPATH\Views\plantilla.php(54): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $activo', 'C:\\xampp\\htdocs\\proyecto_insumos_fat\\app\\Views\\plantilla.php', 54)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\proyecto_insumos_fat\\app\\Views\\plantilla.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('plantilla', [], true)
+ 5 APPPATH\Controllers\Inicio.php(34): view('plantilla', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Inicio->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Inicio))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-04-08 20:07:54 --> ErrorException: Undefined variable $script_adicionales
+[Method: GET, Route: nosotros]
+in APPPATH\Views\plantilla.php on line 61.
+ 1 APPPATH\Views\plantilla.php(61): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $script_adicionales', 'C:\\xampp\\htdocs\\proyecto_insumos_fat\\app\\Views\\plantilla.php', 61)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\proyecto_insumos_fat\\app\\Views\\plantilla.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('plantilla', [], true)
+ 5 APPPATH\Controllers\Nosotros.php(21): view('plantilla', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Nosotros->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Nosotros))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-04-08 22:08:20 --> CodeIgniter\View\Exceptions\ViewException: Invalid file: ".php"
+[Method: GET, Route: nosotros]
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 39.
+ 1 SYSTEMPATH\View\View.php(212): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('.php')
+ 2 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('', [], true)
+ 3 APPPATH\Controllers\Nosotros.php(19): view('')
+ 4 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Nosotros->index()
+ 5 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Nosotros))
+ 6 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-04-08 23:48:03 --> ErrorException: unlink(C:\xampp\htdocs\proyecto_insumos_fat\writable\debugbar/debugbar_1744156060.139131.json): No such file or directory
+[Method: GET, Route: /]
+in SYSTEMPATH\Debug\Toolbar\Collectors\History.php on line 82.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'unlink(C:\\xampp\\htdocs\\proyecto_insumos_fat\\writable\\debugbar/debugbar_1744156060.139131.json): No such file or directory', 'C:\\xampp\\htdocs\\proyecto_insumos_fat\\system\\Debug\\Toolbar\\Collectors\\History.php', 82)
+ 2 SYSTEMPATH\Debug\Toolbar\Collectors\History.php(82): unlink('C:\\xampp\\htdocs\\proyecto_insumos_fat\\writable\\debugbar/debugbar_1744156060.139131.json')
+ 3 SYSTEMPATH\Debug\Toolbar.php(519): CodeIgniter\Debug\Toolbar\Collectors\History->setFiles('1744156083.506056', 20)
+ 4 SYSTEMPATH\Debug\Toolbar.php(496): CodeIgniter\Debug\Toolbar->format([...], 'html')
+ 5 APPPATH\Config\Events.php(47): CodeIgniter\Debug\Toolbar->respond()
+ 6 SYSTEMPATH\Events\Events.php(155): CodeIgniter\Events\Events::Config\{closure}()
+ 7 SYSTEMPATH\CodeIgniter.php(339): CodeIgniter\Events\Events::trigger('pre_system')
+ 8 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))

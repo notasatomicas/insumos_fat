@@ -13,7 +13,7 @@ declare(strict_types=1);
 
 // Errors language settings
 return [
-    'pageNotFound'    => '404 - Page Not Found',
+    'pageNotFound'    => '404 - Pagina no encontrada',
     'sorryCannotFind' => 'Sorry! Cannot seem to find the page you were looking for.',
     'badRequest'      => '400 - Bad Request',
     'sorryBadRequest' => 'Sorry! Something is wrong with your request.',

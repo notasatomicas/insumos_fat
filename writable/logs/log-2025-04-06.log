@@ -1,0 +1,234 @@
+CRITICAL - 2025-04-06 15:16:52 --> CodeIgniter\View\Exceptions\ViewException: Invalid file: "contenido.php"
+[Method: GET, Route: /]
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 39.
+ 1 SYSTEMPATH\View\View.php(212): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('contenido.php')
+ 2 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('contenido', [], true)
+ 3 APPPATH\Controllers\Inicio.php(14): view('contenido', [...])
+ 4 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Inicio->index()
+ 5 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Inicio))
+ 6 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-04-06 15:17:48 --> CodeIgniter\View\Exceptions\ViewException: Invalid file: "contenido.php"
+[Method: GET, Route: /]
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 39.
+ 1 SYSTEMPATH\View\View.php(212): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('contenido.php')
+ 2 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('contenido', [], true)
+ 3 APPPATH\Controllers\Inicio.php(14): view('contenido', [...])
+ 4 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Inicio->index()
+ 5 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Inicio))
+ 6 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-04-06 15:29:59 --> TypeError: view(): Argument #2 ($data) must be of type array, string given, called in C:\xampp\htdocs\proyecto_insumos_fat\app\Controllers\Inicio.php on line 14
+[Method: GET, Route: /]
+in SYSTEMPATH\Common.php on line 1161.
+ 1 APPPATH\Controllers\Inicio.php(14): view('inicio', 'semen')
+ 2 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Inicio->index()
+ 3 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Inicio))
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-04-06 15:30:28 --> TypeError: view(): Argument #2 ($data) must be of type array, string given, called in C:\xampp\htdocs\proyecto_insumos_fat\app\Controllers\Inicio.php on line 14
+[Method: GET, Route: /]
+in SYSTEMPATH\Common.php on line 1161.
+ 1 APPPATH\Controllers\Inicio.php(14): view('inicio', 'c-men')
+ 2 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Inicio->index()
+ 3 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Inicio))
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-04-06 15:30:30 --> TypeError: view(): Argument #2 ($data) must be of type array, string given, called in C:\xampp\htdocs\proyecto_insumos_fat\app\Controllers\Inicio.php on line 14
+[Method: GET, Route: /]
+in SYSTEMPATH\Common.php on line 1161.
+ 1 APPPATH\Controllers\Inicio.php(14): view('inicio', 'c-men')
+ 2 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Inicio->index()
+ 3 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Inicio))
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-04-06 15:30:30 --> TypeError: view(): Argument #2 ($data) must be of type array, string given, called in C:\xampp\htdocs\proyecto_insumos_fat\app\Controllers\Inicio.php on line 14
+[Method: GET, Route: /]
+in SYSTEMPATH\Common.php on line 1161.
+ 1 APPPATH\Controllers\Inicio.php(14): view('inicio', 'c-men')
+ 2 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Inicio->index()
+ 3 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Inicio))
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-04-06 15:30:30 --> TypeError: view(): Argument #2 ($data) must be of type array, string given, called in C:\xampp\htdocs\proyecto_insumos_fat\app\Controllers\Inicio.php on line 14
+[Method: GET, Route: /]
+in SYSTEMPATH\Common.php on line 1161.
+ 1 APPPATH\Controllers\Inicio.php(14): view('inicio', 'c-men')
+ 2 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Inicio->index()
+ 3 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Inicio))
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-04-06 15:30:31 --> TypeError: view(): Argument #2 ($data) must be of type array, string given, called in C:\xampp\htdocs\proyecto_insumos_fat\app\Controllers\Inicio.php on line 14
+[Method: GET, Route: /]
+in SYSTEMPATH\Common.php on line 1161.
+ 1 APPPATH\Controllers\Inicio.php(14): view('inicio', 'c-men')
+ 2 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Inicio->index()
+ 3 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Inicio))
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-04-06 15:30:31 --> TypeError: view(): Argument #2 ($data) must be of type array, string given, called in C:\xampp\htdocs\proyecto_insumos_fat\app\Controllers\Inicio.php on line 14
+[Method: GET, Route: /]
+in SYSTEMPATH\Common.php on line 1161.
+ 1 APPPATH\Controllers\Inicio.php(14): view('inicio', 'c-men')
+ 2 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Inicio->index()
+ 3 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Inicio))
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-04-06 15:31:41 --> TypeError: view(): Argument #2 ($data) must be of type array, string given, called in C:\xampp\htdocs\proyecto_insumos_fat\app\Controllers\Inicio.php on line 15
+[Method: GET, Route: /]
+in SYSTEMPATH\Common.php on line 1161.
+ 1 APPPATH\Controllers\Inicio.php(15): view('inicio', 'texto')
+ 2 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Inicio->index()
+ 3 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Inicio))
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-04-06 15:31:42 --> TypeError: view(): Argument #2 ($data) must be of type array, string given, called in C:\xampp\htdocs\proyecto_insumos_fat\app\Controllers\Inicio.php on line 15
+[Method: GET, Route: /]
+in SYSTEMPATH\Common.php on line 1161.
+ 1 APPPATH\Controllers\Inicio.php(15): view('inicio', 'texto')
+ 2 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Inicio->index()
+ 3 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Inicio))
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-04-06 15:31:43 --> TypeError: view(): Argument #2 ($data) must be of type array, string given, called in C:\xampp\htdocs\proyecto_insumos_fat\app\Controllers\Inicio.php on line 15
+[Method: GET, Route: /]
+in SYSTEMPATH\Common.php on line 1161.
+ 1 APPPATH\Controllers\Inicio.php(15): view('inicio', 'texto')
+ 2 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Inicio->index()
+ 3 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Inicio))
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-04-06 15:31:43 --> TypeError: view(): Argument #2 ($data) must be of type array, string given, called in C:\xampp\htdocs\proyecto_insumos_fat\app\Controllers\Inicio.php on line 15
+[Method: GET, Route: /]
+in SYSTEMPATH\Common.php on line 1161.
+ 1 APPPATH\Controllers\Inicio.php(15): view('inicio', 'texto')
+ 2 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Inicio->index()
+ 3 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Inicio))
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-04-06 15:31:43 --> TypeError: view(): Argument #2 ($data) must be of type array, string given, called in C:\xampp\htdocs\proyecto_insumos_fat\app\Controllers\Inicio.php on line 15
+[Method: GET, Route: /]
+in SYSTEMPATH\Common.php on line 1161.
+ 1 APPPATH\Controllers\Inicio.php(15): view('inicio', 'texto')
+ 2 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Inicio->index()
+ 3 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Inicio))
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-04-06 15:31:44 --> TypeError: view(): Argument #2 ($data) must be of type array, string given, called in C:\xampp\htdocs\proyecto_insumos_fat\app\Controllers\Inicio.php on line 15
+[Method: GET, Route: /]
+in SYSTEMPATH\Common.php on line 1161.
+ 1 APPPATH\Controllers\Inicio.php(15): view('inicio', 'texto')
+ 2 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Inicio->index()
+ 3 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Inicio))
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-04-06 15:31:44 --> TypeError: view(): Argument #2 ($data) must be of type array, string given, called in C:\xampp\htdocs\proyecto_insumos_fat\app\Controllers\Inicio.php on line 15
+[Method: GET, Route: /]
+in SYSTEMPATH\Common.php on line 1161.
+ 1 APPPATH\Controllers\Inicio.php(15): view('inicio', 'texto')
+ 2 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Inicio->index()
+ 3 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Inicio))
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-04-06 15:31:45 --> TypeError: view(): Argument #2 ($data) must be of type array, string given, called in C:\xampp\htdocs\proyecto_insumos_fat\app\Controllers\Inicio.php on line 15
+[Method: GET, Route: /]
+in SYSTEMPATH\Common.php on line 1161.
+ 1 APPPATH\Controllers\Inicio.php(15): view('inicio', 'texto')
+ 2 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Inicio->index()
+ 3 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Inicio))
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-04-06 15:32:41 --> TypeError: view(): Argument #2 ($data) must be of type array, string given, called in C:\xampp\htdocs\proyecto_insumos_fat\app\Controllers\Inicio.php on line 15
+[Method: GET, Route: /]
+in SYSTEMPATH\Common.php on line 1161.
+ 1 APPPATH\Controllers\Inicio.php(15): view('inicio', 'cadena')
+ 2 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Inicio->index()
+ 3 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Inicio))
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-04-06 20:41:17 --> ErrorException: Undefined variable $cmen
+[Method: GET, Route: /]
+in APPPATH\Views\inicio.php on line 2.
+ 1 APPPATH\Views\inicio.php(2): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $cmen', 'C:\\xampp\\htdocs\\proyecto_insumos_fat\\app\\Views\\inicio.php', 2)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\proyecto_insumos_fat\\app\\Views\\inicio.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('inicio', [], true)
+ 5 APPPATH\Controllers\Inicio.php(14): view('inicio')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Inicio->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Inicio))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-04-06 23:52:56 --> CodeIgniter\View\Exceptions\ViewException: Invalid file: "x.php"
+[Method: GET, Route: nosotros]
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 39.
+ 1 SYSTEMPATH\View\View.php(212): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('x.php')
+ 2 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('x', [], true)
+ 3 APPPATH\Controllers\Nosotros.php(9): view('x')
+ 4 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Nosotros->index()
+ 5 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Nosotros))
+ 6 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-04-06 23:53:01 --> CodeIgniter\View\Exceptions\ViewException: Invalid file: "x.php"
+[Method: GET, Route: productos]
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 39.
+ 1 SYSTEMPATH\View\View.php(212): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('x.php')
+ 2 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('x', [], true)
+ 3 APPPATH\Controllers\Productos.php(9): view('x')
+ 4 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Productos->index()
+ 5 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Productos))
+ 6 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-04-06 23:53:05 --> CodeIgniter\View\Exceptions\ViewException: Invalid file: "x.php"
+[Method: GET, Route: contacto]
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 39.
+ 1 SYSTEMPATH\View\View.php(212): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('x.php')
+ 2 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('x', [], true)
+ 3 APPPATH\Controllers\Contacto.php(9): view('x')
+ 4 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Contacto->index()
+ 5 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Contacto))
+ 6 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
