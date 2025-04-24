@@ -1,60 +1,63 @@
-# CodeIgniter 4 Framework
+# Proyecto *Insumos_FAT*
 
-## What is CodeIgniter?
+## Descripción del Proyecto
 
-CodeIgniter is a PHP full-stack web framework that is light, fast, flexible and secure.
-More information can be found at the [official site](https://codeigniter.com).
+Este proyecto es una tienda virtual de insumos informáticos desarrollada utilizando la última versión de **CodeIgniter 4**, un framework liviano y potente basado en PHP. La plataforma permite a los usuarios explorar, buscar y comprar una amplia gama de productos tecnológicos como periféricos, componentes, accesorios y dispositivos electrónicos.
 
-This repository holds the distributable version of the framework.
-It has been built from the
-[development repository](https://github.com/codeigniter4/CodeIgniter4).
+La aplicación está diseñada con un enfoque en el rendimiento, la seguridad y la escalabilidad, aprovechando las características modernas que ofrece CodeIgniter 4, como el enrutamiento mejorado, los controladores basados en espacio de nombres y el uso de entidades para una gestión más limpia de los datos.
 
-More information about the plans for version 4 can be found in [CodeIgniter 4](https://forum.codeigniter.com/forumdisplay.php?fid=28) on the forums.
+### Funcionalidades principales
 
-You can read the [user guide](https://codeigniter.com/user_guide/)
-corresponding to the latest version of the framework.
+- 🖥️ Catálogo dinámico de productos.  
+- 👥 Gestión de usuarios y autenticación. (en proceso) 
+- 🛒 Carrito de compras y sistema de pagos.  (en proceso)
+- ⚙️ Panel administrativo para la gestión de inventario y pedidos. (en proceso)
 
-## Important Change with index.php
+Este sistema es ideal tanto para pequeñas tiendas como para negocios en crecimiento que desean tener presencia en línea y ofrecer una experiencia de compra sencilla y eficiente.
 
-`index.php` is no longer in the root of the project! It has been moved inside the *public* folder,
-for better security and separation of components.
+## Requisitos del servidor
 
-This means that you should configure your web server to "point" to your project's *public* folder, and
-not to the project root. A better practice would be to configure a virtual host to point there. A poor practice would be to point your web server to the project root and expect to enter *public/...*, as the rest of your logic and the
-framework are exposed.
+Se requiere PHP versión 8.1 o superior, con las siguientes extensiones instaladas:
 
-**Please** read the user guide for a better explanation of how CI4 works!
-
-## Repository Management
-
-We use GitHub issues, in our main repository, to track **BUGS** and to track approved **DEVELOPMENT** work packages.
-We use our [forum](http://forum.codeigniter.com) to provide SUPPORT and to discuss
-FEATURE REQUESTS.
-
-This repository is a "distribution" one, built by our release preparation script.
-Problems with it can be raised on our forum, or as issues in the main repository.
-
-## Contributing
-
-We welcome contributions from the community.
-
-Please read the [*Contributing to CodeIgniter*](https://github.com/codeigniter4/CodeIgniter4/blob/develop/CONTRIBUTING.md) section in the development repository.
-
-## Server Requirements
-
-PHP version 8.1 or higher is required, with the following extensions installed:
-
-- [intl](http://php.net/manual/en/intl.requirements.php)
+- [intl](http://php.net/manual/en/intl.requirements.php)  
 - [mbstring](http://php.net/manual/en/mbstring.installation.php)
 
-> [!WARNING]
-> - The end of life date for PHP 7.4 was November 28, 2022.
-> - The end of life date for PHP 8.0 was November 26, 2023.
-> - If you are still using PHP 7.4 or 8.0, you should upgrade immediately.
-> - The end of life date for PHP 8.1 will be December 31, 2025.
+> ⚠️ **ADVERTENCIA**  
+> - La fecha de fin de vida útil de PHP 7.4 fue el 28 de noviembre de 2022.  
+> - La fecha de fin de vida útil de PHP 8.0 fue el 26 de noviembre de 2023.  
+> - Si aún estás utilizando PHP 7.4 o 8.0, deberías actualizarlo de inmediato.  
+> - La fecha de fin de vida útil de PHP 8.1 será el 31 de diciembre de 2025.
 
-Additionally, make sure that the following extensions are enabled in your PHP:
+Además, asegúrate de que las siguientes extensiones estén habilitadas en tu PHP:
 
-- json (enabled by default - don't turn it off)
-- [mysqlnd](http://php.net/manual/en/mysqlnd.install.php) if you plan to use MySQL
-- [libcurl](http://php.net/manual/en/curl.requirements.php) if you plan to use the HTTP\CURLRequest library
+- `json` (habilitada por defecto - no la desactives)  
+- [mysqlnd](http://php.net/manual/en/mysqlnd.install.php) si planeas usar MySQL  
+- [libcurl](http://php.net/manual/en/curl.requirements.php) si planeas usar la biblioteca `HTTP\CURLRequest`
+
+## Otros Frameworks Usados
+
+Este proyecto también hace uso de otras tecnologías modernas para mejorar la experiencia del usuario, el diseño y la funcionalidad general del sitio:
+
+- 🎨 **[Bootstrap 5](https://getbootstrap.com/)**  
+  Utilizado para el diseño responsivo y la construcción rápida de interfaces limpias y modernas. Permite que el sitio se adapte a cualquier tamaño de pantalla.
+
+- 🗺️ **[Leaflet](https://leafletjs.com/)**  
+  Una biblioteca JavaScript ligera para mapas interactivos. Se usa en la sección de contacto para mostrar la ubicación de la tienda de forma visual e intuitiva.
+
+- 💫 **[Animate.css](https://animate.style/)**  
+  Biblioteca de animaciones CSS predefinidas que mejora la apariencia visual del sitio con transiciones suaves y llamativas.
+
+- ✨ **[Hover.css](https://ianlunn.github.io/Hover/)**  
+  Conjunto de efectos de animación aplicados al pasar el cursor sobre elementos interactivos, como botones e imágenes, para mejorar la experiencia del usuario.
+
+---
+
+Estas herramientas complementan a **CodeIgniter 4**, potenciando tanto la estética como la usabilidad del sistema.
+
+
+## Quienes somos
+
+Somos estudiantes de la Lic. en Sistemas
+
+- Ariel Antinori
+- Andres Sena
