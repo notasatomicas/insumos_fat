@@ -48,7 +48,7 @@
               <div class="card-title h5">Iphone 13</div>
             </a>
             <div class="rating"><span><i class="fas fa-star"></i></span><span><i class="fas fa-star"></i></span><span><i class="far fa-star"></i></span><span><i class="far fa-star"></i></span><span><i class="far fa-star"></i></span><span> 12 reviews</span></div>
-            <p class="card-text">$1.000.000,00</p><button type="button" class="btn btn-primary">Añadir al carrito</button>
+            <p class="card-text">$1.000.000,00</p><button type="button" class="btn btn-primary comprar">Añadir al carrito</button>
           </div>
         </div>
       </div>
@@ -70,7 +70,7 @@
               <div class="card-title h5">Smartwatch Kanji</div>
             </a>
             <div class="rating"><span><i class="fas fa-star"></i></span><span><i class="fas fa-star"></i></span><span><i class="far fa-star"></i></span><span><i class="far fa-star"></i></span><span><i class="far fa-star"></i></span><span> 12 reviews</span></div>
-            <p class="card-text">$15.000,00</p><button type="button" class="btn btn-primary">Añadir al carrito</button>
+            <p class="card-text">$15.000,00</p><button type="button" class="btn btn-primary comprar">Añadir al carrito</button>
           </div>
         </div>
       </div>
@@ -81,7 +81,7 @@
               <div class="card-title h5">Auricular Redragon</div>
             </a>
             <div class="rating"><span><i class="fas fa-star"></i></span><span><i class="fas fa-star"></i></span><span><i class="far fa-star"></i></span><span><i class="far fa-star"></i></span><span><i class="far fa-star"></i></span><span> 12 reviews</span></div>
-            <p class="card-text">$120.000,00</p><button type="button" class="btn btn-primary">Añadir al carrito</button>
+            <p class="card-text">$120.000,00</p><button type="button" class="btn btn-primary comprar">Añadir al carrito</button>
           </div>
         </div>
       </div>
@@ -103,7 +103,7 @@
               <div class="card-title h5">Gabinete Termaltake</div>
             </a>
             <div class="rating"><span><i class="fas fa-star"></i></span><span><i class="fas fa-star"></i></span><span><i class="far fa-star"></i></span><span><i class="far fa-star"></i></span><span><i class="far fa-star"></i></span><span> 12 reviews</span></div>
-            <p class="card-text">$200.000,00</p><button type="button" class="btn btn-primary">Añadir al carrito</button>
+            <p class="card-text">$200.000,00</p><button type="button" class="btn btn-primary comprar">Añadir al carrito</button>
           </div>
         </div>
       </div>
@@ -114,7 +114,7 @@
               <div class="card-title h5">Gabinete Optimus</div>
             </a>
             <div class="rating"><span><i class="fas fa-star"></i></span><span><i class="fas fa-star"></i></span><span><i class="far fa-star"></i></span><span><i class="far fa-star"></i></span><span><i class="far fa-star"></i></span><span> 12 reviews</span></div>
-            <p class="card-text">$130.000,00</p><button type="button" class="btn btn-primary">Añadir al carrito</button>
+            <p class="card-text">$130.000,00</p><button type="button" class="btn btn-primary comprar">Añadir al carrito</button>
           </div>
         </div>
       </div>
@@ -125,11 +125,10 @@
               <div class="card-title h5">Mouse Logi</div>
             </a>
             <div class="rating"><span><i class="fas fa-star"></i></span><span><i class="fas fa-star"></i></span><span><i class="far fa-star"></i></span><span><i class="far fa-star"></i></span><span><i class="far fa-star"></i></span><span> 12 reviews</span></div>
-            <p class="card-text">$10.000,00</p><button type="button" class="btn btn-primary">Añadir al carrito</button>
+            <p class="card-text">$10.000,00</p><button type="button" class="btn btn-primary comprar">Añadir al carrito</button>
           </div>
         </div>
       </div>
     </div>
   </div>
 </main>
-

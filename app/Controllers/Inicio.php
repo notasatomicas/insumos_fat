@@ -9,7 +9,7 @@ class Inicio extends BaseController
       //esta es la parte que se usaria en caso de cargar hojas de estilos adicionales
       //o cualquier cosa necesaria en el header que sea necesario solo para este controlador en especifico
       $data['cont_adicional'] = '';
-      $data['script_adicionales'] = '';
+      $data['script_adicionales'] = view('adicional/script_development.js');
       $data['activo'] = 'inicio';
 
       //el titulo que va a aparecer en la pagina
@@ -21,7 +21,7 @@ class Inicio extends BaseController
       $data['footer'] = view('layout/footer', $data);
 
       //esta es el area donde cargo la vista del contenido
-      $data['contenido'] = view('inicio');
+      $data['contenido'] = view('inicio').view('adicional/modal_development.html');
 
 
 
