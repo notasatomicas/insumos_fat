@@ -3,8 +3,11 @@
 <head>
     <meta charset="utf-8">
     <link rel="stylesheet" href="<?= base_url('public/assets/css/bootstrap.min.css') ?>"><!-- el bootstrap propiamente dicho -->
-    <link rel="stylesheet" href="<?= base_url('public/assets/bootstrap-icons/font/bootstrap-icons.min.css') ?>"><!-- iconos de bootstrap -->
     <link rel="shortcut icon" href="<?= base_url('public/assets/img/icon.png') ?>" type="image/x-icon">
+
+    <!-- iconos de fontawesome -->
+    <link href="<?= base_url('public/assets/fontawesome/css/all.css') ?>" rel="stylesheet" />
+
 
 
     <!--
@@ -42,24 +45,35 @@
       Edit de mas tarde: lpm como cuesta encontrarle nombre a las variables
      -->
 
-    <script>
-          document.addEventListener('DOMContentLoaded', () => {
-              // Seleccionar el elemento que tiene la clase 'active' actualmente
-              const activeElement = document.querySelector('.nav-link.active');
+     <script>
+   document.addEventListener('DOMContentLoaded', () => {
+       // Seleccionar el elemento que tiene la clase 'active' actualmente
+       const activeElement = document.querySelector('.nav-link.active');
 
-              // Quitar la clase 'active' del elemento actual
-              if (activeElement) {
-                  activeElement.classList.remove('active');
-              }
+       // Quitar las clases de animación (si existen) del icono (i) dentro del enlace activo
+       if (activeElement) {
+           const icon = activeElement.querySelector('i');
+           if (icon) {
+               icon.classList.remove('animate__animated', 'animate__heartBeat', 'animate__infinite');
+           }
+       }
 
-              // Seleccionar el elemento con el id 'btn_nav_tyc' y agregar la clase 'active'
-              const elemento_activo = document.getElementById('btn_nav_<?= $activo ?>');
-              if (elemento_activo) {
-                  elemento_activo.classList.add('active');
-                  elemento_activo.classList.remove('hvr-underline-from-center');
-              }
-          });
-      </script>
+       // Seleccionar el elemento con el id 'btn_nav_tyc' y agregar la clase 'active'
+       const elemento_activo = document.getElementById('btn_nav_<?= $activo ?>');
+       if (elemento_activo) {
+           elemento_activo.classList.add('active');
+           elemento_activo.classList.remove('hvr-underline-from-center');
+
+           // Obtener el icono dentro del nuevo elemento activo
+           const icon = elemento_activo.querySelector('i');
+           if (icon) {
+               // Agregar las clases de animación al icono del nuevo enlace activo
+               icon.classList.add('animate__animated', 'animate__heartBeat', 'animate__infinite');
+           }
+       }
+   });
+ </script>
+
 
     <?= $script_adicionales ?>
     <script src="<?= base_url('public/assets/js/bootstrap.bundle.js') ?>" charset="utf-8"></script>

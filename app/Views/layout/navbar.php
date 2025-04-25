@@ -10,7 +10,7 @@
 
     <!-- Este es el toggler que solo se ve cuando se hace offcanvas -->
     <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar2" aria-controls="offcanvasNavbar2" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
+      <i class="fa-solid fa-bars"></i>
     </button>
     <!-- Aca finaliza (esto es solo el boton viejo, nada mas) lo separo por las dudas -->
 
@@ -25,7 +25,7 @@
         <!-- <h5 class="offcanvas-title" id="offcanvasNavbar2Label">Offcanvas</h5> -->
 
         <button type="button" class="btn" data-bs-dismiss="offcanvas" aria-label="Close" style="color: red;">
-          <i class="bi bi-x-circle-fill"></i>
+          <i class="fa-solid fa-circle-xmark" style="color: red !important;"></i>
         </button>
       </div>
 
@@ -36,36 +36,36 @@
         <ul class="navbar-nav nav-pills justify-content-end flex-grow-1 pe-3">
 
           <li class="nav-item mx-5 mx-sm-4 mx-lg-0">
-            <a id="btn_nav_inicio" class="hvr-underline-from-center nav-link text-center px-4 active" href="<?= base_url('inicio') ?>">
-              <i class="ms-5 ms-md-0 me-1 bi bi-house"></i>
+            <a id="btn_nav_inicio" class="hvr-underline-from-center nav-link text-center px-4" href="<?= base_url('inicio') ?>">
+              <i class="ms-5 ms-md-0 me-1 fa-solid fa-house"></i>
               Inicio
             </a>
           </li>
 
           <li class="nav-item mx-5 mx-sm-4 mx-lg-0">
             <a id="btn_nav_comercializacion" class="hvr-underline-from-center nav-link text-center px-4" href="<?= base_url('comercializacion') ?>">
-              <i class="ms-5 ms-md-0 me-1 bi bi-bag-check"></i>
+              <i class="ms-5 ms-md-0 me-1 fa-solid fa-truck-arrow-right"></i>
               Comercializacion
             </a>
           </li>
 
           <li class="nav-item mx-5 mx-sm-4 mx-lg-0">
             <a id="btn_nav_nosotros" class="hvr-underline-from-center nav-link text-center px-4" href="<?= base_url('nosotros') ?>">
-              <i class="ms-5 ms-md-0 me-1 bi bi-person-circle"></i>
+              <i class="ms-5 ms-md-0 me-1 fa-solid fa-face-grin-wink"></i>
               Quienes somos
             </a>
           </li>
 
           <li class="nav-item mx-5 mx-sm-4 mx-lg-0">
             <a id="btn_nav_contacto" class="hvr-underline-from-center nav-link text-center px-4" href="<?= base_url('contacto') ?>">
-              <i class="ms-5 ms-md-0 me-1 bi bi-telephone"></i>
+              <i class="ms-5 ms-md-0 me-1 fa-solid fa-phone-volume"></i>
               Contacto
             </a>
           </li>
 
           <li class="nav-item mx-5 mx-sm-4 mx-lg-0">
             <a id="btn_nav_tyc" class="hvr-underline-from-center nav-link text-center px-4" href="<?= base_url('terminos') ?>">
-              <i class="ms-5 ms-md-0 me-1 bi bi-file-earmark-lock"></i>
+              <i class="ms-5 ms-md-0 me-1 fa-solid fa-scale-balanced"></i>
               Términos y condiciones
             </a>
           </li>
