@@ -2,9 +2,10 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <link rel="stylesheet" href="./public/assets/css/bootstrap.min.css"><!-- el bootstrap propiamente dicho -->
-    <link rel="stylesheet" href="./public/assets/bootstrap-icons/font/bootstrap-icons.min.css"><!-- iconos de bootstrap -->
-    <link rel="shortcut icon" href="./public/assets/img/icon.png" type="image/x-icon">
+    <link rel="stylesheet" href="<?= base_url('public/assets/css/bootstrap.min.css') ?>"><!-- el bootstrap propiamente dicho -->
+    <link rel="stylesheet" href="<?= base_url('public/assets/bootstrap-icons/font/bootstrap-icons.min.css') ?>"><!-- iconos de bootstrap -->
+    <link rel="shortcut icon" href="<?= base_url('public/assets/img/icon.png') ?>" type="image/x-icon">
+
 
     <!--
       En esta parte pongo esta referencia como acceso directo para ir colocando
@@ -19,8 +20,9 @@
     -->
     <title><?= $titulo ?></title>
 
-    <link rel="stylesheet" href="./public/assets/css/animate.css">
-    <link rel="stylesheet" href="./public/assets/css/hoverme.css">
+    <link rel="stylesheet" href="<?= base_url('public/assets/css/animate.css') ?>">
+    <link rel="stylesheet" href="<?= base_url('public/assets/css/hoverme.css') ?>">
+
 </head>
 <body>
     <!-- Apartado para cargar la vista del navbar que esta definida en Views/navbar.php -->
@@ -60,6 +62,6 @@
       </script>
 
     <?= $script_adicionales ?>
-    <script src="./public/assets/js/bootstrap.bundle.js" charset="utf-8"></script>
+    <script src="<?= base_url('public/assets/js/bootstrap.bundle.js') ?>" charset="utf-8"></script>
 </body>
 </html>

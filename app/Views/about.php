@@ -10,18 +10,17 @@
         </div>
         
         <h2 class="text-center fw-normal my-3">Ariel Antinori</h2>
-        <p class="px-lg-4 pb-lg-4" style="text-align: justify;"> Posee una amplia experiencia en el desarrollo de software, con habilidades sólidas en varios lenguajes de programación y tecnologías relevantes para el dominio de los juegos y el comercio electrónico.</p>
+        <p class="px-lg-4 pb-lg-4" style="text-align: justify;">Posee una amplia experiencia en el desarrollo de software, con habilidades sólidas en varios lenguajes de programación y tecnologías relevantes para el dominio de los juegos y el comercio electrónico.</p>
       </div>
 
       <div class="col-11 col-md-3 rounded-4 my-2" style="border: 1px solid black;">
         <div class="d-flex align-items-center justify-content-center mt-4">
-          <img src="./public/assets/img/yo.webp" alt="" class="rounded-circle" width="140" height="140">
+          <img src="<?= base_url('public/assets/img/yo.webp') ?>" alt="" class="rounded-circle" width="140" height="140">
         </div>
         
         <h2 class="text-center fw-normal my-3">Andres Sena</h2>
-        <p class="px-lg-4 pb-lg-4" style="text-align: justify;"> Ejerce un liderazgo técnico efectivo, guiando al equipo de desarrollo en la implementación de soluciones técnicas innovadoras y escalables que satisfagan las necesidades del negocio y los clientes de la tienda de juegos.</p>
+        <p class="px-lg-4 pb-lg-4" style="text-align: justify;">Ejerce un liderazgo técnico efectivo, guiando al equipo de desarrollo en la implementación de soluciones técnicas innovadoras y escalables que satisfagan las necesidades del negocio y los clientes de la tienda de juegos.</p>
       </div>
-
     </div><!-- /.row -->
   </div>
 
@@ -29,13 +28,13 @@
   <div class="row align-items-md-stretch mx-1 mx-md-5">
     <div class="col-md-6 my-3">
       <div class="h-100 rounded-5">
-        <img src="./public/assets/img/tienda.jpg" class="imagenTienda" width="90%">
+        <img src="<?= base_url('public/assets/img/tienda.jpg') ?>" class="imagenTienda" width="90%">
       </div>
     </div>
     
     <div class="col-md-6 my-3">
       <div class="h-100 rounded-5">
-        <img src="./public/assets/img/tienda-gamer.webp" class="imagenTienda" width="100%">
+        <img src="<?= base_url('public/assets/img/tienda-gamer.webp') ?>" class="imagenTienda" width="100%">
       </div>
     </div>
   </div>
