@@ -9,7 +9,7 @@ La aplicación está diseñada con un enfoque en el rendimiento, la seguridad y 
 ### Funcionalidades principales
 
 - 🖥️ Catálogo dinámico de productos.  
-- 👥 Gestión de usuarios y autenticación. (en proceso) 
+- 👥 Gestión de usuarios y autenticación. (en proceso)
 - 🛒 Carrito de compras y sistema de pagos.  (en proceso)
 - ⚙️ Panel administrativo para la gestión de inventario y pedidos. (en proceso)
 
@@ -47,7 +47,7 @@ Este proyecto también hace uso de otras tecnologías modernas para mejorar la e
 - 💫 **[Animate.css](https://animate.style/)**  
   Biblioteca de animaciones CSS predefinidas que mejora la apariencia visual del sitio con transiciones suaves y llamativas.
 
-- ✨ **[Hover.css](https://ianlunn.github.io/Hover/)**  
+- ✨ **[Hoverme.css](https://www.hoverme.epizy.com/)**  
   Conjunto de efectos de animación aplicados al pasar el cursor sobre elementos interactivos, como botones e imágenes, para mejorar la experiencia del usuario.
 
 ---
@@ -57,7 +57,7 @@ Estas herramientas complementan a **CodeIgniter 4**, potenciando tanto la estét
 
 ## Quienes somos
 
-Somos estudiantes de la Lic. en Sistemas
+Somos estudiantes de la Lic. en Sistemas - este es un proyecto desarrollado para la asignatura Taller de programación 1
 
 - Ariel Antinori
 - Andres Sena
