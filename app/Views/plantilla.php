@@ -8,8 +8,6 @@
     <!-- iconos de fontawesome -->
     <link href="<?= base_url('public/assets/fontawesome/css/all.css') ?>" rel="stylesheet" />
 
-
-
     <!--
       En esta parte pongo esta referencia como acceso directo para ir colocando
       distintas hojas de estilo segun vaya siendo necesario y depende de lo que
@@ -50,29 +48,45 @@
        // Seleccionar el elemento que tiene la clase 'active' actualmente
        const activeElement = document.querySelector('.nav-link.active');
 
-       // Quitar las clases de animación (si existen) del icono (i) dentro del enlace activo
+       // Si hay un enlace activo
        if (activeElement) {
+           // Buscar el elemento padre (li) que tiene la clase 'hvr-underline-from-center'
+           const parentElement = activeElement.closest('li.hvr-underline-from-center');
+
+           // Si se encuentra el padre, quitarle la clase 'hvr-underline-from-center'
+           if (parentElement) {
+               parentElement.classList.remove('hvr-underline-from-center');
+           }
+
+           // Quitar las clases de animación (si existen) del icono (i) dentro del enlace activo
            const icon = activeElement.querySelector('i');
            if (icon) {
                icon.classList.remove('animate__animated', 'animate__heartBeat', 'animate__infinite');
            }
        }
 
-       // Seleccionar el elemento con el id 'btn_nav_tyc' y agregar la clase 'active'
-       const elemento_activo = document.getElementById('btn_nav_<?= $activo ?>');
-       if (elemento_activo) {
-           elemento_activo.classList.add('active');
-           elemento_activo.classList.remove('hvr-underline-from-center');
+       // Seleccionar el elemento con el id 'btn_nav_<?= $activo ?>' y agregar la clase 'active'
+       const elementoActivo = document.getElementById('btn_nav_<?= $activo ?>');
+       if (elementoActivo) {
+           // Agregar la clase 'active' al nuevo elemento y quitar la clase 'hvr-underline-from-center' del padre
+           elementoActivo.classList.add('active');
+
+           // Buscar el padre (li) del nuevo enlace y quitar la clase 'hvr-underline-from-center'
+           const parentElement = elementoActivo.closest('li.hvr-underline-from-center');
+           if (parentElement) {
+               parentElement.classList.remove('hvr-underline-from-center');
+           }
 
            // Obtener el icono dentro del nuevo elemento activo
-           const icon = elemento_activo.querySelector('i');
+           const icon = elementoActivo.querySelector('i');
            if (icon) {
                // Agregar las clases de animación al icono del nuevo enlace activo
                icon.classList.add('animate__animated', 'animate__heartBeat', 'animate__infinite');
            }
        }
    });
- </script>
+</script>
+
 
 
     <?= $script_adicionales ?>

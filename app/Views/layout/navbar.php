@@ -35,37 +35,37 @@
         <!-- clases originales que tenia -> navbar-nav justify-content-end flex-grow-1 pe-3 -->
         <ul class="navbar-nav nav-pills justify-content-end flex-grow-1 pe-3">
 
-          <li class="nav-item mx-5 mx-sm-4 mx-lg-0">
-            <a id="btn_nav_inicio" class="hvr-underline-from-center nav-link text-center px-4" href="<?= base_url('inicio') ?>">
-              <i class="ms-5 ms-md-0 me-1 fa-solid fa-house"></i>
+          <li class="hvr-underline-from-center nav-item mx-5 mx-sm-4 mx-lg-0">
+            <a id="btn_nav_inicio" class="nav-link text-center me-lg-2 px-2 px-xl-4" href="<?= base_url('inicio') ?>">
+              <i class="ms-md-0 me-1 fa-solid fa-house"></i>
               Inicio
             </a>
           </li>
 
-          <li class="nav-item mx-5 mx-sm-4 mx-lg-0">
-            <a id="btn_nav_comercializacion" class="hvr-underline-from-center nav-link text-center px-4" href="<?= base_url('comercializacion') ?>">
-              <i class="ms-5 ms-md-0 me-1 fa-solid fa-truck-arrow-right"></i>
+          <li class="hvr-underline-from-center nav-item mx-5 mx-sm-4 mx-lg-0">
+            <a id="btn_nav_comercializacion" class="nav-link text-center me-lg-2 px-2 px-xl-4" href="<?= base_url('comercializacion') ?>">
+              <i class="ms-md-0 me-1 fa-solid fa-truck-arrow-right"></i>
               Comercializacion
             </a>
           </li>
 
-          <li class="nav-item mx-5 mx-sm-4 mx-lg-0">
-            <a id="btn_nav_nosotros" class="hvr-underline-from-center nav-link text-center px-4" href="<?= base_url('nosotros') ?>">
-              <i class="ms-5 ms-md-0 me-1 fa-solid fa-face-grin-wink"></i>
+          <li class="hvr-underline-from-center nav-item mx-5 mx-sm-4 mx-lg-0">
+            <a id="btn_nav_nosotros" class="nav-link text-center me-lg-2 px-2 px-xl-4" href="<?= base_url('nosotros') ?>">
+              <i class="ms-md-0 me-1 fa-solid fa-face-grin-wink"></i>
               Quienes somos
             </a>
           </li>
 
-          <li class="nav-item mx-5 mx-sm-4 mx-lg-0">
-            <a id="btn_nav_contacto" class="hvr-underline-from-center nav-link text-center px-4" href="<?= base_url('contacto') ?>">
-              <i class="ms-5 ms-md-0 me-1 fa-solid fa-phone-volume"></i>
+          <li class="hvr-underline-from-center nav-item mx-5 mx-sm-4 mx-lg-0">
+            <a id="btn_nav_contacto" class="nav-link text-center me-lg-2 px-2 px-xl-4" href="<?= base_url('contacto') ?>">
+              <i class="ms-md-0 me-1 fa-solid fa-phone-volume"></i>
               Contacto
             </a>
           </li>
 
-          <li class="nav-item mx-5 mx-sm-4 mx-lg-0">
-            <a id="btn_nav_tyc" class="hvr-underline-from-center nav-link text-center px-4" href="<?= base_url('terminos') ?>">
-              <i class="ms-5 ms-md-0 me-1 fa-solid fa-scale-balanced"></i>
+          <li class="hvr-underline-from-center nav-item mx-5 mx-sm-4 mx-lg-0">
+            <a id="btn_nav_tyc" class="nav-link text-center me-lg-2 px-2 px-xl-4" href="<?= base_url('terminos') ?>">
+              <i class="ms-md-0 me-1 fa-solid fa-scale-balanced"></i>
               Términos y condiciones
             </a>
           </li>
