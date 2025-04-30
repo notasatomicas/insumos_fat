@@ -21,3 +21,5 @@ $routes->get('/terminos', 'Terminos::index');
 $routes->get('/tyc', 'Terminos::index');
 $routes->get('/terminos_y_condiciones', 'Terminos::index');
 $routes->get('/privacy', 'Terminos::index');
+
+$routes->get('/en_construccion', 'Construccion::index');

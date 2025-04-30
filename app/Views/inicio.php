@@ -43,8 +43,8 @@
     <div class="row">
       <div class="mb-3 col-lg-3 col-md-4 col-sm-6">
         <div class="card">
-          <a href="error" target="_blank"><img src="<?= base_url('public/assets/img/productos/p1.jpg') ?>" class="card-img-top" alt="Nike Slim shirt"></a>
-          <div class="card-body"><a href="error" target="_blank">
+          <a onclick="window.open(this.href, '_blank', 'width=600,height=569'); return false;" href="<?= base_url('en_construccion') ?>"><img src="<?= base_url('public/assets/img/productos/p1.jpg') ?>" class="card-img-top"></a>
+          <div class="card-body"><a onclick="window.open(this.href, '_blank', 'width=600,height=569'); return false;" href="<?= base_url('en_construccion') ?>">
               <div class="card-title h5">Iphone 13</div>
             </a>
             <div class="rating"><span><i class="fas fa-star"></i></span><span><i class="fas fa-star"></i></span><span><i class="far fa-star"></i></span><span><i class="far fa-star"></i></span><span><i class="far fa-star"></i></span><span> 12 reviews</span></div>
@@ -54,8 +54,8 @@
       </div>
 
       <div class="mb-3 col-lg-3 col-md-4 col-sm-6">
-        <div class="card"><a href="error" target="_blank"><img src="<?= base_url('public/assets/img/productos/p2.jpg') ?>" class="card-img-top" alt="Nike Slim shirt"></a>
-          <div class="card-body"><a href="error" target="_blank">
+        <div class="card"><a onclick="window.open(this.href, '_blank', 'width=600,height=569'); return false;" href="<?= base_url('en_construccion') ?>"><img src="<?= base_url('public/assets/img/productos/p2.jpg') ?>" class="card-img-top"></a>
+          <div class="card-body"><a onclick="window.open(this.href, '_blank', 'width=600,height=569'); return false;" href="<?= base_url('en_construccion') ?>">
               <div class="card-title h5">Poco X6</div>
             </a>
             <div class="rating"><span><i class="fas fa-star"></i></span><span><i class="fas fa-star"></i></span><span><i class="far fa-star"></i></span><span><i class="far fa-star"></i></span><span><i class="far fa-star"></i></span><span> 12 reviews</span></div>
@@ -65,8 +65,8 @@
       </div>
 
       <div class="mb-3 col-lg-3 col-md-4 col-sm-6">
-        <div class="card"><a href="error" target="_blank"><img src="<?= base_url('public/assets/img/productos/p3.jpg') ?>" class="card-img-top" alt="Nike Slim shirt"></a>
-          <div class="card-body"><a href="error" target="_blank">
+        <div class="card"><a onclick="window.open(this.href, '_blank', 'width=600,height=569'); return false;" href="<?= base_url('en_construccion') ?>"><img src="<?= base_url('public/assets/img/productos/p3.jpg') ?>" class="card-img-top"></a>
+          <div class="card-body"><a onclick="window.open(this.href, '_blank', 'width=600,height=569'); return false;" href="<?= base_url('en_construccion') ?>">
               <div class="card-title h5">Smartwatch Kanji</div>
             </a>
             <div class="rating"><span><i class="fas fa-star"></i></span><span><i class="fas fa-star"></i></span><span><i class="far fa-star"></i></span><span><i class="far fa-star"></i></span><span><i class="far fa-star"></i></span><span> 12 reviews</span></div>
@@ -76,8 +76,8 @@
       </div>
 
       <div class="mb-3 col-lg-3 col-md-4 col-sm-6">
-        <div class="card"><a href="error" target="_blank"><img src="<?= base_url('public/assets/img/productos/p4.jpg') ?>" class="card-img-top" alt="Nike Slim shirt"></a>
-          <div class="card-body"><a href="error" target="_blank">
+        <div class="card"><a onclick="window.open(this.href, '_blank', 'width=600,height=569'); return false;" href="<?= base_url('en_construccion') ?>"><img src="<?= base_url('public/assets/img/productos/p4.jpg') ?>" class="card-img-top"></a>
+          <div class="card-body"><a onclick="window.open(this.href, '_blank', 'width=600,height=569'); return false;" href="<?= base_url('en_construccion') ?>">
               <div class="card-title h5">Auricular Redragon</div>
             </a>
             <div class="rating"><span><i class="fas fa-star"></i></span><span><i class="fas fa-star"></i></span><span><i class="far fa-star"></i></span><span><i class="far fa-star"></i></span><span><i class="far fa-star"></i></span><span> 12 reviews</span></div>
@@ -87,8 +87,8 @@
       </div>
 
       <div class="mb-3 col-lg-3 col-md-4 col-sm-6">
-        <div class="card"><a href="error" target="_blank"><img src="<?= base_url('public/assets/img/productos/p5.jpg') ?>" class="card-img-top" alt="Nike Slim shirt"></a>
-          <div class="card-body"><a href="error" target="_blank">
+        <div class="card"><a onclick="window.open(this.href, '_blank', 'width=600,height=569'); return false;" href="<?= base_url('en_construccion') ?>"><img src="<?= base_url('public/assets/img/productos/p5.jpg') ?>" class="card-img-top"></a>
+          <div class="card-body"><a onclick="window.open(this.href, '_blank', 'width=600,height=569'); return false;" href="<?= base_url('en_construccion') ?>">
               <div class="card-title h5">Jostick Generico</div>
             </a>
             <div class="rating"><span><i class="fas fa-star"></i></span><span><i class="fas fa-star"></i></span><span><i class="far fa-star"></i></span><span><i class="far fa-star"></i></span><span><i class="far fa-star"></i></span><span> 12 reviews</span></div>
@@ -98,8 +98,8 @@
       </div>
 
       <div class="mb-3 col-lg-3 col-md-4 col-sm-6">
-        <div class="card"><a href="error" target="_blank"><img src="<?= base_url('public/assets/img/productos/p6.jpg') ?>" class="card-img-top" alt="Nike Slim shirt"></a>
-          <div class="card-body"><a href="error" target="_blank">
+        <div class="card"><a onclick="window.open(this.href, '_blank', 'width=600,height=569'); return false;" href="<?= base_url('en_construccion') ?>"><img src="<?= base_url('public/assets/img/productos/p6.jpg') ?>" class="card-img-top"></a>
+          <div class="card-body"><a onclick="window.open(this.href, '_blank', 'width=600,height=569'); return false;" href="<?= base_url('en_construccion') ?>">
               <div class="card-title h5">Gabinete Termaltake</div>
             </a>
             <div class="rating"><span><i class="fas fa-star"></i></span><span><i class="fas fa-star"></i></span><span><i class="far fa-star"></i></span><span><i class="far fa-star"></i></span><span><i class="far fa-star"></i></span><span> 12 reviews</span></div>
@@ -109,8 +109,8 @@
       </div>
 
       <div class="mb-3 col-lg-3 col-md-4 col-sm-6">
-        <div class="card"><a href="error" target="_blank"><img src="<?= base_url('public/assets/img/productos/p7.jpg') ?>" class="card-img-top" alt="Nike Slim shirt"></a>
-          <div class="card-body"><a href="error" target="_blank">
+        <div class="card"><a onclick="window.open(this.href, '_blank', 'width=600,height=569'); return false;" href="<?= base_url('en_construccion') ?>"><img src="<?= base_url('public/assets/img/productos/p7.jpg') ?>" class="card-img-top"></a>
+          <div class="card-body"><a onclick="window.open(this.href, '_blank', 'width=600,height=569'); return false;" href="<?= base_url('en_construccion') ?>">
               <div class="card-title h5">Gabinete Optimus</div>
             </a>
             <div class="rating"><span><i class="fas fa-star"></i></span><span><i class="fas fa-star"></i></span><span><i class="far fa-star"></i></span><span><i class="far fa-star"></i></span><span><i class="far fa-star"></i></span><span> 12 reviews</span></div>
@@ -120,8 +120,8 @@
       </div>
 
       <div class="mb-3 col-lg-3 col-md-4 col-sm-6">
-        <div class="card"><a href="error" target="_blank"><img src="<?= base_url('public/assets/img/productos/p8.jpg') ?>" class="card-img-top" alt="Nike Slim shirt"></a>
-          <div class="card-body"><a href="error" target="_blank">
+        <div class="card"><a onclick="window.open(this.href, '_blank', 'width=600,height=569'); return false;" href="<?= base_url('en_construccion') ?>"><img src="<?= base_url('public/assets/img/productos/p8.jpg') ?>" class="card-img-top"></a>
+          <div class="card-body"><a onclick="window.open(this.href, '_blank', 'width=600,height=569'); return false;" href="<?= base_url('en_construccion') ?>">
               <div class="card-title h5">Mouse Logi</div>
             </a>
             <div class="rating"><span><i class="fas fa-star"></i></span><span><i class="fas fa-star"></i></span><span><i class="far fa-star"></i></span><span><i class="far fa-star"></i></span><span><i class="far fa-star"></i></span><span> 12 reviews</span></div>
