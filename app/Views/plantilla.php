@@ -4,7 +4,8 @@
     <meta charset="utf-8">
     <link rel="stylesheet" href="<?= base_url('public/assets/css/bootstrap.min.css') ?>"><!-- el bootstrap propiamente dicho -->
     <link rel="shortcut icon" href="<?= base_url('public/assets/img/icon.png') ?>" type="image/x-icon">
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
     <!-- iconos de fontawesome -->
     <link href="<?= base_url('public/assets/fontawesome/css/all.css') ?>" rel="stylesheet" />
 
