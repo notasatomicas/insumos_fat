@@ -1,5 +1,71 @@
 <main class="container-fluid my-4">
   <div class="m-md-3">
+      <section class="showcase py-5 rounded-4 shadow-lg" style="border: 1px solid black;">
+        <div class="container imagenes">
+          <div class="row">
+            <div class="col-md-6 showcase-img">
+              <img src="<?= base_url('public/assets/img/feature-1.jpg') ?>" alt="" class="img-fluid img-feat-1" />
+              <img src="<?= base_url('public/assets/img/feature-2.jpg') ?>" alt="" class="img-fluid img-feat-2" />
+            </div>
+            <div class="col-md-6 showcase-text ps-5">
+              <h1 class="display-1 fw-light">
+                Siempre la <br />
+                <span class="fw-bold">Mejor</span> atención <br />
+                al <span class="fw-bold">Cliente</span>
+              </h1>
+              <p class="lead py-2">
+                Nos encanta estar a la vanguardia de las últimas tendencias y tecnologías para brindarte una experiencia
+                de compra digital sin igual.
+                Consulta sin compromiso, respondemos en menos de 30 minutos!!!
+              </p>
+              <a href="#" class="btn btn-primary px-5 py-2" data-bs-toggle="modal" data-bs-target="#modal1">Contactar<i
+                  class="fa-regular fa-message ms-2"></i></a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Modal -->
+      <div id="modal1" class="modal fade">
+        <div class="modal-dialog modal-lg mt-3">
+          <div class="modal-content px-5 py-3">
+            <div class="row">
+              <div class="col-lg-12 contact-form">
+                <div class="card border-0">
+                  <div class="card-body">
+                    <div class="text-end">
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="card-title text-center pb-3">
+                      <h3>Estamos en contacto!</h3>
+                      <p class="lead text-muted fw-light">Cuentanos sobre tí y nos comunicaremos a la brevedad.</p>
+                    </div>
+                    <form>
+                      <div class="mb-3">
+                        <input type="text" placeholder="Nombre" class="form-control" />
+                      </div>
+                      <div class="mb-3">
+                        <input type="text" placeholder="Apellido" class="form-control" />
+                      </div>
+                      <div class="mb-3">
+                        <input type="email" placeholder="Correo" class="form-control" />
+                      </div>
+                      <div class="mb-3">
+                        <input type="tel" placeholder="Teléfono" class="form-control" />
+                      </div>
+                      <input type="submit" value="Llámame" class="btn btn-primary w-100" id="btnLlamame"/>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="m-md-3">
     <div class="p-5 m-2 bg-body-secondary rounded-3 border animate animate__fadeInDown">
       <div class="container-fluid py-5 ps-md-5">
         <h3 class="display-5 fw-bold mb-5 mb-md-0">
@@ -9,7 +75,6 @@
         <p class="col-md-10 fs-4 my-4">
           ¿Tienes alguna pregunta, sugerencia o comentario? Estamos aquí para ayudarte. Comunícate con nuestro equipo de atención al cliente a través de nuestros medios. Tu opinión es importante para nosotros. ¡Respondemos a la brevedad!
         </p>
-        <button class="btn btn-primary btn-lg px-5 py-2" type="button" data-bs-toggle="modal" data-bs-target="#modal1">Comunicate</button>
       </div>
     </div>
   </div>
@@ -55,11 +120,11 @@
                   </div>
 
                   <div class="container">
-                    <p><span class="fw-bold ms-0 ms-md-3">Titular de la empresa:</span> ANTINORI ARIEL</p>
+                    <p><span class="fw-bold ms-0 ms-md-3">Titular de la empresa:</span> INSUMOS FAT S.A.</p>
                     <p><span class="fw-bold ms-0 ms-md-3">Razón social:</span> XX-XX.XXX.XXX-XX</p>
                     <p><span class="fw-bold ms-0 ms-md-3">Dirección:</span> 9 de Julio XXXX</p>
                     <p><span class="fw-bold ms-0 ms-md-3">Telefono:</span> +54 9 3794-0000</p>
-                    <p><span class="fw-bold ms-0 ms-md-3">Mail:</span> ariel@libreriax.com</p>
+                    <p><span class="fw-bold ms-0 ms-md-3">Mail:</span> hola@insumosfat.com</p>
                   </div>
                 </div>
               </div>
@@ -111,5 +176,48 @@
       </div>
     </div>
   </div>
-</main>
 
+  <script>
+  document.getElementById('btnLlamame').addEventListener('click', function (event) {
+    event.preventDefault(); // Prevenir el comportamiento por defecto de submit
+
+    // Cerrar el primer modal (modal1)
+    const modal1El = document.getElementById('modal1');
+    const modal1 = bootstrap.Modal.getInstance(modal1El);
+
+    // Modal de "En desarrollo" (staticBackdrop)
+    const modal2El = document.getElementById('staticBackdrop');
+    const modal2 = new bootstrap.Modal(modal2El);
+
+    // Función para limpiar el modal actual y restaurar el scroll
+    function cleanupModals() {
+      // Elimina cualquier backdrop remanente
+      const backdrop = document.querySelector('.modal-backdrop');
+      if (backdrop) {
+        backdrop.parentNode.removeChild(backdrop);
+      }
+
+      // Eliminar la clase 'modal-open' del body para restaurar el scroll
+      document.body.classList.remove('modal-open');
+      document.body.style.overflow = 'auto';  // Restaurar el desplazamiento manualmente
+    }
+
+    // Si hay un modal abierto (modal1), cerrarlo
+    if (modal1) {
+      modal1.hide();
+      
+      // Esperar a que el modal1 se cierre completamente antes de abrir el segundo
+      modal1El.addEventListener('hidden.bs.modal', function () {
+        cleanupModals();  // Limpiar y restaurar el scroll
+        modal2.show();    // Mostrar el modal de "En desarrollo"
+      }, { once: true });
+    } else {
+      // Si no hay modal abierto, simplemente abrir el modal2
+      cleanupModals();
+      modal2.show();
+    }
+  });
+</script>
+
+
+</main>

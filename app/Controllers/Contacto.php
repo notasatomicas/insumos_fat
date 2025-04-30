@@ -6,7 +6,7 @@ class Contacto extends BaseController
 {
     public function index(): void
     {
-        $data['cont_adicional'] = view('adicional/leaflet.html');
+        $data['cont_adicional'] = view('adicional/leaflet.html').view('adicional/contacto_estilos.html').view('adicional/modal_development.html');
         $data['script_adicionales'] = '';
         $data['activo'] = 'contacto';
   
