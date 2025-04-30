@@ -13,31 +13,31 @@
     <ul class="nav justify-content-center pb-3">
       <li class="nav-item">
         <a onclick="window.open(this.href, '_blank', 'width=600,height=400'); return false;" href="https://instagram.com" class="nav-link mx-2 fw-bold text-white">
-          <i class="bi bi-instagram"></i>
+          <i class="fa-brands fa-instagram"></i>
         </a>
       </li>
       
       <li class="nav-item">
         <a onclick="window.open(this.href, '_blank', 'width=600,height=400'); return false;" href="https://facebook.com" class="nav-link mx-2 fw-bold text-white">
-          <i class="bi bi-facebook"></i>
+          <i class="fa-brands fa-facebook"></i>
         </a>
       </li>
 
       <li class="nav-item">
         <a onclick="window.open(this.href, '_blank', 'width=600,height=400'); return false;" href="https://youtube.com" class="nav-link mx-2 fw-bold text-white">
-          <i class="bi bi-youtube"></i>
+          <i class="fa-brands fa-youtube"></i>
         </a>
       </li>
 
       <li class="nav-item">
         <a onclick="window.open(this.href, '_blank', 'width=600,height=400'); return false;" href="https://whatsapp.com" class="nav-link mx-2 fw-bold text-white">
-          <i class="bi bi-whatsapp"></i>
+          <i class="fa-brands fa-whatsapp"></i>
         </a>
       </li>
 
       <li class="nav-item">
         <a onclick="window.open(this.href, '_blank', 'width=600,height=400'); return false;" href="https://github.com" class="nav-link mx-2 fw-bold text-white">
-          <i class="bi bi-github"></i>
+          <i class="fa-brands fa-github"></i>
         </a>
       </li>
     </ul>
