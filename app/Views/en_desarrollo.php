@@ -10,7 +10,7 @@
 <body class="bg-light d-flex justify-content-center align-items-center vh-100">
 
     <div class="text-center">
-        <img src="<?= base_url('public/assets/uc.gif') ?>" alt="Under Construction" width="350" class="mb-4">
+        <img src="<?= base_url('public/assets/uc.gif') ?>" alt="Under Construction" width="430rem" class="mb-4">
         <h1 class="display-4">Página en Construcción</h1>
         <p class="lead">Estamos trabajando para traerte algo genial. ¡Vuelve pronto!</p>
     </div>
