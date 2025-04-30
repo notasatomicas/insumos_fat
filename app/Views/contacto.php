@@ -4,8 +4,8 @@
         <div class="container imagenes">
           <div class="row">
             <div class="col-md-6 showcase-img">
-              <img src="<?= base_url('public/assets/img/feature-1.jpg') ?>" alt="" class="img-fluid img-feat-1" />
-              <img src="<?= base_url('public/assets/img/feature-2.jpg') ?>" alt="" class="img-fluid img-feat-2" />
+              <img src="<?= base_url('public/assets/img/feature-2.jpg') ?>" alt="" class="img-fluid img-feat-1" />
+              <img src="<?= base_url('public/assets/img/feature-1.jpg') ?>" alt="" class="img-fluid img-feat-2" />
             </div>
             <div class="col-md-6 showcase-text ps-5">
               <h1 class="display-1 fw-light">
@@ -18,8 +18,8 @@
                 de compra digital sin igual.
                 Consulta sin compromiso, respondemos en menos de 30 minutos!!!
               </p>
-              <a href="#" class="btn btn-primary px-5 py-2" data-bs-toggle="modal" data-bs-target="#modal1">Contactar<i
-                  class="fa-regular fa-message ms-2"></i></a>
+              <a href="#" class="btn btn-primary px-5 py-2" data-bs-toggle="modal" data-bs-target="#modal1" data-toggle="tooltip" title="Haz clic para enviarnos un mensaje">Contactar<i
+                  class="fa-regular fa-message ms-2 animate__animated animate__bounce animate__infinite animate__tada"></i></a>
             </div>
           </div>
         </div>
@@ -34,27 +34,41 @@
                 <div class="card border-0">
                   <div class="card-body">
                     <div class="text-end">
-                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      <button type="button" class="border-0" data-bs-dismiss="modal" aria-label="Close">
+                        <i class="fa-solid fa-circle-xmark" style="color: red !important;"></i>
+                      </button>
                     </div>
+
                     <div class="card-title text-center pb-3">
                       <h3>Estamos en contacto!</h3>
                       <p class="lead text-muted fw-light">Cuentanos sobre tí y nos comunicaremos a la brevedad.</p>
                     </div>
-                    <form>
+
+                    <form class="needs-validation" novalidate>
                       <div class="mb-3">
-                        <input type="text" placeholder="Nombre" class="form-control" />
+                        <label for="modalNombre" class="form-label">Nombre</label>
+                        <input type="text" id="modalNombre" placeholder="Nombre" class="form-control" required>
+                        <div class="invalid-feedback">Por favor ingresa tu nombre.</div>
                       </div>
                       <div class="mb-3">
-                        <input type="text" placeholder="Apellido" class="form-control" />
+                        <label for="modalApellido" class="form-label">Apellido</label>
+                        <input type="text" id="modalApellido" placeholder="Apellido" class="form-control" required>
+                        <div class="invalid-feedback">Por favor ingresa tu apellido.</div>
                       </div>
                       <div class="mb-3">
-                        <input type="email" placeholder="Correo" class="form-control" />
+                        <label for="modalCorreo" class="form-label">Correo</label>
+                        <input type="email" id="modalCorreo" placeholder="Correo" class="form-control" required>
+                        <div class="invalid-feedback">Por favor ingresa un correo válido.</div>
                       </div>
                       <div class="mb-3">
-                        <input type="tel" placeholder="Teléfono" class="form-control" />
+                        <label for="modalMensaje" class="form-label">Mensaje</label>
+                        <textarea id="modalMensaje" placeholder="Mensaje" class="form-control" rows="6" required></textarea>
+                        <div class="invalid-feedback">Por favor ingresa un mensaje.</div>
                       </div>
-                      <input type="submit" value="Llámame" class="btn btn-primary w-100" id="btnLlamame"/>
+                      <button type="submit" class="btn btn-primary w-100" id="btnEnviar">Enviar</button>
                     </form>
+
+                      
                   </div>
                 </div>
               </div>
@@ -178,46 +192,64 @@
   </div>
 
   <script>
-  document.getElementById('btnLlamame').addEventListener('click', function (event) {
+    (() => {
+      'use strict'
+      const forms = document.querySelectorAll('.needs-validation')
+      Array.from(forms).forEach(form => {
+        form.addEventListener('submit', event => {
+          if (!form.checkValidity()) {
+            event.preventDefault()
+            event.stopPropagation()
+          }
+          form.classList.add('was-validated')
+        }, false)
+      })
+    })()
+  </script>
+
+
+  <script>
+  document.getElementById('btnEnviar').addEventListener('click', function (event) {
     event.preventDefault(); // Prevenir el comportamiento por defecto de submit
 
-    // Cerrar el primer modal (modal1)
+    const form = document.querySelector('.needs-validation');
+
+    // Verificar si el formulario es válido
+    if (!form.checkValidity()) {
+      form.classList.add('was-validated');
+      return; // No continuar si el formulario no es válido
+    }
+
+    // Si el formulario es válido, continuar con la lógica de modales
+
     const modal1El = document.getElementById('modal1');
     const modal1 = bootstrap.Modal.getInstance(modal1El);
 
-    // Modal de "En desarrollo" (staticBackdrop)
     const modal2El = document.getElementById('staticBackdrop');
     const modal2 = new bootstrap.Modal(modal2El);
 
-    // Función para limpiar el modal actual y restaurar el scroll
     function cleanupModals() {
-      // Elimina cualquier backdrop remanente
       const backdrop = document.querySelector('.modal-backdrop');
       if (backdrop) {
         backdrop.parentNode.removeChild(backdrop);
       }
-
-      // Eliminar la clase 'modal-open' del body para restaurar el scroll
       document.body.classList.remove('modal-open');
-      document.body.style.overflow = 'auto';  // Restaurar el desplazamiento manualmente
+      document.body.style.overflow = 'auto';
     }
 
-    // Si hay un modal abierto (modal1), cerrarlo
     if (modal1) {
       modal1.hide();
-      
-      // Esperar a que el modal1 se cierre completamente antes de abrir el segundo
+
       modal1El.addEventListener('hidden.bs.modal', function () {
-        cleanupModals();  // Limpiar y restaurar el scroll
-        modal2.show();    // Mostrar el modal de "En desarrollo"
+        cleanupModals();
+        modal2.show();
       }, { once: true });
     } else {
-      // Si no hay modal abierto, simplemente abrir el modal2
       cleanupModals();
       modal2.show();
     }
   });
-</script>
+  </script>
 
 
 </main>
