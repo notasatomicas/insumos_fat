@@ -24,6 +24,16 @@
     <link rel="stylesheet" href="<?= base_url('public/assets/css/animate.css') ?>">
     <link rel="stylesheet" href="<?= base_url('public/assets/css/hoverme.css') ?>">
 
+    <style>
+        .modal.show {
+            /* From https://css.glass */
+            backdrop-filter: blur(5.5px);
+            -webkit-backdrop-filter: blur(5.5px);
+        }
+
+
+    </style>
+
 </head>
 <body>
     <!-- Apartado para cargar la vista del navbar que esta definida en Views/navbar.php -->
