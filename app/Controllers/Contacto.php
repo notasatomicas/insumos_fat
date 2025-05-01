@@ -14,8 +14,7 @@ class Contacto extends BaseController
         
         $data['navbar'] = view('layout/navbar');
         $data['footer'] = view('layout/footer');
-  
-        
+
         $data['contenido'] = view('contacto');
   
         echo view('plantilla', $data);
