@@ -28,3 +28,17 @@ in APPPATH\Views\en_desarrollo.php on line 76.
  9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
 10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
 11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-04-30 23:57:22 --> ErrorException: Undefined variable $cont_adicional
+[Method: GET, Route: contacto]
+in APPPATH\Views\plantilla.php on line 17.
+ 1 APPPATH\Views\plantilla.php(17): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $cont_adicional', 'C:\\xampp\\htdocs\\insumos_fat\\app\\Views\\plantilla.php', 17)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\insumos_fat\\app\\Views\\plantilla.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('plantilla', [], true)
+ 5 APPPATH\Controllers\Contacto.php(21): view('plantilla', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Contacto->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Contacto))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
