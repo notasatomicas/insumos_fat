@@ -10,7 +10,7 @@
     <?= view('layout/navbar') ?>
 
     <!-- Contenido específico de la página -->
-    <?= view('contenido/comercializacion') ?>
+    <?= view('contenido/about') ?>
 
     <!-- Footer -->
     <?= view('layout/footer') ?>
