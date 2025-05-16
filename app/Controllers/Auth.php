@@ -17,18 +17,10 @@ class Auth extends BaseController
             //return redirect()->to('./');
             return redirect()->route('inicio');
         }
-
-        $data['cont_adicional'] = '';
-        $data['script_adicionales'] = '';
         $data['activo'] = '';
         $data['titulo'] = 'Insumos_FAT - Iniciar Sesión';
         
-        $data['navbar'] = view('layout/navbar');
-        $data['footer'] = view('layout/footer');
-        
-        $data['contenido'] = view('auth/login');
-        
-        return view('plantilla', $data);
+        return view('login', $data);
     }
     
     /**
@@ -104,18 +96,13 @@ class Auth extends BaseController
         if (session()->get('isLoggedIn')) {
             return redirect()->to('/');
         }
-        
-        $data['cont_adicional'] = '';
-        $data['script_adicionales'] = '';
+
         $data['activo'] = '';
         $data['titulo'] = 'Insumos_FAT - Registro';
         
-        $data['navbar'] = view('layout/navbar');
-        $data['footer'] = view('layout/footer');
+        $data['contenido'] = view('register');
         
-        $data['contenido'] = view('auth/register');
-        
-        return view('plantilla', $data);
+        return view('register', $data);
     }
     
     /**
