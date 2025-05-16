@@ -1,4 +1,4 @@
-<main class="container-fluid mx-4">
+<main class="container-fluid">
   <h1 class="text-center my-3 my-md-4">
     Términos y condiciones de
     <span class="fw-bold text-decoration-underline">Insumos_FAT</span>
