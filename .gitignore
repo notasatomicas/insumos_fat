@@ -1,0 +1,4 @@
+# Ignorar logs y debugbar de CodeIgniter 4
+writable/logs/*
+writable/debugbar/*
+writable/session/*
