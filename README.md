@@ -54,6 +54,46 @@ Este proyecto también hace uso de otras tecnologías modernas para mejorar la e
 
 Estas herramientas complementan a **CodeIgniter 4**, potenciando tanto la estética como la usabilidad del sistema.
 
+## 📄 Tabla: `users`
+
+Esta tabla almacena la información de los usuarios registrados en el sistema, tanto compradores como administradores.
+
+---
+
+## 🧱 Estructura de la tabla
+
+| Columna         | Tipo de dato         | Descripción |
+|------------------|----------------------|-------------|
+| `id`            | `INT(11) UNSIGNED` (AUTO_INCREMENT) | Identificador único del usuario. Clave primaria. |
+| `email`         | `VARCHAR(255)`       | Correo electrónico del usuario. Debe ser único. |
+| `username`      | `VARCHAR(30)`        | Nombre de usuario. Debe ser único. |
+| `password_hash` | `VARCHAR(255)`       | Contraseña cifrada del usuario. |
+| `nombre`        | `VARCHAR(100)`       | Nombre del usuario. |
+| `apellido`      | `VARCHAR(100)`       | Apellido del usuario. |
+| `dni`           | `VARCHAR(20)`        | Documento Nacional de Identidad. |
+| `direccion`     | `VARCHAR(255)`       | Dirección física del usuario. |
+| `type`          | `TINYINT(1)`         | Tipo de usuario: `0` = Comprador, `1` = Administrador. |
+| `active`        | `TINYINT(1)`         | Estado del usuario: `0` = Inactivo, `1` = Activo. |
+| `created_at`    | `DATETIME` (nullable) | Fecha de creación del registro. |
+| `updated_at`    | `DATETIME` (nullable) | Fecha de la última actualización. |
+| `deleted_at`    | `DATETIME` (nullable) | Fecha de eliminación lógica del registro. |
+
+---
+
+## 🔑 Índices y restricciones
+
+- **Clave primaria**: `id`
+- **Únicos**:
+  - `email`
+  - `username`
+
+---
+
+## ⚙️ Motor y codificación
+
+- **Motor**: InnoDB  
+- **Codificación**: `utf8`
+
 
 ## Quienes somos
 
