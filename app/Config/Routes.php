@@ -52,28 +52,18 @@ $routes->group('compras', ['filter' => 'auth'], function($routes) {
     $routes->get('detalle/(:num)', 'Compras::detalle/$1');
 });
 
-// Rutas para administradores
+// Rutas para administradores - OPCIÓN 1: Utilizando el controlador Admin.php
 $routes->group('admin', ['filter' => 'admin'], function($routes) {
-    $routes->get('dashboard', 'Admin\Dashboard::index');
+    $routes->get('dashboard', 'Admin::dashboard');
+    $routes->get('users', 'Admin::users');
+    $routes->get('toggleActive/(:num)', 'Admin::toggleActive/$1');
+    $routes->get('toggleType/(:num)', 'Admin::toggleType/$1');
+    $routes->get('deleteUser/(:num)', 'Admin::deleteUser/$1');
+    $routes->get('editUser/(:num)', 'Admin::editUser/$1');
+    $routes->post('updateUser/(:num)', 'Admin::updateUser/$1');
     
-    // Gestión de productos
-    $routes->get('productos', 'Admin\Productos::index');
-    $routes->get('productos/nuevo', 'Admin\Productos::nuevo');
-    $routes->post('productos/crear', 'Admin\Productos::crear');
-    $routes->get('productos/editar/(:num)', 'Admin\Productos::editar/$1');
-    $routes->post('productos/actualizar/(:num)', 'Admin\Productos::actualizar/$1');
-    $routes->get('productos/eliminar/(:num)', 'Admin\Productos::eliminar/$1');
-    
-    // Gestión de usuarios
-    $routes->get('usuarios', 'Admin\Usuarios::index');
-    $routes->get('usuarios/nuevo', 'Admin\Usuarios::nuevo');
-    $routes->post('usuarios/crear', 'Admin\Usuarios::crear');
-    $routes->get('usuarios/editar/(:num)', 'Admin\Usuarios::editar/$1');
-    $routes->post('usuarios/actualizar/(:num)', 'Admin\Usuarios::actualizar/$1');
-    $routes->get('usuarios/eliminar/(:num)', 'Admin\Usuarios::eliminar/$1');
-    
-    // Gestión de pedidos
-    $routes->get('pedidos', 'Admin\Pedidos::index');
-    $routes->get('pedidos/detalle/(:num)', 'Admin\Pedidos::detalle/$1');
-    $routes->post('pedidos/actualizar-estado/(:num)', 'Admin\Pedidos::actualizarEstado/$1');
+    // Si necesitas agregar las rutas para productos y pedidos, puedes agregarlas aquí
+    // o crearlas como controladores separados
 });
+
+$routes->get('/debug', 'Depu::index');
