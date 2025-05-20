@@ -80,6 +80,25 @@ Esta tabla almacena la información de los usuarios registrados en el sistema, t
 
 ---
 
+### Script que usamos para crear la tabla en PhpMyAdmin
+
+```sql
+CREATE TABLE users (
+    id INT(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    email VARCHAR(255) NOT NULL UNIQUE,
+    username VARCHAR(30) NOT NULL UNIQUE,
+    password_hash VARCHAR(255) NOT NULL,
+    nombre VARCHAR(100) NOT NULL,
+    apellido VARCHAR(100) NOT NULL,
+    dni VARCHAR(20) NOT NULL,
+    direccion VARCHAR(255) NOT NULL,
+    type TINYINT(1) NOT NULL DEFAULT 0, -- 0 = Comprador, 1 = Administrador
+    active TINYINT(1) NOT NULL DEFAULT 1, -- 0 = Inactivo, 1 = Activo
+    created_at DATETIME DEFAULT NULL,
+    updated_at DATETIME DEFAULT NULL,
+    deleted_at DATETIME DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
 ## 🔑 Índices y restricciones
 
 - **Clave primaria**: `id`
