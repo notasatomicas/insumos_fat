@@ -98,6 +98,7 @@ CREATE TABLE users (
     updated_at DATETIME DEFAULT NULL,
     deleted_at DATETIME DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+```
 
 ## 🔑 Índices y restricciones
 
