@@ -69,7 +69,7 @@
                                 <tbody>
                                     <?php foreach ($users as $user) : ?>
                                         <tr>
-                                            <td><?= $user['id'] ?></td>
+                                            <td><?= $user['id_usuario'] ?></td>
                                             <td><?= $user['username'] ?></td>
                                             <td><?= $user['email'] ?></td>
                                             <td><?= $user['nombre'] . ' ' . $user['apellido'] ?></td>
@@ -90,13 +90,13 @@
                                             <td>
                                                 <div class="btn-group btn-group-sm" role="group">
                                                     <!-- Botón de editar -->
-                                                    <a href="<?= site_url('admin/editUser/' . $user['id']) ?>" class="btn btn-warning" title="Editar">
+                                                    <a href="<?= site_url('admin/editUser/' . $user['id_usuario']) ?>" class="btn btn-warning" title="Editar">
                                                         <i class="bi bi-pencil"></i>
                                                     </a>
                                                     
                                                     <!-- Botón para cambiar estado (activar/desactivar) -->
-                                                    <?php if ($user['id'] != session()->get('id')) : ?>
-                                                        <a href="<?= site_url('admin/toggleActive/' . $user['id']) ?>" class="btn <?= $user['active'] == 1 ? 'btn-secondary' : 'btn-success' ?>" title="<?= $user['active'] == 1 ? 'Desactivar' : 'Activar' ?>">
+                                                    <?php if ($user['id_usuario'] != session()->get('id_usuario')) : ?>
+                                                        <a href="<?= site_url('admin/toggleActive/' . $user['id_usuario']) ?>" class="btn <?= $user['active'] == 1 ? 'btn-secondary' : 'btn-success' ?>" title="<?= $user['active'] == 1 ? 'Desactivar' : 'Activar' ?>">
                                                             <i class="bi <?= $user['active'] == 1 ? 'bi-x-circle' : 'bi-check-circle' ?>"></i>
                                                         </a>
                                                     <?php else : ?>
@@ -106,13 +106,13 @@
                                                     <?php endif; ?>
                                                     
                                                     <!-- Botón para cambiar tipo (admin/normal) -->
-                                                    <a href="<?= site_url('admin/toggleType/' . $user['id']) ?>" class="btn <?= $user['type'] == 1 ? 'btn-info' : 'btn-danger' ?>" title="Cambiar a <?= $user['type'] == 1 ? 'Comprador' : 'Administrador' ?>">
+                                                    <a href="<?= site_url('admin/toggleType/' . $user['id_usuario']) ?>" class="btn <?= $user['type'] == 1 ? 'btn-info' : 'btn-danger' ?>" title="Cambiar a <?= $user['type'] == 1 ? 'Comprador' : 'Administrador' ?>">
                                                         <i class="bi <?= $user['type'] == 1 ? 'bi-person' : 'bi-person-fill-gear' ?>"></i>
                                                     </a>
                                                     
                                                     <!-- Botón de eliminar -->
-                                                    <?php if ($user['id'] != session()->get('id')) : ?>
-                                                        <button type="button" class="btn btn-danger" title="Eliminar" data-bs-toggle="modal" data-bs-target="#deleteModal<?= $user['id'] ?>">
+                                                    <?php if ($user['id_usuario'] != session()->get('id_usuario')) : ?>
+                                                        <button type="button" class="btn btn-danger" title="Eliminar" data-bs-toggle="modal" data-bs-target="#deleteModal<?= $user['id_usuario'] ?>">
                                                             <i class="bi bi-trash"></i>
                                                         </button>
                                                     <?php else : ?>
@@ -123,11 +123,11 @@
                                                 </div>
                                                 
                                                 <!-- Modal de confirmación para eliminar -->
-                                                <div class="modal fade" id="deleteModal<?= $user['id'] ?>" tabindex="-1" aria-labelledby="deleteModalLabel<?= $user['id'] ?>" aria-hidden="true">
+                                                <div class="modal fade" id="deleteModal<?= $user['id_usuario'] ?>" tabindex="-1" aria-labelledby="deleteModalLabel<?= $user['id_usuario'] ?>" aria-hidden="true">
                                                     <div class="modal-dialog">
                                                         <div class="modal-content">
                                                             <div class="modal-header">
-                                                                <h5 class="modal-title" id="deleteModalLabel<?= $user['id'] ?>">Confirmar eliminación</h5>
+                                                                <h5 class="modal-title" id="deleteModalLabel<?= $user['id_usuario'] ?>">Confirmar eliminación</h5>
                                                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                             </div>
                                                             <div class="modal-body">
@@ -136,7 +136,7 @@
                                                             </div>
                                                             <div class="modal-footer">
                                                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                                                                <a href="<?= site_url('admin/deleteUser/' . $user['id']) ?>" class="btn btn-danger">Eliminar</a>
+                                                                <a href="<?= site_url('admin/deleteUser/' . $user['id_usuario']) ?>" class="btn btn-danger">Eliminar</a>
                                                             </div>
                                                         </div>
                                                     </div>

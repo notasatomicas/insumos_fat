@@ -81,7 +81,7 @@ class Admin extends BaseController
         }
         
         // No permitir desactivar el propio usuario
-        if ($user['id'] == session()->get('id')) {
+        if ($user['id_usuario'] == session()->get('id_usuario')) {
             session()->setFlashdata('error', 'No puedes desactivar tu propia cuenta');
             return redirect()->to('/admin/users');
         }
@@ -139,7 +139,7 @@ class Admin extends BaseController
         }
         
         // No permitir eliminar el propio usuario
-        if ($user['id'] == session()->get('id')) {
+        if ($user['id_usuario'] == session()->get('id_usuario')) {
             session()->setFlashdata('error', 'No puedes eliminar tu propia cuenta');
             return redirect()->to('/admin/users');
         }
@@ -193,8 +193,8 @@ class Admin extends BaseController
         
         // Validar datos
         $rules = [
-            'username' => "required|alpha_numeric_space|min_length[3]|is_unique[users.username,id,{$userId}]",
-            'email' => "required|valid_email|is_unique[users.email,id,{$userId}]",
+            'username' => "required|alpha_numeric_space|min_length[3]|is_unique[users.username,id_usuario,{$userId}]",
+            'email' => "required|valid_email|is_unique[users.email,id_usuario,{$userId}]",
             'nombre' => 'required|min_length[2]',
             'apellido' => 'required|min_length[2]',
             'dni' => 'required',

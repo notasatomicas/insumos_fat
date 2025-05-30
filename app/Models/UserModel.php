@@ -7,7 +7,7 @@ use CodeIgniter\Model;
 class UserModel extends Model
 {
     protected $table            = 'users';
-    protected $primaryKey       = 'id';
+    protected $primaryKey       = 'id_usuario';
     protected $useAutoIncrement = true;
     protected $returnType       = 'array';
     protected $useSoftDeletes   = true;
@@ -26,8 +26,8 @@ class UserModel extends Model
 
     // Validation - Solo las reglas básicas, sin password_hash required
     protected $validationRules = [
-        'email'         => 'required|valid_email|is_unique[users.email,id,{id}]',
-        'username'      => 'required|alpha_numeric|min_length[3]|is_unique[users.username,id,{id}]',
+        'email'         => 'required|valid_email|is_unique[users.email,id_usuario,{id}]',
+        'username'      => 'required|alpha_numeric|min_length[3]|is_unique[users.username,id_usuario,{id}]',
         'nombre'        => 'required|min_length[2]',
         'apellido'      => 'required|min_length[2]',
         'dni'           => 'required',
@@ -72,8 +72,8 @@ class UserModel extends Model
     {
         // Crear reglas de validación dinámicas para actualización
         $updateRules = [
-            'email'         => "required|valid_email|is_unique[users.email,id,{$userId}]",
-            'username'      => "required|alpha_numeric|min_length[3]|is_unique[users.username,id,{$userId}]",
+            'email'         => "required|valid_email|is_unique[users.email,id_usuario,{$userId}]",
+            'username'      => "required|alpha_numeric|min_length[3]|is_unique[users.username,id_usuario,{$userId}]",
             'nombre'        => 'required|min_length[2]',
             'apellido'      => 'required|min_length[2]',
             'dni'           => 'required',

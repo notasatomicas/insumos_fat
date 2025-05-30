@@ -68,7 +68,7 @@ class Auth extends BaseController
         
         // Todo bien, crear sesión
         $sessionData = [
-            'id' => $user['id'],
+            'id_usuario' => $user['id_usuario'],
             'username' => $user['username'],
             'email' => $user['email'],
             'nombre' => $user['nombre'],

@@ -46,7 +46,7 @@
                             </div>
                         <?php endif; ?>
                         
-                        <form action="<?= site_url('admin/updateUser/' . $user['id']) ?>" method="post">
+                        <form action="<?= site_url('admin/updateUser/' . $user['id_usuario']) ?>" method="post">
                             <?= csrf_field() ?>
                             
                             <div class="row mb-3">
