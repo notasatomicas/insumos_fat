@@ -144,7 +144,7 @@ CREATE TABLE detalle_factura (
     cantidad_prod INT NOT NULL,
     precio_unit DECIMAL(10,2) NOT NULL,
     subtotal DECIMAL(10,2) NOT NULL,
-    
+
     FOREIGN KEY (id_factura) REFERENCES facturas(id_factura) ON DELETE CASCADE,
     FOREIGN KEY (id_producto) REFERENCES productos(id_producto) ON DELETE RESTRICT
 );
@@ -171,3 +171,10 @@ Somos estudiantes de la Lic. en Sistemas - este es un proyecto desarrollado para
 
 - Ariel Antinori
 - Andres Sena
+
+## Para hacer las migraciones
+
+php spark migrate
+
+## Para ejecutar el seed del admin
+php spark db:seed UserSeeder
