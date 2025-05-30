@@ -64,7 +64,7 @@ Esta tabla almacena la información de los usuarios registrados en el sistema, t
 
 | Columna         | Tipo de dato         | Descripción |
 |------------------|----------------------|-------------|
-| `id`            | `INT(11) UNSIGNED` (AUTO_INCREMENT) | Identificador único del usuario. Clave primaria. |
+| `id_usuario`            | `INT(11) UNSIGNED` (AUTO_INCREMENT) | Identificador único del usuario. Clave primaria. |
 | `email`         | `VARCHAR(255)`       | Correo electrónico del usuario. Debe ser único. |
 | `username`      | `VARCHAR(30)`        | Nombre de usuario. Debe ser único. |
 | `password_hash` | `VARCHAR(255)`       | Contraseña cifrada del usuario. |
@@ -83,8 +83,11 @@ Esta tabla almacena la información de los usuarios registrados en el sistema, t
 ### Script que usamos para crear la tabla en PhpMyAdmin
 
 ```sql
+CREATE DATABASE insumos_fat;
+USE insumos_fat;
+
 CREATE TABLE users (
-    id INT(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    id_usuario INT(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     email VARCHAR(255) NOT NULL UNIQUE,
     username VARCHAR(30) NOT NULL UNIQUE,
     password_hash VARCHAR(255) NOT NULL,
@@ -98,6 +101,53 @@ CREATE TABLE users (
     updated_at DATETIME DEFAULT NULL,
     deleted_at DATETIME DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE categorias (
+    id_categoria INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(100) NOT NULL,
+    descripcion TEXT NULL,
+    estado TINYINT(1) DEFAULT 1,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    deleted_at DATETIME DEFAULT NULL
+);
+
+CREATE TABLE productos (
+    id_producto INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    nombre_prod VARCHAR(100) NOT NULL,
+    descripcion TEXT NOT NULL,
+    precio DECIMAL(10,2) NOT NULL,
+    stock INT NOT NULL,
+    categoria_id INT UNSIGNED NOT NULL,
+    imagen_url VARCHAR(255),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    deleted_at TIMESTAMP DEFAULT NULL,
+    active TINYINT(1) DEFAULT 1,
+
+    FOREIGN KEY (categoria_id) REFERENCES categorias(id_categoria) ON DELETE RESTRICT
+);
+
+CREATE TABLE facturas (
+    id_factura INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    id_usuario INT(11) UNSIGNED NOT NULL,
+    fecha_alta TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    precio_total DECIMAL(10,2) NOT NULL,
+
+    FOREIGN KEY (id_usuario) REFERENCES users(id_usuario) ON DELETE CASCADE
+);
+
+CREATE TABLE detalle_factura (
+    id_detalle_factura INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    id_factura INT UNSIGNED NOT NULL,
+    id_producto INT UNSIGNED NOT NULL,
+    cantidad_prod INT NOT NULL,
+    precio_unit DECIMAL(10,2) NOT NULL,
+    subtotal DECIMAL(10,2) NOT NULL,
+    
+    FOREIGN KEY (id_factura) REFERENCES facturas(id_factura) ON DELETE CASCADE,
+    FOREIGN KEY (id_producto) REFERENCES productos(id_producto) ON DELETE RESTRICT
+);
 ```
 
 ## 🔑 Índices y restricciones
