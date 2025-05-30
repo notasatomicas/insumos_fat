@@ -6,6 +6,8 @@ use CodeIgniter\Database\Migration;
 
 class CreateProductosTable extends Migration
 {
+    protected $DBGroup = 'default';
+    
     public function up()
     {
         $this->forge->addField([
@@ -16,9 +18,9 @@ class CreateProductosTable extends Migration
             'stock'         => ['type' => 'INT'],
             'categoria_id'  => ['type' => 'INT', 'unsigned' => true],
             'imagen_url'    => ['type' => 'VARCHAR', 'constraint' => 255, 'null' => true],
-            'created_at'    => ['type' => 'TIMESTAMP', 'default' => 'CURRENT_TIMESTAMP'],
-            'updated_at'    => ['type' => 'TIMESTAMP', 'default' => 'CURRENT_TIMESTAMP', 'on update' => 'CURRENT_TIMESTAMP'],
-            'deleted_at'    => ['type' => 'TIMESTAMP', 'null' => true],
+            'created_at'    => ['type' => 'DATETIME', 'null' => true],
+            'updated_at'    => ['type' => 'DATETIME', 'null' => true],
+            'deleted_at'    => ['type' => 'DATETIME', 'null' => true],
             'active'        => ['type' => 'TINYINT', 'default' => 1],
         ]);
         $this->forge->addKey('id_producto', true);

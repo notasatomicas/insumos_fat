@@ -6,6 +6,8 @@ use CodeIgniter\Database\Migration;
 
 class CreateDetalleFacturaTable extends Migration
 {
+    protected $DBGroup = 'default';
+    
     public function up()
     {
         $this->forge->addField([
