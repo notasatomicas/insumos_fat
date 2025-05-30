@@ -4,12 +4,12 @@
     <!-- la cabecera de todas las paginas -->
     <?= view('layout/base_head') ?>
 </head>
-<body>
+<body class="d-flex flex-column min-vh-100">
 
     <!-- Navbar -->
     <?= view('layout/navbar') ?>
 
-    <main class="container my-4">
+    <main class="container my-4 flex-fill">
         <div class="row">
             <!-- Sidebar de administración -->
             <div class="col-md-3">
