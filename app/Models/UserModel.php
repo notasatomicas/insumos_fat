@@ -24,11 +24,10 @@ class UserModel extends Model
     protected $updatedField  = 'updated_at';
     protected $deletedField  = 'deleted_at';
 
-    // Validation
+    // Validation - Solo las reglas básicas, sin password_hash required
     protected $validationRules = [
         'email'         => 'required|valid_email|is_unique[users.email,id,{id}]',
-        'username'      => 'required|alpha_numeric_space|min_length[3]|is_unique[users.username,id,{id}]',
-        'password_hash' => 'required',
+        'username'      => 'required|alpha_numeric|min_length[3]|is_unique[users.username,id,{id}]',
         'nombre'        => 'required|min_length[2]',
         'apellido'      => 'required|min_length[2]',
         'dni'           => 'required',
@@ -62,6 +61,62 @@ class UserModel extends Model
             $data['type'] = 0;
         }
         
-        return $this->insert($data);
+        // Insertar sin validaciones automáticas del modelo (ya se validó en el controlador)
+        return $this->skipValidation(true)->insert($data);
+    }
+
+    /**
+     * Actualiza un usuario existente
+     */
+    public function updateUser(int $userId, array $data)
+    {
+        // Crear reglas de validación dinámicas para actualización
+        $updateRules = [
+            'email'         => "required|valid_email|is_unique[users.email,id,{$userId}]",
+            'username'      => "required|alpha_numeric|min_length[3]|is_unique[users.username,id,{$userId}]",
+            'nombre'        => 'required|min_length[2]',
+            'apellido'      => 'required|min_length[2]',
+            'dni'           => 'required',
+            'direccion'     => 'required'
+        ];
+
+        // Si hay contraseña, agregarla a las validaciones
+        if (isset($data['password']) && !empty($data['password'])) {
+            $updateRules['password'] = 'required|min_length[6]';
+            if (isset($data['password_confirm'])) {
+                $updateRules['password_confirm'] = 'required|matches[password]';
+            }
+        }
+
+        // Preparar datos para validación (solo los campos que se van a actualizar)
+        $dataToValidate = [];
+        foreach ($updateRules as $field => $rule) {
+            if (isset($data[$field])) {
+                $dataToValidate[$field] = $data[$field];
+            }
+        }
+
+        // Validar solo los campos presentes
+        $validation = \Config\Services::validation();
+        $validation->setRules($updateRules);
+        
+        if (!$validation->run($dataToValidate)) {
+            $this->errors = $validation->getErrors();
+            return false;
+        }
+
+        // Procesar la contraseña si existe
+        if (isset($data['password']) && !empty($data['password'])) {
+            $data['password_hash'] = password_hash($data['password'], PASSWORD_DEFAULT);
+            unset($data['password']);
+        }
+        
+        // Remover password_confirm si existe
+        if (isset($data['password_confirm'])) {
+            unset($data['password_confirm']);
+        }
+
+        // Actualizar sin validaciones automáticas del modelo
+        return $this->skipValidation(true)->update($userId, $data);
     }
 }

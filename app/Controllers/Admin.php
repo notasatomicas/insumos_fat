@@ -223,15 +223,22 @@ class Admin extends BaseController
             'direccion' => $this->request->getPost('direccion')
         ];
         
-        // Actualizar contraseña si se proporcionó
+        // Agregar contraseña si se proporcionó
         if (!empty($password)) {
-            $data['password_hash'] = password_hash($password, PASSWORD_DEFAULT);
+            $data['password'] = $password;
+            $data['password_confirm'] = $this->request->getPost('password_confirm');
         }
         
-        // Actualizar usuario
-        $this->userModel->update($userId, $data);
+        // Usar el método personalizado del modelo
+        $result = $this->userModel->updateUser($userId, $data);
         
-        session()->setFlashdata('success', 'Usuario actualizado correctamente');
+        if ($result) {
+            session()->setFlashdata('success', 'Usuario actualizado correctamente');
+        } else {
+            session()->setFlashdata('error', 'Error al actualizar el usuario');
+        }
+        
         return redirect()->to('/admin/users');
     }
+    
 }
