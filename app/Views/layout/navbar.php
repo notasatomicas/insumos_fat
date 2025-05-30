@@ -2,7 +2,6 @@
   <div class="container-fluid">
 
     <!-- El titulo del navbar, nada mas -->
-    <!-- hasta el domingo a las 1747 le faltaba el logo de mierda, tengo que arreglar esto y las transparencias -->
     <a class="navbar-brand animate__bounceIn" href="<?= base_url('/') ?>">
       <img src="<?= base_url('public/assets/img/icon.png') ?>" alt="Logo" width="57" height="50" class="d-inline-block">
       Insumos_FAT
@@ -63,11 +62,20 @@
             </a>
           </li>
 
-          <li class="hvr-underline-from-center nav-item mx-5 mx-sm-4 mx-lg-0">
-            <a id="btn_nav_tyc" class="nav-link text-center me-lg-2 px-2 px-xl-4" href="<?= base_url('terminos') ?>">
-              <i class="ms-md-0 me-1 fa-solid fa-scale-balanced"></i>
-              Términos y condiciones
-            </a>
+          <li class="nav-item mx-5 mx-sm-4 mx-lg-0">
+            <?php if (session()->get('id_usuario') || session()->get('isLoggedIn')): ?>
+              <!-- Usuario logueado - Mostrar botón de cerrar sesión -->
+              <a id="btn_nav_logout" class="nav-link text-center me-lg-2 px-2 px-xl-4" href="<?= base_url('auth/logout') ?>" style="background-color: #dc3545 !important; color: white !important;">
+                <i class="ms-md-0 me-1 fa-solid fa-sign-out-alt"></i>
+                Cerrar sesión
+              </a>
+            <?php else: ?>
+              <!-- Usuario no logueado - Mostrar botón de iniciar sesión -->
+              <a id="btn_nav_login" class="nav-link text-center me-lg-2 px-2 px-xl-4" href="<?= base_url('auth') ?>" style="background-color:rgb(24, 167, 155) !important; color: white !important;">
+                <i class="ms-md-0 me-1 fa-solid fa-sign-in-alt"></i>
+                Iniciar sesión
+              </a>
+            <?php endif; ?>
           </li>
 
         </ul>
