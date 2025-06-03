@@ -83,7 +83,7 @@
                                                 <td><?= $producto['id_producto'] ?></td>
                                                 <td>
                                                     <?php if (!empty($producto['imagen_url'])): ?>
-                                                        <img src="<?= base_url($producto['imagen_url']) ?>" 
+                                                        <img src="<?= base_url('public') . '/' . $producto['imagen_url']; ?>" 
                                                              alt="<?= esc($producto['nombre_prod']) ?>" 
                                                              class="img-thumbnail" style="width: 50px; height: 50px; object-fit: cover;">
                                                     <?php else: ?>
@@ -97,8 +97,9 @@
                                                     <strong><?= esc($producto['nombre_prod']) ?></strong>
                                                     <br>
                                                     <small class="text-muted">
-                                                        <?= character_limiter(esc($producto['descripcion']), 50) ?>
+                                                        <?= esc(mb_strlen($producto['descripcion']) > 50 ? mb_substr($producto['descripcion'], 0, 50) . '…' : $producto['descripcion']) ?>
                                                     </small>
+
                                                 </td>
                                                 <td>
                                                     <span class="badge bg-info">

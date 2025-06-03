@@ -78,7 +78,7 @@ class ProductoController extends Controller
             session()->setFlashdata('error', 'Error al crear el producto');
         }
 
-        return redirect()->to('/productos');
+        return redirect()->to('/admin/productos');
     }
 
     // Mostrar formulario para editar producto
