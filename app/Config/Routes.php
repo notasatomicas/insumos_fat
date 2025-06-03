@@ -61,9 +61,35 @@ $routes->group('admin', ['filter' => 'admin'], function($routes) {
     $routes->get('deleteUser/(:num)', 'Admin::deleteUser/$1');
     $routes->get('editUser/(:num)', 'Admin::editUser/$1');
     $routes->post('updateUser/(:num)', 'Admin::updateUser/$1');
+
     
-    // Si necesitas agregar las rutas para productos y pedidos, puedes agregarlas aquí
-    // o crearlas como controladores separados
+    // ===============================================
+    // RUTAS PARA GESTIÓN DE PRODUCTOS
+    // ===============================================
+    
+    // Listar todos los productos (GET admin/productos)
+    $routes->get('productos', 'ProductoController::index');
+    
+    // Mostrar formulario para crear nuevo producto (GET admin/productos/create)
+    $routes->get('productos/create', 'ProductoController::create');
+    
+    // Guardar nuevo producto (POST admin/productos)
+    $routes->post('productos', 'ProductoController::store');
+    
+    // Ver detalles de un producto específico (GET admin/productos/123)
+    $routes->get('productos/(:num)', 'ProductoController::show/$1');
+    
+    // Mostrar formulario para editar producto (GET admin/productos/123/edit)
+    $routes->get('productos/(:num)/edit', 'ProductoController::edit/$1');
+    
+    // Actualizar producto específico (POST admin/productos/123)
+    $routes->post('productos/(:num)', 'ProductoController::update/$1');
+    
+    // Eliminar producto (GET admin/productos/123/delete)
+    $routes->get('productos/(:num)/delete', 'ProductoController::delete/$1');
+    
+    // Alternativa para eliminar producto con POST (más seguro)
+    $routes->post('productos/(:num)/delete', 'ProductoController::delete/$1');
 });
 
 $routes->get('/debug', 'Depu::index');
