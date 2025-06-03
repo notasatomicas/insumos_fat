@@ -25,7 +25,7 @@ class ProductoController extends Controller
             'productos' => $this->productoModel->getProductosConCategoria()
         ];
 
-        return view('productos/index', $data);
+        return view('admin/productos/index', $data);
     }
 
     // Mostrar formulario para crear producto
@@ -37,7 +37,7 @@ class ProductoController extends Controller
             'validation' => \Config\Services::validation()
         ];
 
-        return view('productos/create', $data);
+        return view('admin/productos/create', $data);
     }
 
     // Guardar nuevo producto
