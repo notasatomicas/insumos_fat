@@ -148,6 +148,26 @@ CREATE TABLE detalle_factura (
     FOREIGN KEY (id_factura) REFERENCES facturas(id_factura) ON DELETE CASCADE,
     FOREIGN KEY (id_producto) REFERENCES productos(id_producto) ON DELETE RESTRICT
 );
+
+-- Crear tabla para almacenar los datos de contacto
+CREATE TABLE contactos (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(100) NOT NULL,
+    apellido VARCHAR(100) NOT NULL,
+    correo VARCHAR(150) NOT NULL,
+    telefono VARCHAR(20) NULL,
+    mensaje TEXT NULL,
+    tipo_contacto ENUM('mensaje', 'llamada') NOT NULL DEFAULT 'mensaje',
+    estado ENUM('nuevo', 'leido', 'respondido', 'cerrado') NOT NULL DEFAULT 'nuevo',
+    ip_address VARCHAR(45) NULL,
+    user_agent TEXT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    INDEX idx_correo (correo),
+    INDEX idx_estado (estado),
+    INDEX idx_tipo_contacto (tipo_contacto),
+    INDEX idx_created_at (created_at)
+);
 ```
 
 ## 🔑 Índices y restricciones

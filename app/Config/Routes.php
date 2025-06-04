@@ -9,8 +9,8 @@ $routes->get('/', 'Inicio::index');
 $routes->get('/home', 'Inicio::index');
 $routes->get('/inicio', 'Inicio::index');
 
-$routes->get('/contacto', 'Contacto::index');
-$routes->get('/contact', 'Contacto::index');
+$routes->get('/contacto', 'ContactoController::index');
+$routes->get('/contact', 'ContactoController::index');
 
 $routes->get('/nosotros', 'Nosotros::index');
 $routes->get('/about', 'Nosotros::index');
@@ -120,3 +120,63 @@ $routes->group('admin', ['filter' => 'admin'], function($routes) {
 });
 
 $routes->get('/debug', 'Depu::index');
+
+// Rutas públicas de contacto
+$routes->group('contacto', function($routes) {
+    // Mostrar página de contacto
+    $routes->get('/', 'ContactoController::index');
+    
+    // Procesar formularios
+    $routes->post('enviar-mensaje', 'ContactoController::enviarMensaje');
+    $routes->post('solicitar-llamada', 'ContactoController::solicitarLlamada');
+});
+
+// Rutas de administración (requieren autenticación)
+$routes->group('admin/contactos', ['filter' => 'auth'], function($routes) {
+    // Listar contactos
+    $routes->get('/', 'ContactoController::listar');
+    $routes->get('listar', 'ContactoController::listar');
+    
+    // Ver contacto específico
+    $routes->get('ver/(:num)', 'ContactoController::ver/$1');
+    
+    // Cambiar estado de contacto
+    $routes->post('cambiar-estado/(:num)', 'ContactoController::cambiarEstado/$1');
+    
+    // Filtros adicionales
+    $routes->get('estado/(:alpha)', 'ContactoController::listar');
+    $routes->get('tipo/(:alpha)', 'ContactoController::listar');
+});
+
+// Rutas alternativas más cortas (opcional)
+$routes->get('contacto', 'ContactoController::index');
+$routes->post('contacto/mensaje', 'ContactoController::enviarMensaje');
+$routes->post('contacto/llamada', 'ContactoController::solicitarLlamada');
+
+// API routes para AJAX (opcional, con versioning)
+$routes->group('api/v1/contacto', function($routes) {
+    $routes->post('mensaje', 'ContactoController::enviarMensaje');
+    $routes->post('llamada', 'ContactoController::solicitarLlamada');
+});
+
+/*
+EJEMPLOS DE URLS GENERADAS:
+
+Públicas:
+- GET  /contacto                     -> Mostrar página de contacto
+- POST /contacto/enviar-mensaje      -> Enviar mensaje
+- POST /contacto/solicitar-llamada   -> Solicitar llamada
+
+Administración:
+- GET  /admin/contactos              -> Listar todos los contactos
+- GET  /admin/contactos/ver/123      -> Ver contacto con ID 123
+- POST /admin/contactos/cambiar-estado/123 -> Cambiar estado del contacto 123
+
+Filtros:
+- GET  /admin/contactos?estado=nuevo -> Filtrar por estado
+- GET  /admin/contactos?tipo=mensaje -> Filtrar por tipo
+
+API:
+- POST /api/v1/contacto/mensaje      -> API para enviar mensaje
+- POST /api/v1/contacto/llamada      -> API para solicitar llamada
+*/
