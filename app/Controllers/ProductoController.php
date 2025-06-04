@@ -191,4 +191,27 @@ class ProductoController extends Controller
 
         return view('admin/productos/show', $data);
     }
+
+    // Cambiar estado activo/inactivo del producto
+    public function toggleStatus($id, $status)
+    {
+        $producto = $this->productoModel->find($id);
+        
+        if (!$producto) {
+            session()->setFlashdata('error', 'Producto no encontrado');
+            return redirect()->to('admin/productos');
+        }
+
+        $newStatus = (int)$status;
+        $data = ['active' => $newStatus];
+
+        if ($this->productoModel->update($id, $data)) {
+            $mensaje = $newStatus ? 'Producto activado exitosamente' : 'Producto desactivado exitosamente';
+            session()->setFlashdata('success', $mensaje);
+        } else {
+            session()->setFlashdata('error', 'Error al cambiar el estado del producto');
+        }
+
+        return redirect()->to('admin/productos/' . $id);
+    }
 }

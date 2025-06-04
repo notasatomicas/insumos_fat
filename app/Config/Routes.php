@@ -93,6 +93,9 @@ $routes->group('admin', ['filter' => 'admin'], function($routes) {
     // Ver detalles de un producto específico (GET admin/productos/123)
     $routes->get('productos/(:num)', 'ProductoController::show/$1');
 
+    // Agregar esta línea en el grupo admin, después de las rutas específicas de productos
+    $routes->get('productos/(:num)/toggle/(:num)', 'ProductoController::toggleStatus/$1/$2');
+
     // Dentro del grupo admin, después de las rutas de productos:
 
     // ===============================================
