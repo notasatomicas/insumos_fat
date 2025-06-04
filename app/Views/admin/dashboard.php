@@ -57,9 +57,14 @@
                                 <div class="card bg-success text-white h-100">
                                     <div class="card-body text-center">
                                         <h5 class="card-title"><i class="bi bi-box display-4"></i></h5>
-                                        <p class="card-text display-6">0</p>
+                                        <p class="card-text display-6">
+                                            <?php 
+                                            $productoModel = new \App\Models\ProductoModel();
+                                            echo count($productoModel->findAll()); 
+                                            ?>
+                                        </p>
                                         <p>Productos</p>
-                                        <a href="#" class="btn btn-light mt-2">Gestionar productos</a>
+                                        <a href="<?= site_url('admin/productos') ?>"  class="btn btn-light mt-2">Gestionar productos</a>
                                     </div>
                                 </div>
                             </div>
@@ -82,7 +87,12 @@
                                 <div class="card bg-danger text-white h-100">
                                     <div class="card-body text-center">
                                         <h5 class="card-title"><i class="bi bi-tag display-4"></i></h5>
-                                        <p class="card-text display-6">0</p>
+                                        <p class="card-text display-6">
+                                            <?php 
+                                            $categoriaModel = new \App\Models\CategoriaModel();
+                                            echo count($categoriaModel->findAll()); 
+                                            ?>
+                                        </p>
                                         <p>Categorías</p>
                                         <a href="#" class="btn btn-light mt-2">Gestionar categorías</a>
                                     </div>

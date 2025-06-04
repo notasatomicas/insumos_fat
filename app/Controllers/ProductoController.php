@@ -189,6 +189,6 @@ class ProductoController extends Controller
             'producto' => $producto
         ];
 
-        return view('productos/show', $data);
+        return view('admin/productos/show', $data);
     }
 }

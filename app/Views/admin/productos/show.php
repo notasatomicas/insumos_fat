@@ -137,7 +137,7 @@
                                     </div>
                                     <div class="card-body text-center">
                                         <?php if (!empty($producto['imagen_url'])): ?>
-                                            <img src="<?= base_url($producto['imagen_url']) ?>" 
+                                            <img src="<?= base_url('public') . '/' . $producto['imagen_url']; ?>" 
                                                  alt="<?= esc($producto['nombre_prod']) ?>" 
                                                  class="img-fluid rounded"
                                                  style="max-height: 300px;">
