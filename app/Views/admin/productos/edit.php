@@ -60,7 +60,6 @@
 
                         <form action="<?= site_url('admin/productos/' . $producto['id_producto']) ?>" method="post" enctype="multipart/form-data">
                             <?= csrf_field() ?>
-                            <input type="hidden" name="_method" value="PUT">
                             
                             <div class="row">
                                 <!-- Información básica del producto -->

@@ -63,7 +63,7 @@ $routes->group('admin', ['filter' => 'admin'], function($routes) {
     $routes->post('updateUser/(:num)', 'Admin::updateUser/$1');
 
     
-    // ===============================================
+// ===============================================
     // RUTAS PARA GESTIÓN DE PRODUCTOS
     // ===============================================
     
@@ -76,20 +76,22 @@ $routes->group('admin', ['filter' => 'admin'], function($routes) {
     // Guardar nuevo producto (POST admin/productos)
     $routes->post('productos', 'ProductoController::store');
     
-    // Ver detalles de un producto específico (GET admin/productos/123)
-    $routes->get('productos/(:num)', 'ProductoController::show/$1');
-    
+    // RUTAS ESPECÍFICAS PRIMERO (más específicas)
     // Mostrar formulario para editar producto (GET admin/productos/123/edit)
     $routes->get('productos/(:num)/edit', 'ProductoController::edit/$1');
-    
-    // Actualizar producto específico (POST admin/productos/123)
-    $routes->post('productos/(:num)', 'ProductoController::update/$1');
     
     // Eliminar producto (GET admin/productos/123/delete)
     $routes->get('productos/(:num)/delete', 'ProductoController::delete/$1');
     
     // Alternativa para eliminar producto con POST (más seguro)
     $routes->post('productos/(:num)/delete', 'ProductoController::delete/$1');
+    
+    // RUTAS GENÉRICAS AL FINAL (menos específicas)
+    // Actualizar producto específico (POST admin/productos/123)
+    $routes->post('productos/(:num)', 'ProductoController::update/$1');
+    
+    // Ver detalles de un producto específico (GET admin/productos/123)
+    $routes->get('productos/(:num)', 'ProductoController::show/$1');
 
     // Dentro del grupo admin, después de las rutas de productos:
 
