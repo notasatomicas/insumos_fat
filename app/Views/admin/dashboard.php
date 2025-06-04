@@ -39,7 +39,7 @@
                         <div class="row mt-4">
                             <!-- Tarjeta de estadísticas de usuarios -->
                             <div class="col-md-6 mb-4">
-                                <div class="card bg-info text-white h-100">
+                                <div class="card text-white h-100" style="background-color: #89043D;">
                                     <div class="card-body text-center">
                                         <h5 class="card-title"><i class="bi bi-people display-4"></i></h5>
                                         <p class="card-text display-6">
@@ -56,7 +56,7 @@
                             
                             <!-- Espacio para otras tarjetas de estadísticas -->
                             <div class="col-md-6 mb-4">
-                                <div class="card bg-success text-white h-100">
+                                <div class="card text-white h-100" style="background-color:#3b347c;">
                                     <div class="card-body text-center">
                                         <h5 class="card-title"><i class="bi bi-box display-4"></i></h5>
                                         <p class="card-text display-6">
@@ -75,18 +75,20 @@
                         <!-- Segunda fila de tarjetas -->
                         <div class="row">
                             <div class="col-md-6 mb-4">
-                                <div class="card bg-warning text-dark h-100">
+                                <div class="card text-light h-100" style="background-color: #204E4A;">
                                     <div class="card-body text-center">
                                         <h5 class="card-title"><i class="bi bi-cart display-4"></i></h5>
-                                        <p class="card-text display-6">0</p>
+                                        <p class="card-text display-6">
+                                            0
+                                        </p>
                                         <p>Pedidos</p>
-                                        <a href="#" class="btn btn-dark mt-2">Ver pedidos</a>
+                                        <a href="#" class="btn btn-light mt-2">Ver pedidos</a>
                                     </div>
                                 </div>
                             </div>
                             
                             <div class="col-md-6 mb-4">
-                                <div class="card bg-danger text-white h-100">
+                                <div class="card text-white h-100" style="background-color: #0F0326;">
                                     <div class="card-body text-center">
                                         <h5 class="card-title"><i class="bi bi-tag display-4"></i></h5>
                                         <p class="card-text display-6">
@@ -97,6 +99,32 @@
                                         </p>
                                         <p>Categorías</p>
                                         <a href="#" class="btn btn-light mt-2">Gestionar categorías</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6 mb-4">
+                                <div class="card text-white h-100" style="background-color:#007e58;">
+                                    <div class="card-body text-center">
+                                        <h5 class="card-title"><i class="bi bi-tag display-4"></i></h5>
+                                        <p class="card-text display-6">
+                                            0
+                                        </p>
+                                        <p>Facturacion</p>
+                                        <a href="#" class="btn btn-light mt-2">Gestionar facturas</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6 mb-4">
+                                <div class="card text-white h-100" style="background-color: #1C3041;">
+                                    <div class="card-body text-center">
+                                        <h5 class="card-title"><i class="bi bi-tag display-4"></i></h5>
+                                        <p class="card-text display-6">
+                                            0
+                                        </p>
+                                        <p>Mensajeria</p>
+                                        <a href="#" class="btn btn-light mt-2">Gestion de los mensajes</a>
                                     </div>
                                 </div>
                             </div>
