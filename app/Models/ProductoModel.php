@@ -24,7 +24,7 @@ class ProductoModel extends Model
         'nombre_prod' => 'required|min_length[3]|max_length[100]',
         'precio'      => 'required|decimal',
         'stock'       => 'required|integer',
-        'categoria_id'=> 'required|is_natural_no_zero',
+        //'categoria_id'=> 'required|is_natural_no_zero',
     ];
 
     protected $validationMessages = [

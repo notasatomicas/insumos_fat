@@ -20,3 +20,7 @@ realizar la vista propiamente del catalogo
  - buscador de los distintos productos
 
 solucionar el error de la carga de los pdfs en lugar de imágenes
+
+
+agregar un + en gestion de productos para poder agregar productos
+en la vista de categorias aparece como estado inactivo los productos ver
