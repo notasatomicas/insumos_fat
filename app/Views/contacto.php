@@ -99,13 +99,14 @@
                                                 <div class="col-md-6 mb-3">
                                                     <label for="mensajeCorreo" class="form-label">Correo Electrónico *</label>
                                                     <input type="email" id="mensajeCorreo" name="correo" placeholder="tu@email.com"
-                                                        class="form-control" required maxlength="150">
-                                                    <div class="invalid-feedback">Por favor ingresa un correo válido.</div>
+                                                        class="form-control" required maxlength="150" 
+                                                        pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}">
+                                                    <div class="invalid-feedback">Por favor ingresa un correo válido (ej: usuario@ejemplo.com).</div>
                                                 </div>
                                                 <div class="col-md-6 mb-3">
                                                     <label for="mensajeTelefono" class="form-label">Teléfono</label>
                                                     <input type="tel" id="mensajeTelefono" name="telefono" placeholder="+54 9 3794-000000"
-                                                        class="form-control" minlength="8" maxlength="20">
+                                                        class="form-control" minlength="8" maxlength="20" required>
                                                     <div class="invalid-feedback">Por favor ingresa un teléfono válido (mínimo 8 dígitos).</div>
                                                     <div class="form-text">Opcional. Incluye código de área. Ej: +54 9 3794-123456</div>
                                                 </div>
@@ -161,28 +162,11 @@
                     <a href="#" class="btn btn-primary px-4 py-2" data-bs-toggle="modal"
                         data-bs-target="#modalDatos">Datos
                         de contacto<i class="fa-regular fa-address-card ms-2"></i></a>
-                    
-                    <a href="#" class="btn btn-outline-primary px-4 py-2 fa-beat-fade" data-bs-toggle="modal"
-                        data-bs-target="#modalLlamada">Solicitar
-                        llamada<i class="fa-solid fa-phone ms-2"></i></a>
                 </div>
             </div>
 
             <div class="col-lg-4 offset-lg-1 p-1 shadow-lg overflow-hidden">
                 <div class="rounded-3 mt-2" id="map" style="height: 500px !important;"></div>
-
-                <script>
-                const map = L.map('map').setView([-27.4666381113767, -58.83231690000313], 13);
-
-                const tiles = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                    maxZoom: 40,
-                    attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-                }).addTo(map);
-
-                const marker = L.marker([-27.4666381113767, -58.83231690000313]).addTo(map)
-                    .bindPopup('<b>INSUMOS FAT S.A.</b><br>9 de Julio XXXX<br>Corrientes, Argentina')
-                    .openPopup();
-                </script>
             </div>
 
             <!-- Modal Datos de Contacto -->
@@ -264,66 +248,6 @@
                     </div>
                 </div>
             </div>
-
-            <!-- Modal Solicitar Llamada -->
-            <div id="modalLlamada" class="modal fade">
-                <div class="modal-dialog modal-lg mt-3">
-                    <div class="modal-content px-5 py-3">
-                        <div class="row">
-                            <div class="col-lg-12 contact-form">
-                                <div class="card border-0">
-                                    <div class="card-body">
-                                        <div class="text-end">
-                                            <button type="button" class="border-0" data-bs-dismiss="modal"
-                                                aria-label="Close">
-                                                <i class="fa-solid fa-circle-xmark" style="color: red !important;"></i>
-                                            </button>
-                                        </div>
-                                        <div class="card-title text-center pb-3">
-                                            <h3>SOLICITAR LLAMADA</h3>
-                                            <p class="lead text-muted fw-light">Deja tus datos y nosotros te llamamos</p>
-                                        </div>
-
-                                        <form id="formLlamada" class="needs-validation" novalidate>
-                                            <div class="row">
-                                                <div class="col-md-6 mb-3">
-                                                    <label for="llamadaNombre" class="form-label">Nombre *</label>
-                                                    <input type="text" id="llamadaNombre" name="nombre" placeholder="Ingresa tu nombre" 
-                                                        class="form-control" required minlength="2" maxlength="100">
-                                                    <div class="invalid-feedback">Por favor ingresa tu nombre (mínimo 2 caracteres).</div>
-                                                </div>
-                                                <div class="col-md-6 mb-3">
-                                                    <label for="llamadaApellido" class="form-label">Apellido *</label>
-                                                    <input type="text" id="llamadaApellido" name="apellido" placeholder="Ingresa tu apellido" 
-                                                        class="form-control" required minlength="2" maxlength="100">
-                                                    <div class="invalid-feedback">Por favor ingresa tu apellido (mínimo 2 caracteres).</div>
-                                                </div>
-                                            </div>
-                                            <div class="mb-3">
-                                                <label for="llamadaCorreo" class="form-label">Correo Electrónico *</label>
-                                                <input type="email" id="llamadaCorreo" name="correo" placeholder="tu@email.com" 
-                                                    class="form-control" required maxlength="150">
-                                                <div class="invalid-feedback">Por favor ingresa un correo válido.</div>
-                                            </div>
-                                            <div class="mb-3">
-                                                <label for="llamadaTelefono" class="form-label">Teléfono *</label>
-                                                <input type="tel" id="llamadaTelefono" name="telefono" placeholder="+54 9 3794-000000" 
-                                                    class="form-control" required minlength="8" maxlength="20">
-                                                <div class="invalid-feedback">Por favor ingresa un teléfono válido (mínimo 8 dígitos).</div>
-                                                <div class="form-text">Incluye código de área. Ej: +54 9 3794-123456</div>
-                                            </div>
-                                            <button type="submit" class="btn btn-primary w-100" id="btnSolicitarLlamada">
-                                                <span class="spinner-border spinner-border-sm d-none" role="status"></span>
-                                                <span class="btn-text">Solicitar Llamada</span>
-                                            </button>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
     </main>
 
@@ -331,33 +255,59 @@
     <?= view('layout/footer') ?>
 
     <script>
-    // Validación de Bootstrap
+    // Inicializar mapa
+    const map = L.map('map').setView([-27.4666381113767, -58.83231690000313], 13);
+
+    const tiles = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 40,
+        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+    }).addTo(map);
+
+    const marker = L.marker([-27.4666381113767, -58.83231690000313]).addTo(map)
+        .bindPopup('<b>INSUMOS FAT S.A.</b><br>9 de Julio XXXX<br>Corrientes, Argentina')
+        .openPopup();
+
+    // Validación personalizada de email
+    function validarEmail(email) {
+        const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+        return regex.test(email);
+    }
+
+    // Validación en tiempo real del email
+    document.getElementById('mensajeCorreo').addEventListener('input', function() {
+        const email = this.value;
+        if (email.length > 0 && !validarEmail(email)) {
+            this.setCustomValidity('Por favor ingresa un correo válido (ej: usuario@ejemplo.com)');
+        } else {
+            this.setCustomValidity('');
+        }
+    });
+
+    // Validación básica de Bootstrap
     (() => {
         "use strict";
         const forms = document.querySelectorAll(".needs-validation");
         Array.from(forms).forEach((form) => {
-            form.addEventListener(
-                "submit",
-                (event) => {
-                    event.preventDefault();
-                    event.stopPropagation();
-                    
-                    if (form.checkValidity()) {
-                        // Si es válido, enviar formulario
-                        if (form.id === 'formMensaje') {
-                            enviarMensaje(form);
-                        } else if (form.id === 'formLlamada') {
-                            solicitarLlamada(form);
-                        }
+            form.addEventListener("submit", (event) => {
+                event.preventDefault();
+                event.stopPropagation();
+                
+                if (form.checkValidity()) {
+                    // Validación adicional del email antes de enviar
+                    const emailInput = form.querySelector('#mensajeCorreo');
+                    if (emailInput && !validarEmail(emailInput.value)) {
+                        emailInput.setCustomValidity('Por favor ingresa un correo válido (ej: usuario@ejemplo.com)');
+                        emailInput.reportValidity();
+                        return;
                     }
-                    form.classList.add("was-validated");
-                },
-                false
-            );
+                    enviarMensaje(form);
+                }
+                form.classList.add("was-validated");
+            }, false);
         });
     })();
 
-    // Contador de caracteres para el mensaje
+    // Contador de caracteres
     document.getElementById('mensajeTexto').addEventListener('input', function() {
         const contador = document.getElementById('mensajeContador');
         contador.textContent = this.value.length;
@@ -371,39 +321,12 @@
         }
     });
 
-    // Formatear teléfono mientras se escribe (para ambos campos)
-    function formatearTelefono(input) {
-        input.addEventListener('input', function(e) {
-            let value = e.target.value.replace(/\D/g, '');
-            
-            // Si empieza con 54, formatear como número argentino
-            if (value.startsWith('54')) {
-                if (value.length > 2) {
-                    value = '+54 ' + value.substring(2);
-                }
-                if (value.length > 7) {
-                    value = value.substring(0, 7) + ' ' + value.substring(7);
-                }
-                if (value.length > 12) {
-                    value = value.substring(0, 12) + '-' + value.substring(12);
-                }
-            }
-            
-            e.target.value = value;
-        });
-    }
-
-    // Aplicar formateo a ambos campos de teléfono
-    formatearTelefono(document.getElementById('mensajeTelefono'));
-    formatearTelefono(document.getElementById('llamadaTelefono'));
-
-    // Función para enviar mensaje
+    // Función simplificada para enviar mensaje
     async function enviarMensaje(form) {
         const btn = document.getElementById('btnEnviarMensaje');
         const spinner = btn.querySelector('.spinner-border');
         const btnText = btn.querySelector('.btn-text');
         
-        // Mostrar loading
         btn.disabled = true;
         spinner.classList.remove('d-none');
         btnText.textContent = 'Enviando...';
@@ -422,11 +345,9 @@
             const result = await response.json();
             
             if (result.success) {
-                // Cerrar modal
                 const modal = bootstrap.Modal.getInstance(document.getElementById('modalMensaje'));
                 modal.hide();
                 
-                // Mostrar mensaje de éxito
                 Swal.fire({
                     icon: 'success',
                     title: '¡Mensaje enviado!',
@@ -435,7 +356,6 @@
                     confirmButtonColor: '#0d6efd'
                 });
                 
-                // Limpiar formulario
                 form.reset();
                 form.classList.remove('was-validated');
                 document.getElementById('mensajeContador').textContent = '0';
@@ -460,79 +380,9 @@
                 confirmButtonColor: '#dc3545'
             });
         } finally {
-            // Ocultar loading
             btn.disabled = false;
             spinner.classList.add('d-none');
             btnText.textContent = 'Enviar Mensaje';
-        }
-    }
-
-    // Función para solicitar llamada
-    async function solicitarLlamada(form) {
-        const btn = document.getElementById('btnSolicitarLlamada');
-        const spinner = btn.querySelector('.spinner-border');
-        const btnText = btn.querySelector('.btn-text');
-        
-        // Mostrar loading
-        btn.disabled = true;
-        spinner.classList.remove('d-none');
-        btnText.textContent = 'Enviando...';
-        
-        try {
-            const formData = new FormData(form);
-            
-            const response = await fetch('<?= base_url('contacto/solicitar-llamada') ?>', {
-                method: 'POST',
-                body: formData,
-                headers: {
-                    'X-Requested-With': 'XMLHttpRequest'
-                }
-            });
-            
-            const result = await response.json();
-            
-            if (result.success) {
-                // Cerrar modal
-                const modal = bootstrap.Modal.getInstance(document.getElementById('modalLlamada'));
-                modal.hide();
-                
-                // Mostrar mensaje de éxito
-                Swal.fire({
-                    icon: 'success',
-                    title: '¡Solicitud registrada!',
-                    text: result.message,
-                    confirmButtonText: 'OK',
-                    confirmButtonColor: '#0d6efd'
-                });
-                
-                // Limpiar formulario
-                form.reset();
-                form.classList.remove('was-validated');
-                
-            } else {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Error',
-                    text: result.message || 'Error al registrar la solicitud',
-                    confirmButtonText: 'OK',
-                    confirmButtonColor: '#dc3545'
-                });
-            }
-            
-        } catch (error) {
-            console.error('Error:', error);
-            Swal.fire({
-                icon: 'error',
-                title: 'Error',
-                text: 'Error de conexión. Por favor, inténtalo nuevamente.',
-                confirmButtonText: 'OK',
-                confirmButtonColor: '#dc3545'
-            });
-        } finally {
-            // Ocultar loading
-            btn.disabled = false;
-            spinner.classList.add('d-none');
-            btnText.textContent = 'Solicitar Llamada';
         }
     }
     </script>

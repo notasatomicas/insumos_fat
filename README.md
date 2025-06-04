@@ -155,8 +155,8 @@ CREATE TABLE contactos (
     nombre VARCHAR(100) NOT NULL,
     apellido VARCHAR(100) NOT NULL,
     correo VARCHAR(150) NOT NULL,
-    telefono VARCHAR(20) NULL,
-    mensaje TEXT NULL,
+    telefono VARCHAR(20) NOT NULL,
+    mensaje TEXT NOT NULL,
     tipo_contacto ENUM('mensaje', 'llamada') NOT NULL DEFAULT 'mensaje',
     estado ENUM('nuevo', 'leido', 'respondido', 'cerrado') NOT NULL DEFAULT 'nuevo',
     ip_address VARCHAR(45) NULL,
@@ -168,6 +168,22 @@ CREATE TABLE contactos (
     INDEX idx_tipo_contacto (tipo_contacto),
     INDEX idx_created_at (created_at)
 );
+
+INSERT INTO users (email,username,password_hash,nombre,apellido,dni,direccion,type,active,created_at,updated_at
+) VALUES (
+    'admin@example.com',                 -- email
+    'admin',                             -- username
+    '$2y$10$97h6cZWnBrEYBjQtYCqdNOD6Wdv.ltli7xf8LOMyW3fmpfVLHyyxu', -- hash de "admin123"
+    'Administrador',                     -- nombre
+    'Principal',                         -- apellido
+    '11222333',                          -- dni
+    'Administracion',                    -- direccion
+    1,                                   -- type (1 = Administrador)
+    1,                                   -- active
+    NOW(),                               -- created_at
+    NOW()                                -- updated_at
+);
+
 ```
 
 ## 🔑 Índices y restricciones
