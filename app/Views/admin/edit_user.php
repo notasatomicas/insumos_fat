@@ -14,10 +14,10 @@
             <!-- Sidebar de administración -->
             <div class="col-md-3">
                 <div class="list-group">
-                    <a href="<?= site_url('admin/dashboard') ?>" class="list-group-item list-group-item-action active">
+                    <a href="<?= site_url('admin/dashboard') ?>" class="list-group-item list-group-item-action">
                         <i class="fa-solid fa-gauge me-2"></i> Dashboard
                     </a>
-                    <a href="<?= site_url('admin/users') ?>" class="list-group-item list-group-item-action">
+                    <a href="<?= site_url('admin/users') ?>" class="list-group-item list-group-item-action active">
                         <i class="fa-solid fa-user me-2"></i> Usuarios
                     </a>
                     <a href="<?= site_url('admin/productos') ?>" class="list-group-item list-group-item-action">
