@@ -14,13 +14,15 @@
             <!-- Sidebar de administración -->
             <div class="col-md-3">
                 <div class="list-group">
-                    <a href="<?= site_url('admin/dashboard') ?>" class="list-group-item list-group-item-action <?= $activo == 'dashboard' ? 'active' : '' ?>">
+                    <a href="<?= site_url('admin/dashboard') ?>" class="list-group-item list-group-item-action active">
                         <i class="bi bi-speedometer2 me-2"></i> Dashboard
                     </a>
-                    <a href="<?= site_url('admin/users') ?>" class="list-group-item list-group-item-action <?= $activo == 'users' ? 'active' : '' ?>">
+                    <a href="<?= site_url('admin/users') ?>" class="list-group-item list-group-item-action">
                         <i class="bi bi-people me-2"></i> Usuarios
                     </a>
-                    <!-- Puedes agregar más opciones aquí, como productos, categorías, pedidos, etc. -->
+                    <a href="<?= site_url('admin/productos') ?>" class="list-group-item list-group-item-action">
+                        <i class="bi bi-box me-2"></i> Productos
+                    </a>
                 </div>
             </div>
             
