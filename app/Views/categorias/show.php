@@ -174,7 +174,7 @@
                                                             <tr>
                                                                 <td><?= $producto['id_producto'] ?></td>
                                                                 <td>
-                                                                    <strong><?= esc($producto['nombre']) ?></strong>
+                                                                    <strong><?= esc($producto['nombre_prod']) ?></strong>
                                                                 </td>
                                                                 <td>
                                                                     <?php if (isset($producto['precio'])): ?>
@@ -205,12 +205,12 @@
                                                                 <td>
                                                                     <div class="btn-group" role="group">
                                                                         <a href="<?= site_url('admin/productos/' . $producto['id_producto']) ?>" 
-                                                                           class="btn btn-sm btn-outline-info" title="Ver producto">
-                                                                            <i class="bi bi-eye"></i>
+                                                                           class="btn btn-sm btn-outline-primary" title="Ver producto">
+                                                                            <i class="fas fa-eye"></i>
                                                                         </a>
                                                                         <a href="<?= site_url('admin/productos/' . $producto['id_producto'] . '/edit') ?>" 
-                                                                           class="btn btn-sm btn-outline-warning" title="Editar producto">
-                                                                            <i class="bi bi-pencil"></i>
+                                                                           class="btn btn-sm btn-outline-secondary" title="Editar producto">
+                                                                            <i class="fa-solid fa-pen"></i>
                                                                         </a>
                                                                     </div>
                                                                 </td>
