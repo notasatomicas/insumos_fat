@@ -97,7 +97,7 @@ class ProductoController extends Controller
             'validation' => \Config\Services::validation()
         ];
 
-        return view('productos/edit', $data);
+        return view('admin/productos/edit', $data);
     }
 
     // Actualizar producto
@@ -153,7 +153,7 @@ class ProductoController extends Controller
             session()->setFlashdata('error', 'Error al actualizar el producto');
         }
 
-        return redirect()->to('/productos');
+        return redirect()->to('admin/productos');
     }
 
     // Eliminar producto (soft delete)
