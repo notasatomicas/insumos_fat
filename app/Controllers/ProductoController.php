@@ -166,6 +166,8 @@ class ProductoController extends Controller
             return redirect()->to('admin/productos');
         }
 
+        $this->productoModel->update($id, ['categoria_id' => null]);
+        
         if ($this->productoModel->delete($id)) {
             session()->setFlashdata('success', 'Producto eliminado exitosamente');
         } else {

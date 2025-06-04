@@ -118,14 +118,14 @@ CREATE TABLE productos (
     descripcion TEXT NOT NULL,
     precio DECIMAL(10,2) NOT NULL,
     stock INT NOT NULL,
-    categoria_id INT UNSIGNED NOT NULL,
+    categoria_id INT UNSIGNED NULL,
     imagen_url VARCHAR(255),
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
     updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     deleted_at DATETIME DEFAULT NULL,
     active TINYINT(1) DEFAULT 1,
 
-    FOREIGN KEY (categoria_id) REFERENCES categorias(id_categoria) ON DELETE RESTRICT
+    FOREIGN KEY (categoria_id) REFERENCES categorias(id_categoria) ON DELETE SET NULL
 );
 
 CREATE TABLE facturas (
@@ -169,8 +169,8 @@ CREATE TABLE contactos (
     INDEX idx_created_at (created_at)
 );
 
-INSERT INTO users (email,username,password_hash,nombre,apellido,dni,direccion,type,active,created_at,updated_at
-) VALUES (
+INSERT INTO users (email,username,password_hash,nombre,apellido,dni,direccion,type,active,created_at,updated_at)VALUES 
+(
     'admin@example.com',                 -- email
     'admin',                             -- username
     '$2y$10$97h6cZWnBrEYBjQtYCqdNOD6Wdv.ltli7xf8LOMyW3fmpfVLHyyxu', -- hash de "admin123"
@@ -183,6 +183,14 @@ INSERT INTO users (email,username,password_hash,nombre,apellido,dni,direccion,ty
     NOW(),                               -- created_at
     NOW()                                -- updated_at
 );
+
+INSERT INTO categorias (nombre, descripcion) VALUES
+('Electrónica', 'Dispositivos electrónicos como celulares, televisores, computadoras, etc.'),
+('Ropa y Moda', 'Ropa para hombre, mujer y niños, además de accesorios y calzado.'),
+('Hogar y Cocina', 'Productos para el hogar, utensilios de cocina y decoración.'),
+('Deportes y Aire Libre', 'Artículos deportivos, bicicletas, equipos de camping y más.'),
+('Libros y Educación', 'Libros impresos y digitales, material educativo y escolar.');
+
 
 ```
 
