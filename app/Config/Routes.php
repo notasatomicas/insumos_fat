@@ -90,6 +90,33 @@ $routes->group('admin', ['filter' => 'admin'], function($routes) {
     
     // Alternativa para eliminar producto con POST (más seguro)
     $routes->post('productos/(:num)/delete', 'ProductoController::delete/$1');
+
+    // Dentro del grupo admin, después de las rutas de productos:
+
+    // ===============================================
+    // RUTAS PARA GESTIÓN DE CATEGORÍAS
+    // ===============================================
+
+    // Listar todas las categorías (GET admin/categorias)
+    $routes->get('categorias', 'CategoriaController::index');
+
+    // Mostrar formulario para crear nueva categoría (GET admin/categorias/create)
+    $routes->get('categorias/create', 'CategoriaController::create');
+
+    // Guardar nueva categoría (POST admin/categorias)
+    $routes->post('categorias', 'CategoriaController::store');
+
+    // Ver detalles de una categoría específica (GET admin/categorias/123)
+    $routes->get('categorias/(:num)', 'CategoriaController::show/$1');
+
+    // Mostrar formulario para editar categoría (GET admin/categorias/123/edit)
+    $routes->get('categorias/(:num)/edit', 'CategoriaController::edit/$1');
+
+    // Actualizar categoría específica (POST admin/categorias/123)
+    $routes->post('categorias/(:num)', 'CategoriaController::update/$1');
+
+    // Eliminar categoría (GET admin/categorias/123/delete)
+    $routes->get('categorias/(:num)/delete', 'CategoriaController::delete/$1');
 });
 
 $routes->get('/debug', 'Depu::index');

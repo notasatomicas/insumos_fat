@@ -14,14 +14,17 @@
             <!-- Sidebar de administración -->
             <div class="col-md-3">
                 <div class="list-group">
-                    <a href="<?= site_url('admin/dashboard') ?>" class="list-group-item list-group-item-action">
-                        <i class="bi bi-speedometer2 me-2"></i> Dashboard
+                    <a href="<?= site_url('admin/dashboard') ?>" class="list-group-item list-group-item-action active">
+                        <i class="fa-solid fa-gauge me-2"></i> Dashboard
                     </a>
                     <a href="<?= site_url('admin/users') ?>" class="list-group-item list-group-item-action">
-                        <i class="bi bi-people me-2"></i> Usuarios
+                        <i class="fa-solid fa-user me-2"></i> Usuarios
                     </a>
-                    <a href="<?= site_url('admin/productos') ?>" class="list-group-item list-group-item-action active">
-                        <i class="bi bi-box me-2"></i> Productos
+                    <a href="<?= site_url('admin/productos') ?>" class="list-group-item list-group-item-action">
+                        <i class="fa-solid fa-box me-2"></i> Productos
+                    </a>
+                    <a href="<?= site_url('admin/categorias') ?>" class="list-group-item list-group-item-action">
+                        <i class="fa-solid fa-table-list me-2"></i> Gestionar categorías
                     </a>
                 </div>
             </div>
@@ -130,18 +133,18 @@
                                                         <a href="<?= site_url('admin/productos/' . $producto['id_producto']) ?>" 
                                                            class="btn btn-sm btn-outline-primary" 
                                                            title="Ver detalles">
-                                                            <i class="bi bi-eye"></i>
+                                                            <i class="fas fa-eye"></i>
                                                         </a>
                                                         <a href="<?= site_url('admin/productos/' . $producto['id_producto'] . '/edit') ?>" 
-                                                           class="btn btn-sm btn-outline-warning" 
+                                                           class="btn btn-sm btn-outline-secondary" 
                                                            title="Editar">
-                                                            <i class="bi bi-pencil"></i>
+                                                            <i class="fa-solid fa-pen"></i>
                                                         </a>
                                                         <button type="button" 
                                                                 class="btn btn-sm btn-outline-danger" 
                                                                 title="Eliminar"
                                                                 onclick="confirmarEliminacion(<?= $producto['id_producto'] ?>, '<?= esc($producto['nombre_prod']) ?>')">
-                                                            <i class="bi bi-trash"></i>
+                                                            <i class="fa-solid fa-trash"></i>
                                                         </button>
                                                     </div>
                                                 </td>

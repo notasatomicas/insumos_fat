@@ -163,7 +163,7 @@ class ProductoController extends Controller
         
         if (!$producto) {
             session()->setFlashdata('error', 'Producto no encontrado');
-            return redirect()->to('/productos');
+            return redirect()->to('admin/productos');
         }
 
         if ($this->productoModel->delete($id)) {
@@ -172,7 +172,7 @@ class ProductoController extends Controller
             session()->setFlashdata('error', 'Error al eliminar el producto');
         }
 
-        return redirect()->to('/productos');
+        return redirect()->to('admin/productos');
     }
 
     // Ver detalles del producto

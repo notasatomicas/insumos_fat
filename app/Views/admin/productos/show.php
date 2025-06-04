@@ -32,7 +32,7 @@
                     <div class="card-header bg-info text-white d-flex justify-content-between align-items-center">
                         <h4><i class="bi bi-eye me-2"></i> Detalles del Producto</h4>
                         <div>
-                            <a href="<?= site_url('admin/productos/' . $producto['id_producto'] . '/edit') ?>" class="btn btn-warning btn-sm me-2">
+                            <a href="<?= site_url('admin/productos/' . '/edit/' . $producto['id_producto']) ?>" class="btn btn-warning btn-sm me-2">
                                 <i class="bi bi-pencil me-1"></i> Editar
                             </a>
                             <a href="<?= site_url('admin/productos') ?>" class="btn btn-light">
@@ -160,7 +160,7 @@
                                     </div>
                                     <div class="card-body">
                                         <div class="d-grid gap-2">
-                                            <a href="<?= site_url('admin/productos/' . $producto['id_producto'] . '/edit') ?>" 
+                                            <a href="<?= site_url('admin/productos/'  . '/edit/' . $producto['id_producto']) ?>" 
                                                class="btn btn-warning">
                                                 <i class="bi bi-pencil me-1"></i> Editar Producto
                                             </a>

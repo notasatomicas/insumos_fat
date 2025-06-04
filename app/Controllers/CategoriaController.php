@@ -59,7 +59,7 @@ class CategoriaController extends Controller
             session()->setFlashdata('error', 'Error al crear la categoría');
         }
 
-        return redirect()->to('/categorias');
+        return redirect()->to('admin/categorias');
     }
 
     // Mostrar formulario para editar categoría
@@ -109,7 +109,7 @@ class CategoriaController extends Controller
             session()->setFlashdata('error', 'Error al actualizar la categoría');
         }
 
-        return redirect()->to('/categorias');
+        return redirect()->to('admin/categorias');
     }
 
     // Eliminar categoría (soft delete)
@@ -119,7 +119,7 @@ class CategoriaController extends Controller
         
         if (!$categoria) {
             session()->setFlashdata('error', 'Categoría no encontrada');
-            return redirect()->to('/categorias');
+            return redirect()->to('admin/categorias');
         }
 
         // Verificar si tiene productos asociados
@@ -131,7 +131,7 @@ class CategoriaController extends Controller
 
         if ($productosAsociados > 0) {
             session()->setFlashdata('error', 'No se puede eliminar la categoría porque tiene productos asociados');
-            return redirect()->to('/categorias');
+            return redirect()->to('admin/categorias');
         }
 
         if ($this->categoriaModel->delete($id)) {
@@ -140,7 +140,7 @@ class CategoriaController extends Controller
             session()->setFlashdata('error', 'Error al eliminar la categoría');
         }
 
-        return redirect()->to('/categorias');
+        return redirect()->to('admin/categorias');
     }
 
     // Ver detalles de la categoría

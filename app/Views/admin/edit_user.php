@@ -14,14 +14,17 @@
             <!-- Sidebar de administración -->
             <div class="col-md-3">
                 <div class="list-group">
-                    <a href="<?= site_url('admin/dashboard') ?>" class="list-group-item list-group-item-action">
-                        <i class="bi bi-speedometer2 me-2"></i> Dashboard
+                    <a href="<?= site_url('admin/dashboard') ?>" class="list-group-item list-group-item-action active">
+                        <i class="fa-solid fa-gauge me-2"></i> Dashboard
                     </a>
                     <a href="<?= site_url('admin/users') ?>" class="list-group-item list-group-item-action">
-                        <i class="bi bi-people me-2"></i> Usuarios
+                        <i class="fa-solid fa-user me-2"></i> Usuarios
                     </a>
-                    <a href="<?= site_url('admin/productos') ?>" class="list-group-item list-group-item-action active">
-                        <i class="bi bi-box me-2"></i> Productos
+                    <a href="<?= site_url('admin/productos') ?>" class="list-group-item list-group-item-action">
+                        <i class="fa-solid fa-box me-2"></i> Productos
+                    </a>
+                    <a href="<?= site_url('admin/categorias') ?>" class="list-group-item list-group-item-action">
+                        <i class="fa-solid fa-table-list me-2"></i> Gestionar categorías
                     </a>
                 </div>
             </div>
