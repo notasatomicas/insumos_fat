@@ -1,17 +1,4 @@
-ruta admin/productos/edit(num)
-admin/productos/1/toggle/(num)
-
-desde la vista de show.php (detalles de producto)
-
 campo dni en la vista de edición del usuario acepta caracteres de texto plano (corregir a numeric)
-
-no existe la vista de edición de productos
-/admin/productos/3/edit
-
-error en la vista de una categoría (show category) que esta deshabilitada y tiene asociada un producto a ella
-/admin/categorias/1
-
-fix en conteo de productos asociados a una categoría en la vista general
 
 realizar la vista propiamente del catalogo
  - filtro de productos
@@ -21,6 +8,11 @@ realizar la vista propiamente del catalogo
 
 solucionar el error de la carga de los pdfs en lugar de imágenes
 
-
 agregar un + en gestion de productos para poder agregar productos
-en la vista de categorias aparece como estado inactivo los productos ver
+
+falta:
+ mensajeria 
+ facturas
+ vistas de catalogo
+
+ corregir el modal que queda en contacto

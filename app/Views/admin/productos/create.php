@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <!-- la cabecera de todas las paginas -->
     <?= view('layout/base_head') ?>
 </head>
+
 <body class="d-flex flex-column min-vh-100">
 
     <!-- Navbar -->
@@ -28,7 +30,7 @@
                     </a>
                 </div>
             </div>
-            
+
             <!-- Contenido principal -->
             <div class="col-md-9">
                 <div class="card">
@@ -39,23 +41,23 @@
                         </a>
                     </div>
                     <div class="card-body">
-                        
+
                         <?php if (session()->getFlashdata('errors')): ?>
-                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                                <i class="bi bi-exclamation-triangle me-2"></i>
-                                <strong>Se encontraron errores:</strong>
-                                <ul class="mb-0 mt-2">
-                                    <?php foreach (session()->getFlashdata('errors') as $error): ?>
-                                        <li><?= esc($error) ?></li>
-                                    <?php endforeach; ?>
-                                </ul>
-                                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-                            </div>
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            <i class="bi bi-exclamation-triangle me-2"></i>
+                            <strong>Se encontraron errores:</strong>
+                            <ul class="mb-0 mt-2">
+                                <?php foreach (session()->getFlashdata('errors') as $error): ?>
+                                <li><?= esc($error) ?></li>
+                                <?php endforeach; ?>
+                            </ul>
+                            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                        </div>
                         <?php endif; ?>
 
                         <form action="<?= site_url('admin/productos') ?>" method="post" enctype="multipart/form-data">
                             <?= csrf_field() ?>
-                            
+
                             <div class="row">
                                 <!-- Información básica del producto -->
                                 <div class="col-md-8">
@@ -63,17 +65,14 @@
                                         <label for="nombre_prod" class="form-label">
                                             <i class="bi bi-tag me-1"></i> Nombre del Producto *
                                         </label>
-                                        <input type="text" 
-                                               class="form-control <?= session()->getFlashdata('errors.nombre_prod') ? 'is-invalid' : '' ?>" 
-                                               id="nombre_prod" 
-                                               name="nombre_prod" 
-                                               value="<?= old('nombre_prod') ?>"
-                                               placeholder="Ingrese el nombre del producto"
-                                               required>
+                                        <input type="text"
+                                            class="form-control <?= session()->getFlashdata('errors.nombre_prod') ? 'is-invalid' : '' ?>"
+                                            id="nombre_prod" name="nombre_prod" value="<?= old('nombre_prod') ?>"
+                                            placeholder="Ingrese el nombre del producto" required>
                                         <?php if (session()->getFlashdata('errors.nombre_prod')): ?>
-                                            <div class="invalid-feedback">
-                                                <?= session()->getFlashdata('errors.nombre_prod') ?>
-                                            </div>
+                                        <div class="invalid-feedback">
+                                            <?= session()->getFlashdata('errors.nombre_prod') ?>
+                                        </div>
                                         <?php endif; ?>
                                     </div>
 
@@ -81,11 +80,8 @@
                                         <label for="descripcion" class="form-label">
                                             <i class="bi bi-text-paragraph me-1"></i> Descripción
                                         </label>
-                                        <textarea class="form-control" 
-                                                  id="descripcion" 
-                                                  name="descripcion" 
-                                                  rows="4"
-                                                  placeholder="Describe las características del producto"><?= old('descripcion') ?></textarea>
+                                        <textarea class="form-control" id="descripcion" name="descripcion" rows="4"
+                                            placeholder="Describe las características del producto"><?= old('descripcion') ?></textarea>
                                     </div>
 
                                     <div class="row">
@@ -96,19 +92,14 @@
                                                 </label>
                                                 <div class="input-group">
                                                     <span class="input-group-text">$</span>
-                                                    <input type="number" 
-                                                           class="form-control <?= session()->getFlashdata('errors.precio') ? 'is-invalid' : '' ?>" 
-                                                           id="precio" 
-                                                           name="precio" 
-                                                           value="<?= old('precio') ?>"
-                                                           step="0.01"
-                                                           min="0"
-                                                           placeholder="0.00"
-                                                           required>
+                                                    <input type="number"
+                                                        class="form-control <?= session()->getFlashdata('errors.precio') ? 'is-invalid' : '' ?>"
+                                                        id="precio" name="precio" value="<?= old('precio') ?>"
+                                                        step="0.01" min="0" placeholder="0.00" required>
                                                     <?php if (session()->getFlashdata('errors.precio')): ?>
-                                                        <div class="invalid-feedback">
-                                                            <?= session()->getFlashdata('errors.precio') ?>
-                                                        </div>
+                                                    <div class="invalid-feedback">
+                                                        <?= session()->getFlashdata('errors.precio') ?>
+                                                    </div>
                                                     <?php endif; ?>
                                                 </div>
                                             </div>
@@ -118,18 +109,14 @@
                                                 <label for="stock" class="form-label">
                                                     <i class="bi bi-boxes me-1"></i> Stock *
                                                 </label>
-                                                <input type="number" 
-                                                       class="form-control <?= session()->getFlashdata('errors.stock') ? 'is-invalid' : '' ?>" 
-                                                       id="stock" 
-                                                       name="stock" 
-                                                       value="<?= old('stock') ?>"
-                                                       min="0"
-                                                       placeholder="0"
-                                                       required>
+                                                <input type="number"
+                                                    class="form-control <?= session()->getFlashdata('errors.stock') ? 'is-invalid' : '' ?>"
+                                                    id="stock" name="stock" value="<?= old('stock') ?>" min="0"
+                                                    placeholder="0" required>
                                                 <?php if (session()->getFlashdata('errors.stock')): ?>
-                                                    <div class="invalid-feedback">
-                                                        <?= session()->getFlashdata('errors.stock') ?>
-                                                    </div>
+                                                <div class="invalid-feedback">
+                                                    <?= session()->getFlashdata('errors.stock') ?>
+                                                </div>
                                                 <?php endif; ?>
                                             </div>
                                         </div>
@@ -139,22 +126,21 @@
                                         <label for="categoria_id" class="form-label">
                                             <i class="bi bi-collection me-1"></i> Categoría *
                                         </label>
-                                        <select class="form-select <?= session()->getFlashdata('errors.categoria_id') ? 'is-invalid' : '' ?>" 
-                                                id="categoria_id" 
-                                                name="categoria_id" 
-                                                required>
+                                        <select
+                                            class="form-select <?= session()->getFlashdata('errors.categoria_id') ? 'is-invalid' : '' ?>"
+                                            id="categoria_id" name="categoria_id" required>
                                             <option value="">Seleccione una categoría</option>
                                             <?php foreach ($categorias as $categoria): ?>
-                                                <option value="<?= $categoria['id_categoria'] ?>" 
-                                                        <?= old('categoria_id') == $categoria['id_categoria'] ? 'selected' : '' ?>>
-                                                    <?= esc($categoria['nombre']) ?>
-                                                </option>
+                                            <option value="<?= $categoria['id_categoria'] ?>"
+                                                <?= old('categoria_id') == $categoria['id_categoria'] ? 'selected' : '' ?>>
+                                                <?= esc($categoria['nombre']) ?>
+                                            </option>
                                             <?php endforeach; ?>
                                         </select>
                                         <?php if (session()->getFlashdata('errors.categoria_id')): ?>
-                                            <div class="invalid-feedback">
-                                                <?= session()->getFlashdata('errors.categoria_id') ?>
-                                            </div>
+                                        <div class="invalid-feedback">
+                                            <?= session()->getFlashdata('errors.categoria_id') ?>
+                                        </div>
                                         <?php endif; ?>
                                     </div>
                                 </div>
@@ -166,35 +152,28 @@
                                             <h6 class="card-title">
                                                 <i class="bi bi-image me-1"></i> Imagen del Producto
                                             </h6>
-                                            
+
                                             <div class="mb-3">
-                                                <input type="file" 
-                                                       class="form-control" 
-                                                       id="imagen" 
-                                                       name="imagen" 
-                                                       accept="image/*"
-                                                       onchange="previewImage(this)" required>
+                                                <input type="file" class="form-control" id="imagen" name="imagen"
+                                                    accept=".jpg,.jpeg,.png" onchange="previewImage(this)" required>
                                                 <div class="form-text">
-                                                    Formatos permitidos: JPG, PNG, GIF (Max: 2MB)
+                                                    Formatos permitidos: JPG, PNG (Max: 2MB)
                                                 </div>
                                             </div>
 
                                             <!-- Preview de la imagen -->
                                             <div id="imagePreview" class="text-center" style="display: none;">
-                                                <img id="preview" src="" alt="Preview" class="img-fluid rounded" style="max-height: 200px;">
+                                                <img id="preview" src="" alt="Preview" class="img-fluid rounded"
+                                                    style="max-height: 200px;">
                                             </div>
 
                                             <hr>
 
                                             <h6><i class="bi bi-gear me-1"></i> Configuración</h6>
-                                            
+
                                             <div class="form-check">
-                                                <input class="form-check-input" 
-                                                       type="checkbox" 
-                                                       id="active" 
-                                                       name="active" 
-                                                       value="1" 
-                                                       <?= old('active', '1') ? 'checked' : '' ?>>
+                                                <input class="form-check-input" type="checkbox" id="active"
+                                                    name="active" value="1" <?= old('active', '1') ? 'checked' : '' ?>>
                                                 <label class="form-check-label" for="active">
                                                     Producto activo
                                                 </label>
@@ -229,20 +208,54 @@
 
     <!-- Scripts generales que se usan en todas las paginas -->
     <?= view('layout/base_scripts') ?>
-    
+
     <script>
-        function previewImage(input) {
-            if (input.files && input.files[0]) {
-                const reader = new FileReader();
-                
-                reader.onload = function(e) {
-                    document.getElementById('preview').src = e.target.result;
-                    document.getElementById('imagePreview').style.display = 'block';
-                }
-                
-                reader.readAsDataURL(input.files[0]);
+    function previewImage(input) {
+        if (input.files && input.files[0]) {
+            const reader = new FileReader();
+
+            reader.onload = function(e) {
+                document.getElementById('preview').src = e.target.result;
+                document.getElementById('imagePreview').style.display = 'block';
             }
+
+            reader.readAsDataURL(input.files[0]);
         }
+    }
     </script>
+
+    <!-- no olvidar: aca deje un script peligroso -->
+    <script>
+    function previewImage(input) {
+        const file = input.files[0];
+
+        if (!file) return;
+
+        const allowedTypes = ['image/jpeg', 'image/png'];
+        const maxSize = 2 * 1024 * 1024; // 2MB
+
+        if (!allowedTypes.includes(file.type)) {
+            alert("Solo se permiten imágenes en formato JPG o PNG.");
+            input.value = ""; // limpiar el input
+            return;
+        }
+
+        if (file.size > maxSize) {
+            alert("El archivo excede el tamaño máximo de 2MB.");
+            input.value = "";
+            return;
+        }
+
+        // Si pasa las validaciones, puedes mostrar la vista previa aquí
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            // Por ejemplo, mostrar la imagen en un <img id="preview">
+            document.getElementById('preview').src = e.target.result;
+        };
+        reader.readAsDataURL(file);
+    }
+    </script>
+
 </body>
+
 </html>

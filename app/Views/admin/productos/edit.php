@@ -192,7 +192,7 @@
                                                        class="form-control" 
                                                        id="imagen" 
                                                        name="imagen" 
-                                                       accept="image/*"
+                                                       accept=".jpg,.jpeg,.png"
                                                        onchange="previewImage(this)">
                                                 <div class="form-text">
                                                     Formatos permitidos: JPG, PNG, GIF (Max: 2MB)
@@ -281,6 +281,37 @@
                 reader.readAsDataURL(input.files[0]);
             }
         }
+    </script>
+
+    <script>
+    function previewImage(input) {
+        const file = input.files[0];
+
+        if (!file) return;
+
+        const allowedTypes = ['image/jpeg', 'image/png'];
+        const maxSize = 2 * 1024 * 1024; // 2MB
+
+        if (!allowedTypes.includes(file.type)) {
+            alert("Solo se permiten imágenes en formato JPG o PNG.");
+            input.value = ""; // limpiar el input
+            return;
+        }
+
+        if (file.size > maxSize) {
+            alert("El archivo excede el tamaño máximo de 2MB.");
+            input.value = "";
+            return;
+        }
+
+        // Si pasa las validaciones, puedes mostrar la vista previa aquí
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            // Por ejemplo, mostrar la imagen en un <img id="preview">
+            document.getElementById('preview').src = e.target.result;
+        };
+        reader.readAsDataURL(file);
+    }
     </script>
 </body>
 </html>

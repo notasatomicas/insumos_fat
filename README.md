@@ -182,14 +182,85 @@ INSERT INTO users (email,username,password_hash,nombre,apellido,dni,direccion,ty
     1,                                   -- active
     NOW(),                               -- created_at
     NOW()                                -- updated_at
+),
+(
+    'user@example.com',                 -- email
+    'user',                             -- username
+    '$2y$10$97h6cZWnBrEYBjQtYCqdNOD6Wdv.ltli7xf8LOMyW3fmpfVLHyyxu', -- hash de "admin123"
+    'Usuario',                     -- nombre
+    'del Sistema',                         -- apellido
+    '11222333',                          -- dni
+    'Casa 0001',                    -- direccion
+    0,                                   -- type (0 = Comprador)
+    1,                                   -- active
+    NOW(),                               -- created_at
+    NOW()                                -- updated_at
+),
+(
+    'ariel@mail.com',                 -- email
+    'ariel',                             -- username
+    '$2y$10$97h6cZWnBrEYBjQtYCqdNOD6Wdv.ltli7xf8LOMyW3fmpfVLHyyxu', -- hash de "admin123"
+    'Ariel',                     -- nombre
+    'Antinori',                         -- apellido
+    '43753453',                          -- dni
+    'Av. Independencia',                    -- direccion
+    0,                                   -- type (0 = Comprador)
+    1,                                   -- active
+    NOW(),                               -- created_at
+    NOW()                                -- updated_at
+),
+(
+    'andres@mail.com',                 -- email
+    'andres',                             -- username
+    '$2y$10$97h6cZWnBrEYBjQtYCqdNOD6Wdv.ltli7xf8LOMyW3fmpfVLHyyxu', -- hash de "admin123"
+    'Andres',                     -- nombre
+    'Sena',                         -- apellido
+    '12345678',                          -- dni
+    'Estados Unidos',                    -- direccion
+    1,                                   -- type (0 = Comprador)
+    1,                                   -- active
+    NOW(),                               -- created_at
+    NOW()                                -- updated_at
 );
 
 INSERT INTO categorias (nombre, descripcion) VALUES
-('Electrónica', 'Dispositivos electrónicos como celulares, televisores, computadoras, etc.'),
-('Ropa y Moda', 'Ropa para hombre, mujer y niños, además de accesorios y calzado.'),
-('Hogar y Cocina', 'Productos para el hogar, utensilios de cocina y decoración.'),
-('Deportes y Aire Libre', 'Artículos deportivos, bicicletas, equipos de camping y más.'),
-('Libros y Educación', 'Libros impresos y digitales, material educativo y escolar.');
+('Laptops', 'Portátiles de alto rendimiento y uso general.'),
+('Componentes', 'Partes internas para computadoras de escritorio.'),
+('Periféricos', 'Dispositivos externos como teclados, ratones y monitores.'),
+('Almacenamiento', 'Discos duros, SSDs y unidades externas.'),
+('Redes', 'Equipos para conectividad de red como routers y switches.'),
+('Software', 'Sistemas operativos, antivirus y programas.'),
+('Impresoras y Escáneres', 'Equipos de impresión y digitalización de documentos.');
+
+INSERT INTO productos (nombre_prod, descripcion, precio, stock, categoria_id, imagen_url) VALUES
+-- Laptops
+('Laptop Dell XPS 13', 'Ultrabook con Intel Core i7, 16GB RAM y SSD de 512GB.', 1350.00, 10, 1, 'https://example.com/images/xps13.jpg'),
+('MacBook Pro 14"', 'Apple M2, 16GB RAM y 1TB SSD.', 1999.99, 5, 1, 'https://example.com/images/macbookpro14.jpg'),
+
+-- Componentes
+('Procesador AMD Ryzen 7 5800X', '8 núcleos y 16 hilos, ideal para gaming y productividad.', 320.00, 20, 2, 'https://example.com/images/ryzen5800x.jpg'),
+('Placa Madre ASUS ROG STRIX B550-F', 'Soporta procesadores AMD Ryzen y memoria DDR4.', 180.50, 15, 2, 'https://example.com/images/rog_b550.jpg'),
+
+-- Periféricos
+('Teclado Mecánico Logitech G Pro', 'Teclado RGB con switches GX Blue.', 120.00, 30, 3, 'https://example.com/images/logitech_gpro.jpg'),
+('Mouse Gamer Razer DeathAdder V2', 'Sensor óptico 20K DPI con iluminación RGB.', 70.00, 25, 3, 'https://example.com/images/razer_deathadder.jpg'),
+
+-- Almacenamiento
+('Disco SSD Samsung 970 EVO 1TB', 'Unidad NVMe de alto rendimiento.', 140.00, 40, 4, 'https://example.com/images/samsung970evo.jpg'),
+('Disco Duro Seagate 2TB', 'HDD SATA de 3.5 pulgadas, ideal para almacenamiento masivo.', 65.00, 35, 4, 'https://example.com/images/seagate2tb.jpg'),
+
+-- Redes
+('Router TP-Link Archer AX50', 'Router WiFi 6 con velocidades de hasta 3 Gbps.', 120.00, 18, 5, 'https://example.com/images/archer_ax50.jpg'),
+('Switch TP-Link TL-SG108', 'Switch gigabit de 8 puertos, sin gestión.', 45.00, 22, 5, 'https://example.com/images/tl-sg108.jpg'),
+
+-- Software
+('Microsoft Windows 11 Pro', 'Sistema operativo para PCs y laptops.', 145.00, 50, 6, 'https://example.com/images/windows11pro.jpg'),
+('Antivirus Kaspersky Total Security', 'Protección completa para todos tus dispositivos.', 59.90, 60, 6, 'https://example.com/images/kaspersky.jpg'),
+
+-- Impresoras
+('Impresora HP LaserJet Pro M404dn', 'Impresión láser monocromática con red y dúplex.', 220.00, 12, 7, 'https://example.com/images/hp_m404dn.jpg'),
+('Escáner Epson Perfection V600', 'Escáner fotográfico de alta resolución.', 190.00, 8, 7, 'https://example.com/images/epson_v600.jpg');
+
 
 
 ```

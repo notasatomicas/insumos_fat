@@ -95,9 +95,9 @@
                         <!-- Sesión iniciada como administrador -->
                          <li>
                             <a class="nav-link text-center me-lg-2 px-2 px-xl-4"
-                                href="<?= base_url('admin/adsfasdfasdf') ?>">
-                                <i class="ms-md-0 me-1 fa-solid fa-question"></i>
-                                Otro
+                                href="<?= base_url('en_construccion') ?>" target="blank">
+                                <i class="ms-md-0 me-1 fa-solid fa-list-check"></i>
+                                Catalogo
                             </a>
                         </li>
                     <?php else: ?>
