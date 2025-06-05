@@ -185,3 +185,5 @@ API:
 - POST /api/v1/contacto/mensaje      -> API para enviar mensaje
 - POST /api/v1/contacto/llamada      -> API para solicitar llamada
 */
+
+$routes->get('/catalogo', 'Catalogo::index');
