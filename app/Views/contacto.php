@@ -19,6 +19,18 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert2/11.10.4/sweetalert2.min.css">
 
     <?= view('adicional/modal_development_estilos.html') ?>
+
+    <style>
+        /* Estilos adicionales para prevenir problemas con modal-backdrop */
+        .modal-backdrop.show {
+            transition: opacity 0.15s linear;
+        }
+
+        /* Asegurar que no queden backdrops residuales */
+        body:not(.modal-open) .modal-backdrop {
+            display: none !important;
+        }
+    </style>
 </head>
 
 <body>
@@ -85,14 +97,14 @@
                                                 <div class="col-md-6 mb-3">
                                                     <label for="mensajeNombre" class="form-label">Nombre *</label>
                                                     <input type="text" id="mensajeNombre" name="nombre" placeholder="Ingresa tu nombre"
-                                                        class="form-control" required minlength="2" maxlength="100">
-                                                    <div class="invalid-feedback">Por favor ingresa tu nombre (mínimo 2 caracteres).</div>
+                                                        class="form-control" required minlength="2" maxlength="100" pattern="[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+">
+                                                    <div class="invalid-feedback">Por favor ingresa un nombre valido (mínimo 2 caracteres).</div>
                                                 </div>
                                                 <div class="col-md-6 mb-3">
                                                     <label for="mensajeApellido" class="form-label">Apellido *</label>
                                                     <input type="text" id="mensajeApellido" name="apellido" placeholder="Ingresa tu apellido"
-                                                        class="form-control" required minlength="2" maxlength="100">
-                                                    <div class="invalid-feedback">Por favor ingresa tu apellido (mínimo 2 caracteres).</div>
+                                                        class="form-control" required minlength="2" maxlength="100" pattern="[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+">
+                                                    <div class="invalid-feedback">Por favor ingresa un apellido valido (mínimo 2 caracteres).</div>
                                                 </div>
                                             </div>
                                             <div class="row">
@@ -255,6 +267,27 @@
     <?= view('layout/footer') ?>
 
     <script>
+    // Configuración global de SweetAlert2
+    const swalConfig = {
+        backdrop: true,
+        allowOutsideClick: true,
+        allowEscapeKey: true,
+        heightAuto: false // Evita problemas de scroll
+    };
+
+    // Función para limpiar backdrops residuales
+    function limpiarBackdrops() {
+        // Eliminar todos los backdrops
+        document.querySelectorAll('.modal-backdrop').forEach(backdrop => {
+            backdrop.remove();
+        });
+        
+        // Restaurar el estado del body
+        document.body.classList.remove('modal-open');
+        document.body.style.overflow = '';
+        document.body.style.paddingRight = '';
+    }
+
     // Inicializar mapa
     const map = L.map('map').setView([-27.4666381113767, -58.83231690000313], 13);
 
@@ -321,7 +354,7 @@
         }
     });
 
-    // Función simplificada para enviar mensaje
+    // Función corregida para enviar mensaje
     async function enviarMensaje(form) {
         const btn = document.getElementById('btnEnviarMensaje');
         const spinner = btn.querySelector('.spinner-border');
@@ -346,14 +379,27 @@
             
             if (result.success) {
                 const modal = bootstrap.Modal.getInstance(document.getElementById('modalMensaje'));
+                
+                // Cerrar el modal y esperar a que termine la animación
                 modal.hide();
                 
-                Swal.fire({
-                    icon: 'success',
-                    title: '¡Mensaje enviado!',
-                    text: result.message,
-                    confirmButtonText: 'OK',
-                    confirmButtonColor: '#0d6efd'
+                // Esperar a que el modal se cierre completamente antes de mostrar SweetAlert
+                document.getElementById('modalMensaje').addEventListener('hidden.bs.modal', function handler() {
+                    // Remover el event listener para evitar que se ejecute múltiples veces
+                    this.removeEventListener('hidden.bs.modal', handler);
+                    
+                    // Limpiar cualquier backdrop que pueda quedar
+                    limpiarBackdrops();
+                    
+                    // Mostrar SweetAlert
+                    Swal.fire({
+                        icon: 'success',
+                        title: '¡Mensaje enviado!',
+                        text: result.message,
+                        confirmButtonText: 'OK',
+                        confirmButtonColor: '#0d6efd',
+                        ...swalConfig
+                    });
                 });
                 
                 form.reset();
@@ -366,7 +412,8 @@
                     title: 'Error',
                     text: result.message || 'Error al enviar el mensaje',
                     confirmButtonText: 'OK',
-                    confirmButtonColor: '#dc3545'
+                    confirmButtonColor: '#dc3545',
+                    ...swalConfig
                 });
             }
             
@@ -377,7 +424,8 @@
                 title: 'Error',
                 text: 'Error de conexión. Por favor, inténtalo nuevamente.',
                 confirmButtonText: 'OK',
-                confirmButtonColor: '#dc3545'
+                confirmButtonColor: '#dc3545',
+                ...swalConfig
             });
         } finally {
             btn.disabled = false;
@@ -385,6 +433,18 @@
             btnText.textContent = 'Enviar Mensaje';
         }
     }
+
+    // Event listener global para limpiar cuando se cierre cualquier modal
+    document.addEventListener('DOMContentLoaded', function() {
+        // Limpiar backdrops cuando se cierre cualquier modal
+        document.querySelectorAll('.modal').forEach(modal => {
+            modal.addEventListener('hidden.bs.modal', function() {
+                setTimeout(() => {
+                    limpiarBackdrops();
+                }, 100);
+            });
+        });
+    });
     </script>
 
     <!-- Scripts generales que se usan en todas las paginas -->
