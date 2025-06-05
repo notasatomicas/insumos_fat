@@ -47,7 +47,7 @@
                             <?= csrf_field() ?>
 
                             <div class="mb-3">
-                                <label for="identity" class="form-label">Email o Usuario</label>
+                                <label for="identity" class="form-label">Usuario</label>
                                 <div class="input-group">
                                     <span class="input-group-text"><i class="fas fa-user"></i></span>
                                     <input type="text" class="form-control" id="identity" name="identity"
