@@ -80,7 +80,7 @@
                                 <div class="card border-0">
                                     <div class="card-body">
                                         <div class="text-end">
-                                            <button type="button" class="border-0" data-bs-dismiss="modal"
+                                            <button type="button" class="bg-transparent border-0 shadow-none" data-bs-dismiss="modal"
                                                 aria-label="Close">
                                                 <i class="fa-solid fa-circle-xmark" style="color: red !important;"></i>
                                             </button>
@@ -190,7 +190,7 @@
                                 <div class="card border-0">
                                     <div class="card-body">
                                         <div class="text-end">
-                                            <button type="button" class="border-0" data-bs-dismiss="modal"
+                                            <button type="button" class="bg-transparent border-0 shadow-none" data-bs-dismiss="modal"
                                                 aria-label="Close">
                                                 <i class="fa-solid fa-circle-xmark" style="color: red !important;"></i>
                                             </button>
