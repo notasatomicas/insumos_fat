@@ -61,11 +61,11 @@
                             </a>
                         </li>
                     <?php else: ?>
-                        <li class="<?= esActivo('comercializacion', $segment) ? 'nav-item mx-5 mx-sm-4 mx-lg-0' : 'hvr-underline-from-center nav-item mx-5 mx-sm-4 mx-lg-0' ?>">
-                            <a class="nav-link text-center me-lg-2 px-2 px-xl-4 <?= esActivo('comercializacion', $segment) ? 'active' : '' ?>"
-                                href="<?= base_url('comercializacion') ?>">
-                                <i class="ms-md-0 me-1 fa-solid fa-truck-arrow-right <?= esActivo('comercializacion', $segment) ? 'animate__animated animate__heartBeat animate__infinite' : '' ?>"></i>
-                                Comercialización
+                        <li class="<?= esActivo('catalogo', $segment) ? 'nav-item mx-5 mx-sm-4 mx-lg-0' : 'hvr-underline-from-center nav-item mx-5 mx-sm-4 mx-lg-0' ?>">
+                            <a class="nav-link text-center me-lg-2 px-2 px-xl-4 <?= esActivo('catalogo', $segment) ? 'active' : '' ?>"
+                                href="<?= base_url('catalogo') ?>">
+                                <i class="ms-md-0 me-1 fa-solid fa-list-check <?= esActivo('catalogo', $segment) ? 'animate__animated animate__heartBeat animate__infinite' : '' ?>"></i>
+                                Catalogo
                             </a>
                         </li>
                     <?php endif; ?>
