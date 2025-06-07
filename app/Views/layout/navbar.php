@@ -95,7 +95,7 @@
                         <!-- Sesión iniciada como administrador -->
                          <li>
                             <a class="nav-link text-center me-lg-2 px-2 px-xl-4"
-                                href="<?= base_url('en_construccion') ?>" target="blank">
+                                href="<?= base_url('catalogo') ?>">
                                 <i class="ms-md-0 me-1 fa-solid fa-list-check"></i>
                                 Catalogo
                             </a>

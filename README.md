@@ -234,32 +234,32 @@ INSERT INTO categorias (nombre, descripcion) VALUES
 
 INSERT INTO productos (nombre_prod, descripcion, precio, stock, categoria_id, imagen_url) VALUES
 -- Laptops
-('Laptop Dell XPS 13', 'Ultrabook con Intel Core i7, 16GB RAM y SSD de 512GB.', 1350.00, 10, 1, 'https://example.com/images/xps13.jpg'),
-('MacBook Pro 14"', 'Apple M2, 16GB RAM y 1TB SSD.', 1999.99, 5, 1, 'https://example.com/images/macbookpro14.jpg'),
+('Laptop Dell XPS 13', 'Ultrabook con Intel Core i7, 16GB RAM y SSD de 512GB.', 1350.00, 10, 1, 'uploads/productos/test.svg'),
+('MacBook Pro 14"', 'Apple M2, 16GB RAM y 1TB SSD.', 1999.99, 5, 1, 'uploads/productos/test.svg'),
 
 -- Componentes
-('Procesador AMD Ryzen 7 5800X', '8 núcleos y 16 hilos, ideal para gaming y productividad.', 320.00, 20, 2, 'https://example.com/images/ryzen5800x.jpg'),
-('Placa Madre ASUS ROG STRIX B550-F', 'Soporta procesadores AMD Ryzen y memoria DDR4.', 180.50, 15, 2, 'https://example.com/images/rog_b550.jpg'),
+('Procesador AMD Ryzen 7 5800X', '8 núcleos y 16 hilos, ideal para gaming y productividad.', 320.00, 20, 2, 'uploads/productos/test.svg'),
+('Placa Madre ASUS ROG STRIX B550-F', 'Soporta procesadores AMD Ryzen y memoria DDR4.', 180.50, 15, 2, 'uploads/productos/test.svg'),
 
 -- Periféricos
-('Teclado Mecánico Logitech G Pro', 'Teclado RGB con switches GX Blue.', 120.00, 30, 3, 'https://example.com/images/logitech_gpro.jpg'),
-('Mouse Gamer Razer DeathAdder V2', 'Sensor óptico 20K DPI con iluminación RGB.', 70.00, 25, 3, 'https://example.com/images/razer_deathadder.jpg'),
+('Teclado Mecánico Logitech G Pro', 'Teclado RGB con switches GX Blue.', 120.00, 30, 3, 'uploads/productos/test.svg'),
+('Mouse Gamer Razer DeathAdder V2', 'Sensor óptico 20K DPI con iluminación RGB.', 70.00, 25, 3, 'uploads/productos/test.svg'),
 
 -- Almacenamiento
-('Disco SSD Samsung 970 EVO 1TB', 'Unidad NVMe de alto rendimiento.', 140.00, 40, 4, 'https://example.com/images/samsung970evo.jpg'),
-('Disco Duro Seagate 2TB', 'HDD SATA de 3.5 pulgadas, ideal para almacenamiento masivo.', 65.00, 35, 4, 'https://example.com/images/seagate2tb.jpg'),
+('Disco SSD Samsung 970 EVO 1TB', 'Unidad NVMe de alto rendimiento.', 140.00, 40, 4, 'uploads/productos/test.svg'),
+('Disco Duro Seagate 2TB', 'HDD SATA de 3.5 pulgadas, ideal para almacenamiento masivo.', 65.00, 35, 4, 'uploads/productos/test.svg'),
 
 -- Redes
-('Router TP-Link Archer AX50', 'Router WiFi 6 con velocidades de hasta 3 Gbps.', 120.00, 18, 5, 'https://example.com/images/archer_ax50.jpg'),
-('Switch TP-Link TL-SG108', 'Switch gigabit de 8 puertos, sin gestión.', 45.00, 22, 5, 'https://example.com/images/tl-sg108.jpg'),
+('Router TP-Link Archer AX50', 'Router WiFi 6 con velocidades de hasta 3 Gbps.', 120.00, 18, 5, 'uploads/productos/test.svg'),
+('Switch TP-Link TL-SG108', 'Switch gigabit de 8 puertos, sin gestión.', 45.00, 22, 5, 'uploads/productos/test.svg'),
 
 -- Software
-('Microsoft Windows 11 Pro', 'Sistema operativo para PCs y laptops.', 145.00, 50, 6, 'https://example.com/images/windows11pro.jpg'),
-('Antivirus Kaspersky Total Security', 'Protección completa para todos tus dispositivos.', 59.90, 60, 6, 'https://example.com/images/kaspersky.jpg'),
+('Microsoft Windows 11 Pro', 'Sistema operativo para PCs y laptops.', 145.00, 50, 6, 'uploads/productos/test.svg'),
+('Antivirus Kaspersky Total Security', 'Protección completa para todos tus dispositivos.', 59.90, 60, 6, 'uploads/productos/test.svg'),
 
 -- Impresoras
-('Impresora HP LaserJet Pro M404dn', 'Impresión láser monocromática con red y dúplex.', 220.00, 12, 7, 'https://example.com/images/hp_m404dn.jpg'),
-('Escáner Epson Perfection V600', 'Escáner fotográfico de alta resolución.', 190.00, 8, 7, 'https://example.com/images/epson_v600.jpg');
+('Impresora HP LaserJet Pro M404dn', 'Impresión láser monocromática con red y dúplex.', 220.00, 12, 7, 'uploads/productos/test.svg'),
+('Escáner Epson Perfection V600', 'Escáner fotográfico de alta resolución.', 190.00, 8, 7, 'uploads/productos/test.svg');
 
 
 
