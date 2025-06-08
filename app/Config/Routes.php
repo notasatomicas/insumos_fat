@@ -52,9 +52,31 @@ $routes->group('compras', ['filter' => 'auth'], function($routes) {
     $routes->get('detalle/(:num)', 'Compras::detalle/$1');
 });
 
-// Rutas para administradores - OPCIÓN 1: Utilizando el controlador Admin.php
+// ===============================================
+// RUTAS PÚBLICAS DE CONTACTO
+// ===============================================
+$routes->group('contacto', function($routes) {
+    // Mostrar página de contacto
+    $routes->get('/', 'ContactoController::index');
+    
+    // Procesar formularios
+    $routes->post('enviar-mensaje', 'ContactoController::enviarMensaje');
+    $routes->post('solicitar-llamada', 'ContactoController::solicitarLlamada');
+});
+
+// Rutas alternativas más cortas para contacto público
+$routes->get('contacto', 'ContactoController::index');
+$routes->post('contacto/mensaje', 'ContactoController::enviarMensaje');
+$routes->post('contacto/llamada', 'ContactoController::solicitarLlamada');
+
+// ===============================================
+// RUTAS PARA ADMINISTRADORES
+// ===============================================
 $routes->group('admin', ['filter' => 'admin'], function($routes) {
+    // Dashboard principal
     $routes->get('dashboard', 'Admin::dashboard');
+    
+    // Gestión de usuarios
     $routes->get('users', 'Admin::users');
     $routes->get('toggleActive/(:num)', 'Admin::toggleActive/$1');
     $routes->get('toggleType/(:num)', 'Admin::toggleType/$1');
@@ -62,8 +84,7 @@ $routes->group('admin', ['filter' => 'admin'], function($routes) {
     $routes->get('editUser/(:num)', 'Admin::editUser/$1');
     $routes->post('updateUser/(:num)', 'Admin::updateUser/$1');
 
-    
-// ===============================================
+    // ===============================================
     // RUTAS PARA GESTIÓN DE PRODUCTOS
     // ===============================================
     
@@ -93,10 +114,8 @@ $routes->group('admin', ['filter' => 'admin'], function($routes) {
     // Ver detalles de un producto específico (GET admin/productos/123)
     $routes->get('productos/(:num)', 'ProductoController::show/$1');
 
-    // Agregar esta línea en el grupo admin, después de las rutas específicas de productos
+    // Toggle status de producto
     $routes->get('productos/(:num)/toggle/(:num)', 'ProductoController::toggleStatus/$1/$2');
-
-    // Dentro del grupo admin, después de las rutas de productos:
 
     // ===============================================
     // RUTAS PARA GESTIÓN DE CATEGORÍAS
@@ -122,71 +141,58 @@ $routes->group('admin', ['filter' => 'admin'], function($routes) {
 
     // Eliminar categoría (GET admin/categorias/123/delete)
     $routes->get('categorias/(:num)/delete', 'CategoriaController::delete/$1');
+
+    // ===============================================
+    // RUTAS PARA GESTIÓN DE CONTACTOS/MENSAJERÍA
+    // ===============================================
+    
+    // Página principal de contactos (coincide con tu vista)
+    $routes->get('contactos', 'ContactoController::listar');
+    
+    // Rutas específicas para acciones CRUD
+    $routes->get('contactos/listar', 'ContactoController::listar');
+    $routes->get('contactos/ver/(:num)', 'ContactoController::ver/$1');
+    $routes->get('contactos/eliminar/(:num)', 'ContactoController::eliminar/$1');
+    $routes->post('contactos/eliminar/(:num)', 'ContactoController::eliminar/$1');
+    
+    // Cambiar estado via AJAX (coincide con tu JavaScript)
+    $routes->post('contactos/cambiar-estado/(:num)', 'ContactoController::cambiarEstado/$1');
+    
+    // Preparar respuesta por email
+    $routes->get('contactos/responder/(:num)', 'ContactoController::prepararRespuesta/$1');
+    
+    // Acciones múltiples
+    $routes->post('contactos/marcar-leido', 'ContactoController::marcarMultipleLeido');
+    
+    // Exportar datos
+    $routes->get('contactos/exportar-csv', 'ContactoController::exportarCSV');
+    
+    // Búsqueda AJAX
+    $routes->get('contactos/buscar', 'ContactoController::buscar');
+    
+    // Filtros por estado y tipo (para URLs amigables)
+    $routes->get('contactos/estado/(:alpha)', 'ContactoController::listar');
+    $routes->get('contactos/tipo/(:alpha)', 'ContactoController::listar');
+    
+    // Estadísticas para dashboard
+    $routes->get('contactos/estadisticas', 'ContactoController::getEstadisticasDashboard');
+    $routes->get('contactos/recientes', 'ContactoController::getContactosRecientes');
+    $routes->get('contactos/nuevos-count', 'ContactoController::getContactosNuevosCount');
 });
 
 $routes->get('/debug', 'Depu::index');
 
-// Rutas públicas de contacto
-$routes->group('contacto', function($routes) {
-    // Mostrar página de contacto
-    $routes->get('/', 'ContactoController::index');
-    
-    // Procesar formularios
-    $routes->post('enviar-mensaje', 'ContactoController::enviarMensaje');
-    $routes->post('solicitar-llamada', 'ContactoController::solicitarLlamada');
-});
-
-// Rutas de administración (requieren autenticación)
-$routes->group('admin/contactos', ['filter' => 'auth'], function($routes) {
-    // Listar contactos
-    $routes->get('/', 'ContactoController::listar');
-    $routes->get('listar', 'ContactoController::listar');
-    
-    // Ver contacto específico
-    $routes->get('ver/(:num)', 'ContactoController::ver/$1');
-    
-    // Cambiar estado de contacto
-    $routes->post('cambiar-estado/(:num)', 'ContactoController::cambiarEstado/$1');
-    
-    // Filtros adicionales
-    $routes->get('estado/(:alpha)', 'ContactoController::listar');
-    $routes->get('tipo/(:alpha)', 'ContactoController::listar');
-});
-
-// Rutas alternativas más cortas (opcional)
-$routes->get('contacto', 'ContactoController::index');
-$routes->post('contacto/mensaje', 'ContactoController::enviarMensaje');
-$routes->post('contacto/llamada', 'ContactoController::solicitarLlamada');
-
-// API routes para AJAX (opcional, con versioning)
+// ===============================================
+// API ROUTES PARA AJAX (OPCIONAL)
+// ===============================================
 $routes->group('api/v1/contacto', function($routes) {
     $routes->post('mensaje', 'ContactoController::enviarMensaje');
     $routes->post('llamada', 'ContactoController::solicitarLlamada');
 });
 
-/*
-EJEMPLOS DE URLS GENERADAS:
-
-Públicas:
-- GET  /contacto                     -> Mostrar página de contacto
-- POST /contacto/enviar-mensaje      -> Enviar mensaje
-- POST /contacto/solicitar-llamada   -> Solicitar llamada
-
-Administración:
-- GET  /admin/contactos              -> Listar todos los contactos
-- GET  /admin/contactos/ver/123      -> Ver contacto con ID 123
-- POST /admin/contactos/cambiar-estado/123 -> Cambiar estado del contacto 123
-
-Filtros:
-- GET  /admin/contactos?estado=nuevo -> Filtrar por estado
-- GET  /admin/contactos?tipo=mensaje -> Filtrar por tipo
-
-API:
-- POST /api/v1/contacto/mensaje      -> API para enviar mensaje
-- POST /api/v1/contacto/llamada      -> API para solicitar llamada
-*/
-
-// Rutas del catálogo
+// ===============================================
+// RUTAS DEL CATÁLOGO
+// ===============================================
 $routes->group('catalogo', function($routes) {
     $routes->get('/', 'CatalogoController::index');
     $routes->get('producto/(:num)', 'CatalogoController::producto/$1');
@@ -194,3 +200,35 @@ $routes->group('catalogo', function($routes) {
     $routes->post('agregar-carrito', 'CatalogoController::agregarCarrito');
     $routes->get('categoria/(:num)', 'CatalogoController::porCategoria/$1');
 });
+
+/*
+RESUMEN DE URLS DE CONTACTOS GENERADAS:
+
+PÚBLICAS:
+- GET  /contacto                                -> Mostrar página de contacto
+- POST /contacto/enviar-mensaje                 -> Enviar mensaje
+- POST /contacto/solicitar-llamada              -> Solicitar llamada
+
+ADMINISTRACIÓN:
+- GET  /admin/contactos                         -> Listar contactos (página principal)
+- GET  /admin/contactos/ver/123                 -> Ver detalles del contacto 123
+- GET  /admin/contactos/eliminar/123            -> Eliminar contacto 123
+- POST /admin/contactos/cambiar-estado/123      -> Cambiar estado del contacto 123
+- GET  /admin/contactos/responder/123           -> Preparar respuesta al contacto 123
+- POST /admin/contactos/marcar-leido            -> Marcar múltiples como leídos
+- GET  /admin/contactos/exportar-csv            -> Exportar contactos a CSV
+- GET  /admin/contactos/buscar?q=termino        -> Buscar contactos
+- GET  /admin/contactos/estadisticas            -> Obtener estadísticas
+- GET  /admin/contactos/recientes               -> Obtener contactos recientes
+- GET  /admin/contactos/nuevos-count            -> Contar contactos nuevos
+
+FILTROS:
+- GET  /admin/contactos?estado=nuevo            -> Filtrar por estado
+- GET  /admin/contactos?tipo=mensaje            -> Filtrar por tipo
+- GET  /admin/contactos/estado/nuevo            -> URL amigable por estado
+- GET  /admin/contactos/tipo/mensaje            -> URL amigable por tipo
+
+API:
+- POST /api/v1/contacto/mensaje                 -> API para enviar mensaje
+- POST /api/v1/contacto/llamada                 -> API para solicitar llamada
+*/

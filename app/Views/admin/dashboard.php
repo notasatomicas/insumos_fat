@@ -120,17 +120,20 @@
                             </div>
 
                             <div class="col-md-6 mb-4">
-                                <div class="card text-white h-100" style="background-color: #1C3041;">
-                                    <div class="card-body text-center">
-                                        <h5 class="card-title"><i class="bi bi-tag display-4"></i></h5>
-                                        <p class="card-text display-6">
-                                            0
-                                        </p>
-                                        <p>Mensajeria</p>
-                                        <a href="#" class="btn btn-light mt-2">Gestion de los mensajes</a>
-                                    </div>
+                            <div class="card text-white h-100" style="background-color: #1C3041;">
+                                <div class="card-body text-center">
+                                    <h5 class="card-title"><i class="bi bi-envelope display-4"></i></h5>
+                                    <p class="card-text display-6">
+                                        <?php 
+                                        $contactoModel = new \App\Models\ContactoModel();
+                                        echo $contactoModel->where('estado', 'nuevo')->countAllResults(); 
+                                        ?>
+                                    </p>
+                                    <p>Mensajes Nuevos</p>
+                                    <a href="<?= site_url('admin/contactos') ?>" class="btn btn-light mt-2">Gestionar mensajes</a>
                                 </div>
                             </div>
+                        </div>
                         </div>
                     </div>
                 </div>
