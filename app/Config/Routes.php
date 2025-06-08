@@ -186,4 +186,11 @@ API:
 - POST /api/v1/contacto/llamada      -> API para solicitar llamada
 */
 
-$routes->get('/catalogo', 'Catalogo::index');
+// Rutas del catálogo
+$routes->group('catalogo', function($routes) {
+    $routes->get('/', 'CatalogoController::index');
+    $routes->get('producto/(:num)', 'CatalogoController::producto/$1');
+    $routes->post('buscar', 'CatalogoController::buscar');
+    $routes->post('agregar-carrito', 'CatalogoController::agregarCarrito');
+    $routes->get('categoria/(:num)', 'CatalogoController::porCategoria/$1');
+});

@@ -45,7 +45,7 @@
             font-size: 0.9rem;
         }
 
-        .discount-badge {
+        .escaso {
             position: absolute;
             top: 10px;
             right: 10px;
@@ -59,6 +59,15 @@
 
         .rating {
             color: #ffc107;
+        }
+
+        .no-image {
+            background-color: #f8f9fa;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #6c757d;
+            font-size: 0.9rem;
         }
     </style>
 </head>
@@ -77,60 +86,57 @@
                     <i class="fas fa-filter me-2"></i>Categorías
                 </h4>
 
-                <!-- Lista de Categorías -->
-                <div class="list-group list-group-flush">
-                    <a href="#" class="list-group-item list-group-item-action category-item border-0 px-3 py-2 active">
-                        <i class="fas fa-th-large me-2"></i>Todas las categorías
-                        <span class="badge bg-primary rounded-pill float-end">248</span>
-                    </a>
-                    <a href="#" class="list-group-item list-group-item-action category-item border-0 px-3 py-2">
-                        <i class="fas fa-laptop me-2"></i>Electrónicos
-                        <span class="badge bg-secondary rounded-pill float-end">45</span>
-                    </a>
-                    <a href="#" class="list-group-item list-group-item-action category-item border-0 px-3 py-2">
-                        <i class="fas fa-tshirt me-2"></i>Ropa y Moda
-                        <span class="badge bg-secondary rounded-pill float-end">78</span>
-                    </a>
-                    <a href="#" class="list-group-item list-group-item-action category-item border-0 px-3 py-2">
-                        <i class="fas fa-home me-2"></i>Hogar y Jardín
-                        <span class="badge bg-secondary rounded-pill float-end">32</span>
-                    </a>
-                    <a href="#" class="list-group-item list-group-item-action category-item border-0 px-3 py-2">
-                        <i class="fas fa-gamepad me-2"></i>Deportes y Recreación
-                        <span class="badge bg-secondary rounded-pill float-end">29</span>
-                    </a>
-                    <a href="#" class="list-group-item list-group-item-action category-item border-0 px-3 py-2">
-                        <i class="fas fa-book me-2"></i>Libros y Educación
-                        <span class="badge bg-secondary rounded-pill float-end">41</span>
-                    </a>
-                    <a href="#" class="list-group-item list-group-item-action category-item border-0 px-3 py-2">
-                        <i class="fas fa-car me-2"></i>Automotriz
-                        <span class="badge bg-secondary rounded-pill float-end">23</span>
-                    </a>
-                </div>
+                <!-- Formulario de filtros -->
+                <form method="GET" action="<?= base_url('catalogo') ?>" id="filtrosForm">
+                    <!-- Lista de Categorías -->
+                    <div class="list-group list-group-flush">
+                        <a href="<?= base_url('catalogo') ?>" class="list-group-item list-group-item-action category-item border-0 px-3 py-2 <?= (!isset($filtros['categoria']) || $filtros['categoria'] == 'all') ? 'active' : '' ?>">
+                            <i class="fas fa-th-large me-2"></i>Todas las categorías
+                            <span class="badge bg-primary rounded-pill float-end"><?= $totalProductos ?></span>
+                        </a>
+                        <?php if (isset($categorias) && !empty($categorias)): ?>
+                            <?php foreach ($categorias as $categoria): ?>
+                                <a href="<?= base_url('catalogo?categoria=' . $categoria['id_categoria']) ?>" 
+                                   class="list-group-item list-group-item-action category-item border-0 px-3 py-2 <?= (isset($filtros['categoria']) && $filtros['categoria'] == $categoria['id_categoria']) ? 'active' : '' ?>">
+                                    <i class="fas fa-tag me-2"></i><?= esc($categoria['nombre']) ?>
+                                    <span class="badge bg-secondary rounded-pill float-end"><?= $categoria['total_productos'] ?></span>
+                                </a>
+                            <?php endforeach; ?>
+                        <?php endif; ?>
+                    </div>
 
-                <!-- Filtros adicionales -->
-                <hr class="my-4">
-                <h5 class="mb-3">
-                    <i class="fas fa-sliders-h me-2"></i>Filtros
-                </h5>
+                    <!-- Filtros adicionales -->
+                    <hr class="my-4">
+                    <h5 class="mb-3">
+                        <i class="fas fa-sliders-h me-2"></i>Filtros
+                    </h5>
 
-                <!-- Rango de precios -->
-                <div class="mb-4">
-                    <label class="form-label"><strong>Rango de Precio</strong></label>
-                    <div class="row g-2">
-                        <div class="col">
-                            <input type="number" class="form-control form-control-sm" placeholder="Mín" value="0">
-                        </div>
-                        <div class="col">
-                            <input type="number" class="form-control form-control-sm" placeholder="Máx" value="1000">
+                    <!-- Rango de precios -->
+                    <div class="mb-4">
+                        <label class="form-label"><strong>Rango de Precio</strong></label>
+                        <div class="row g-2">
+                            <div class="col">
+                                <input type="number" class="form-control form-control-sm" name="precio_min" 
+                                       placeholder="Mín" value="<?= $filtros['precio_min'] ?? '' ?>" min="0" step="0.01">
+                            </div>
+                            <div class="col">
+                                <input type="number" class="form-control form-control-sm" name="precio_max" 
+                                       placeholder="Máx" value="<?= $filtros['precio_max'] ?? '' ?>" min="0" step="0.01">
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <button class="btn btn-primary w-100">
-                    <i class="fas fa-search me-2"></i>Aplicar Filtros
-                </button>
+                    <!-- Búsqueda -->
+                    <div class="mb-4">
+                        <label class="form-label"><strong>Buscar</strong></label>
+                        <input type="text" class="form-control form-control-sm" name="buscar" 
+                               placeholder="Nombre del producto..." value="<?= $filtros['buscar'] ?? '' ?>">
+                    </div>
+
+                    <button type="submit" class="btn btn-primary w-100">
+                        <i class="fas fa-search me-2"></i>Aplicar Filtros
+                    </button>
+                </form>
             </div>
 
             <!-- Contenido Principal - Productos -->
@@ -139,16 +145,27 @@
                 <div class="d-flex justify-content-between align-items-center mb-4">
                     <div>
                         <h2 class="mb-1">Catálogo de Productos</h2>
-                        <p class="text-muted mb-0">Mostrando 12 de 248 productos</p>
+                        <p class="text-muted mb-0">Mostrando <?= $productosMostrados ?> de <?= $totalProductos ?> productos</p>
                     </div>
                     <div class="d-flex align-items-center gap-3">
                         <!-- Ordenar por -->
-                        <select class="form-select" style="width: auto;">
-                            <option>Precio: Menor a Mayor</option>
-                            <option>Precio: Mayor a Menor</option>
-                            <option>Más Vendidos</option>
-                            <option>Más Recientes</option>
-                        </select>
+                        <form method="GET" action="<?= base_url('catalogo') ?>" class="d-inline">
+                            <?php if (isset($filtros)): ?>
+                                <?php foreach ($filtros as $key => $value): ?>
+                                    <?php if ($key !== 'ordenar' && !empty($value)): ?>
+                                        <input type="hidden" name="<?= $key ?>" value="<?= esc($value) ?>">
+                                    <?php endif; ?>
+                                <?php endforeach; ?>
+                            <?php endif; ?>
+                            <select name="ordenar" class="form-select" style="width: auto;" onchange="this.form.submit()">
+                                <option value="precio_asc" <?= (isset($filtros['ordenar']) && $filtros['ordenar'] == 'precio_asc') ? 'selected' : '' ?>>Precio: Menor a Mayor</option>
+                                <option value="precio_desc" <?= (isset($filtros['ordenar']) && $filtros['ordenar'] == 'precio_desc') ? 'selected' : '' ?>>Precio: Mayor a Menor</option>
+                                <option value="vendidos" <?= (isset($filtros['ordenar']) && $filtros['ordenar'] == 'vendidos') ? 'selected' : '' ?>>Más Vendidos</option>
+                                <option value="recientes" <?= (isset($filtros['ordenar']) && $filtros['ordenar'] == 'recientes') ? 'selected' : '' ?>>Más Recientes</option>
+                                <option value="nombre_asc" <?= (!isset($filtros['ordenar']) || $filtros['ordenar'] == 'nombre_asc') ? 'selected' : '' ?>>Nombre A-Z</option>
+                                <option value="nombre_desc" <?= (isset($filtros['ordenar']) && $filtros['ordenar'] == 'nombre_desc') ? 'selected' : '' ?>>Nombre Z-A</option>
+                            </select>
+                        </form>
 
                         <!-- Vista de cuadrícula/lista -->
                         <div class="btn-group" role="group">
@@ -164,255 +181,97 @@
 
                 <!-- Grid de Productos -->
                 <div class="row g-4">
-                    <!-- Producto 1 -->
-                    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
-                        <div class="card product-card h-100 border-0 shadow-sm">
-                            <div class="position-relative">
-                                <img src="https://placehold.co/300x200?text=Item" class="card-img-top product-img"
-                                    alt="Laptop Gaming">
-                                <div class="discount-badge">-20%</div>
-                            </div>
-                            <div class="card-body d-flex flex-column">
-                                <h5 class="card-title">Laptop Gaming RGB Pro</h5>
-                                <p class="card-text text-muted flex-grow-1">Intel i7, 16GB RAM, RTX 4060, SSD 1TB.
-                                    Perfecta para gaming y trabajo profesional.</p>
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <div>
-                                        <span class="price">$1,599.99</span>
-                                        <br>
-                                        <small class="original-price">$1,999.99</small>
+                    <?php if (isset($productos) && !empty($productos)): ?>
+                        <?php foreach ($productos as $producto): ?>
+                            <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
+                                <div class="card product-card h-100 border-0 shadow-sm">
+                                    <div class="position-relative">
+                                        <?php if (!empty($producto['imagen_url']) && file_exists(FCPATH . $producto['imagen_url'])): ?>
+                                            <img src="<?= base_url($producto['imagen_url']) ?>" class="card-img-top product-img" alt="<?= esc($producto['nombre_prod']) ?>">
+                                        <?php else: ?>
+                                            <div class="card-img-top product-img no-image">
+                                                <i class="fas fa-image fa-3x"></i>
+                                            </div>
+                                        <?php endif; ?>
+                                        
+                                        <?php if ($producto['stock'] <= 5 && $producto['stock'] > 0): ?>
+                                            <div class="escaso">Pocos!!!</div>
+                                        <?php elseif ($producto['stock'] == 0): ?>
+                                            <div class="escaso" style="background-color: #6c757d;">Sin Stock</div>
+                                        <?php endif; ?>
                                     </div>
-                                    <button class="btn btn-primary">
-                                        <i class="fas fa-cart-plus me-1"></i>Agregar
-                                    </button>
+                                    <div class="card-body d-flex flex-column">
+                                        <h5 class="card-title"><?= esc($producto['nombre_prod']) ?></h5>
+                                        <p class="card-text text-muted flex-grow-1">
+                                            <?= esc($producto['descripcion'] ?? 'Sin descripción disponible') ?>
+                                        </p>
+                                        <?php if (!empty($producto['categoria_nombre'])): ?>
+                                            <small class="text-muted mb-2">
+                                                <i class="fas fa-tag me-1"></i><?= esc($producto['categoria_nombre']) ?>
+                                            </small>
+                                        <?php endif; ?>
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <div>
+                                                <span class="price">$<?= number_format($producto['precio'], 2) ?></span>
+                                                <br>
+                                                <small class="text-muted">Stock: <?= $producto['stock'] ?></small>
+                                            </div>
+                                            <?php if ($producto['stock'] > 0): ?>
+                                                <button class="btn btn-primary btn-agregar-carrito" 
+                                                        data-producto-id="<?= $producto['id_producto'] ?>"
+                                                        data-producto-nombre="<?= esc($producto['nombre_prod']) ?>">
+                                                    <i class="fas fa-cart-plus me-1"></i>Agregar
+                                                </button>
+                                            <?php else: ?>
+                                                <button class="btn btn-secondary" disabled>
+                                                    <i class="fas fa-times me-1"></i>Sin Stock
+                                                </button>
+                                            <?php endif; ?>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-
-                    <!-- Producto 2 -->
-                    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
-                        <div class="card product-card h-100 border-0 shadow-sm">
-                            <div class="position-relative">
-                                <img src="https://placehold.co/300x200?text=Item" class="card-img-top product-img"
-                                    alt="Smartphone">
-                            </div>
-                            <div class="card-body d-flex flex-column">
-                                <h5 class="card-title">Smartphone 5G Ultra</h5>
-                                <p class="card-text text-muted flex-grow-1">Pantalla AMOLED 6.7", Cámara 108MP, Batería
-                                    5000mAh, 256GB almacenamiento.</p>
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <div>
-                                        <span class="price">$899.99</span>
-                                    </div>
-                                    <button class="btn btn-primary">
-                                        <i class="fas fa-cart-plus me-1"></i>Agregar
-                                    </button>
-                                </div>
+                        <?php endforeach; ?>
+                    <?php else: ?>
+                        <div class="col-12">
+                            <div class="text-center py-5">
+                                <i class="fas fa-search fa-4x text-muted mb-3"></i>
+                                <h4 class="text-muted">No se encontraron productos</h4>
+                                <p class="text-muted">Intenta ajustar los filtros de búsqueda</p>
+                                <a href="<?= base_url('catalogo') ?>" class="btn btn-primary">Ver todos los productos</a>
                             </div>
                         </div>
-                    </div>
-
-                    <!-- Producto 3 -->
-                    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
-                        <div class="card product-card h-100 border-0 shadow-sm">
-                            <div class="position-relative">
-                                <img src="https://placehold.co/300x200?text=Item" class="card-img-top product-img"
-                                    alt="Smart TV">
-                                <div class="discount-badge">-15%</div>
-                            </div>
-                            <div class="card-body d-flex flex-column">
-                                <h5 class="card-title">Smart TV 4K 55"</h5>
-                                <p class="card-text text-muted flex-grow-1">Android TV, HDR10+, Dolby Vision, WiFi 6,
-                                    Control por voz, Apps preinstaladas.</p>
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <div>
-                                        <span class="price">$649.99</span>
-                                        <br>
-                                        <small class="original-price">$799.99</small>
-                                    </div>
-                                    <button class="btn btn-primary">
-                                        <i class="fas fa-cart-plus me-1"></i>Agregar
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Producto 4 -->
-                    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
-                        <div class="card product-card h-100 border-0 shadow-sm">
-                            <div class="position-relative">
-                                <img src="https://placehold.co/300x200?text=Item" class="card-img-top product-img"
-                                    alt="Auriculares">
-                            </div>
-                            <div class="card-body d-flex flex-column">
-                                <h5 class="card-title">Auriculares Bluetooth Pro</h5>
-                                <p class="card-text text-muted flex-grow-1">Cancelación de ruido activa, 30h batería,
-                                    Audio Hi-Fi, Micrófono integrado.</p>
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <div>
-                                        <span class="price">$199.99</span>
-                                    </div>
-                                    <button class="btn btn-primary">
-                                        <i class="fas fa-cart-plus me-1"></i>Agregar
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Producto 5 -->
-                    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
-                        <div class="card product-card h-100 border-0 shadow-sm">
-                            <div class="position-relative">
-                                <img src="https://placehold.co/300x200?text=Item" class="card-img-top product-img"
-                                    alt="Camisa">
-                                <div class="discount-badge">-30%</div>
-                            </div>
-                            <div class="card-body d-flex flex-column">
-                                <h5 class="card-title">Camisa Casual Premium</h5>
-                                <p class="card-text text-muted flex-grow-1">100% Algodón, Corte slim fit, Disponible en
-                                    varios colores y tallas.</p>
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <div>
-                                        <span class="price">$49.99</span>
-                                        <br>
-                                        <small class="original-price">$69.99</small>
-                                    </div>
-                                    <button class="btn btn-primary">
-                                        <i class="fas fa-cart-plus me-1"></i>Agregar
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Producto 6 -->
-                    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
-                        <div class="card product-card h-100 border-0 shadow-sm">
-                            <div class="position-relative">
-                                <img src="https://placehold.co/300x200?text=Item" class="card-img-top product-img"
-                                    alt="Cafetera">
-                            </div>
-                            <div class="card-body d-flex flex-column">
-                                <h5 class="card-title">Cafetera Express Digital</h5>
-                                <p class="card-text text-muted flex-grow-1">15 bares presión, Pantalla LCD, Espumador
-                                    automático, Programable.</p>
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <div>
-                                        <span class="price">$299.99</span>
-                                    </div>
-                                    <button class="btn btn-primary">
-                                        <i class="fas fa-cart-plus me-1"></i>Agregar
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Producto 7 -->
-                    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
-                        <div class="card product-card h-100 border-0 shadow-sm">
-                            <div class="position-relative">
-                                <img src="https://placehold.co/300x200?text=Item" class="card-img-top product-img"
-                                    alt="Mochila">
-                                <div class="discount-badge">-25%</div>
-                            </div>
-                            <div class="card-body d-flex flex-column">
-                                <h5 class="card-title">Mochila de Viaje Pro</h5>
-                                <p class="card-text text-muted flex-grow-1">40L capacidad, Impermeable, Puerto USB,
-                                    Compartimento laptop, Ultra resistente.</p>
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <div>
-                                        <span class="price">$89.99</span>
-                                        <br>
-                                        <small class="original-price">$119.99</small>
-                                    </div>
-                                    <button class="btn btn-primary">
-                                        <i class="fas fa-cart-plus me-1"></i>Agregar
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Producto 8 -->
-                    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
-                        <div class="card product-card h-100 border-0 shadow-sm">
-                            <div class="position-relative">
-                                <img src="https://placehold.co/300x200?text=Item" class="card-img-top product-img"
-                                    alt="Libro">
-                            </div>
-                            <div class="card-body d-flex flex-column">
-                                <h5 class="card-title">Guía Completa de Programación</h5>
-                                <p class="card-text text-muted flex-grow-1">Aprende múltiples lenguajes, 500+ páginas,
-                                    Ejemplos prácticos, Ejercicios incluidos.</p>
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <div>
-                                        <span class="price">$39.99</span>
-                                    </div>
-                                    <button class="btn btn-primary">
-                                        <i class="fas fa-cart-plus me-1"></i>Agregar
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Producto 9 -->
-                    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
-                        <div class="card product-card h-100 border-0 shadow-sm">
-                            <div class="position-relative">
-                                <img src="https://placehold.co/300x200?text=Item" class="card-img-top product-img"
-                                    alt="Planta">
-                                <div class="discount-badge">-10%</div>
-                            </div>
-                            <div class="card-body d-flex flex-column">
-                                <h5 class="card-title">Planta Decorativa Interior</h5>
-                                <p class="card-text text-muted flex-grow-1">Monstera Deliciosa, Maceta incluida, Fácil
-                                    cuidado, Purifica el aire.</p>
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <div>
-                                        <span class="price">$29.99</span>
-                                        <br>
-                                        <small class="original-price">$34.99</small>
-                                    </div>
-                                    <button class="btn btn-primary">
-                                        <i class="fas fa-cart-plus me-1"></i>Agregar
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <?php endif; ?>
                 </div>
 
                 <!-- Paginación -->
-                <nav aria-label="Navegación de productos" class="mt-5">
-                    <ul class="pagination justify-content-center">
-                        <li class="page-item disabled">
-                            <a class="page-link" href="#" tabindex="-1">Anterior</a>
-                        </li>
-                        <li class="page-item active">
-                            <a class="page-link" href="#">1</a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link" href="#">2</a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link" href="#">3</a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link" href="#">4</a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link" href="#">5</a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link" href="#">Siguiente</a>
-                        </li>
-                    </ul>
-                </nav>
+                <?php if (isset($totalPages) && $totalPages > 1): ?>
+                    <nav aria-label="Navegación de productos" class="mt-5">
+                        <ul class="pagination justify-content-center">
+                            <!-- Botón Anterior -->
+                            <li class="page-item <?= ($page <= 1) ? 'disabled' : '' ?>">
+                                <a class="page-link" href="<?= ($page > 1) ? base_url('catalogo?' . http_build_query(array_merge($filtros, ['page' => $page - 1]))) : '#' ?>" tabindex="-1">Anterior</a>
+                            </li>
+                            
+                            <!-- Números de página -->
+                            <?php 
+                            $start = max(1, $page - 2);
+                            $end = min($totalPages, $page + 2);
+                            ?>
+                            
+                            <?php for ($i = $start; $i <= $end; $i++): ?>
+                                <li class="page-item <?= ($i == $page) ? 'active' : '' ?>">
+                                    <a class="page-link" href="<?= base_url('catalogo?' . http_build_query(array_merge($filtros, ['page' => $i]))) ?>"><?= $i ?></a>
+                                </li>
+                            <?php endfor; ?>
+                            
+                            <!-- Botón Siguiente -->
+                            <li class="page-item <?= ($page >= $totalPages) ? 'disabled' : '' ?>">
+                                <a class="page-link" href="<?= ($page < $totalPages) ? base_url('catalogo?' . http_build_query(array_merge($filtros, ['page' => $page + 1]))) : '#' ?>">Siguiente</a>
+                            </li>
+                        </ul>
+                    </nav>
+                <?php endif; ?>
             </div>
         </div>
     </div>
@@ -438,28 +297,52 @@
         // Funcionalidad para las categorías del sidebar
         document.querySelectorAll('.category-item').forEach(item => {
             item.addEventListener('click', function (e) {
-                e.preventDefault();
+                // No prevenir default para permitir navegación
                 document.querySelectorAll('.category-item').forEach(cat => cat.classList.remove('active'));
                 this.classList.add('active');
             });
         });
 
-        // Simular agregar al carrito
-        document.querySelectorAll('.btn-primary').forEach(button => {
-            if (button.innerHTML.includes('Agregar')) {
-                button.addEventListener('click', function () {
-                    const originalText = this.innerHTML;
+        // Funcionalidad para agregar al carrito (por ahora solo visual)
+        document.querySelectorAll('.btn-agregar-carrito').forEach(button => {
+            button.addEventListener('click', function () {
+                const productoId = this.dataset.productoId;
+                const productoNombre = this.dataset.productoNombre;
+                const originalText = this.innerHTML;
+                
+                // Cambiar apariencia del botón
+                this.innerHTML = '<i class="fas fa-spinner fa-spin me-1"></i>Agregando...';
+                this.disabled = true;
+                
+                // Simular tiempo de procesamiento
+                setTimeout(() => {
                     this.innerHTML = '<i class="fas fa-check me-1"></i>Agregado';
                     this.classList.remove('btn-primary');
                     this.classList.add('btn-success');
-
+                    
+                    // Mostrar mensaje de éxito
+                    if (typeof bootstrap !== 'undefined') {
+                        // Si tienes Bootstrap toasts configurados
+                        console.log(`Producto "${productoNombre}" agregado al carrito`);
+                    }
+                    
+                    // Volver al estado original después de 2 segundos
                     setTimeout(() => {
                         this.innerHTML = originalText;
                         this.classList.remove('btn-success');
                         this.classList.add('btn-primary');
+                        this.disabled = false;
                     }, 2000);
-                });
-            }
+                }, 1000);
+                
+                // Aquí podrías hacer una llamada AJAX real al servidor
+                // fetch('/catalogo/agregar-carrito', { ... })
+            });
+        });
+
+        // Auto-submit del formulario de ordenar cuando cambia
+        document.querySelector('select[name="ordenar"]').addEventListener('change', function() {
+            this.form.submit();
         });
     </script>
 </body>
