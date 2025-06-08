@@ -17,6 +17,14 @@
         .product-img {
             height: 200px;
             object-fit: cover;
+            width: 100%;
+        }
+
+        .product-img-container {
+            position: relative;
+            overflow: hidden;
+            height: 200px;
+            background-color: #f8f9fa;
         }
 
         .sidebar {
@@ -55,6 +63,7 @@
             border-radius: 20px;
             font-size: 0.8rem;
             font-weight: bold;
+            z-index: 2;
         }
 
         .rating {
@@ -68,6 +77,53 @@
             justify-content: center;
             color: #6c757d;
             font-size: 0.9rem;
+            height: 100%;
+            flex-direction: column;
+        }
+
+        .no-image i {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            opacity: 0.5;
+        }
+
+        .image-error {
+            background-color: #f8f9fa;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #6c757d;
+            font-size: 0.8rem;
+            height: 200px;
+            flex-direction: column;
+        }
+
+        .image-error i {
+            font-size: 2.5rem;
+            margin-bottom: 8px;
+            opacity: 0.4;
+        }
+
+        /* Efecto de hover en las imágenes */
+        .product-img-container:hover .product-img {
+            transform: scale(1.05);
+            transition: transform 0.3s ease;
+        }
+
+        /* Loading placeholder */
+        .img-loading {
+            background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+            background-size: 200% 100%;
+            animation: loading 1.5s infinite;
+        }
+
+        @keyframes loading {
+            0% {
+                background-position: 200% 0;
+            }
+            100% {
+                background-position: -200% 0;
+            }
         }
     </style>
 </head>
@@ -166,16 +222,6 @@
                                 <option value="nombre_desc" <?= (isset($filtros['ordenar']) && $filtros['ordenar'] == 'nombre_desc') ? 'selected' : '' ?>>Nombre Z-A</option>
                             </select>
                         </form>
-
-                        <!-- Vista de cuadrícula/lista -->
-                        <div class="btn-group" role="group">
-                            <button type="button" class="btn btn-outline-secondary active">
-                                <i class="fas fa-th"></i>
-                            </button>
-                            <button type="button" class="btn btn-outline-secondary">
-                                <i class="fas fa-list"></i>
-                            </button>
-                        </div>
                     </div>
                 </div>
 
@@ -184,18 +230,33 @@
                     <?php if (isset($productos) && !empty($productos)): ?>
                         <?php foreach ($productos as $producto): ?>
                             <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
-                                <div class="card product-card h-100 border-0 shadow-sm">
-                                    <div class="position-relative">
-                                        <?php if (!empty($producto['imagen_url']) && file_exists(FCPATH . $producto['imagen_url'])): ?>
-                                            <img src="<?= base_url($producto['imagen_url']) ?>" class="card-img-top product-img" alt="<?= esc($producto['nombre_prod']) ?>">
+
+                                <div class="card product-card h-100 border-1 shadow-sm rounded-3">
+                                    <div class="product-img-container">
+                                        <?php if (isset($producto['tiene_imagen']) && $producto['tiene_imagen']): ?>
+                                            <!-- Usar la URL completa procesada por el controlador -->
+                                            <img src="<?= $producto['imagen_url_completa'] ?>" 
+                                                 class="product-img rounded-top-3" 
+                                                 alt="<?= esc($producto['nombre_prod']) ?>"
+                                                 loading="lazy"
+                                                 onerror="this.parentElement.innerHTML='<div class=&quot;image-error&quot;><i class=&quot;fas fa-exclamation-triangle&quot;></i><small>Error al cargar imagen</small></div>'">
+                                        <?php elseif (!empty($producto['imagen_url'])): ?>
+                                            <!-- Fallback: usar el método tradicional si no está procesada -->
+                                            <img src="<?= base_url('public') . '/' . ltrim($producto['imagen_url'], '/') ?>" 
+                                                 class="product-img rounded-top-3" 
+                                                 alt="<?= esc($producto['nombre_prod']) ?>"
+                                                 loading="lazy"
+                                                 onerror="this.parentElement.innerHTML='<div class=&quot;image-error&quot;><i class=&quot;fas fa-exclamation-triangle&quot;></i><small>Error al cargar imagen</small></div>'">
                                         <?php else: ?>
-                                            <div class="card-img-top product-img no-image">
-                                                <i class="fas fa-image fa-3x"></i>
+                                            <!-- Sin imagen disponible -->
+                                            <div class="no-image">
+                                                <i class="fas fa-image"></i>
+                                                <small>Sin imagen</small>
                                             </div>
                                         <?php endif; ?>
                                         
                                         <?php if ($producto['stock'] <= 5 && $producto['stock'] > 0): ?>
-                                            <div class="escaso">Pocos!!!</div>
+                                            <div class="escaso">¡Pocos!</div>
                                         <?php elseif ($producto['stock'] == 0): ?>
                                             <div class="escaso" style="background-color: #6c757d;">Sin Stock</div>
                                         <?php endif; ?>
@@ -203,7 +264,8 @@
                                     <div class="card-body d-flex flex-column">
                                         <h5 class="card-title"><?= esc($producto['nombre_prod']) ?></h5>
                                         <p class="card-text text-muted flex-grow-1">
-                                            <?= esc($producto['descripcion'] ?? 'Sin descripción disponible') ?>
+                                            <?= esc(substr($producto['descripcion'] ?? 'Sin descripción disponible', 0, 100)) ?>
+                                            <?= strlen($producto['descripcion'] ?? '') > 100 ? '...' : '' ?>
                                         </p>
                                         <?php if (!empty($producto['categoria_nombre'])): ?>
                                             <small class="text-muted mb-2">
@@ -230,6 +292,7 @@
                                         </div>
                                     </div>
                                 </div>
+
                             </div>
                         <?php endforeach; ?>
                     <?php else: ?>
@@ -286,14 +349,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
 
     <script>
-        // Funcionalidad para cambiar vista de cuadrícula
-        document.querySelectorAll('.btn-group button').forEach(button => {
-            button.addEventListener('click', function () {
-                document.querySelectorAll('.btn-group button').forEach(btn => btn.classList.remove('active'));
-                this.classList.add('active');
-            });
-        });
-
         // Funcionalidad para las categorías del sidebar
         document.querySelectorAll('.category-item').forEach(item => {
             item.addEventListener('click', function (e) {
@@ -303,7 +358,7 @@
             });
         });
 
-        // Funcionalidad para agregar al carrito (por ahora solo visual)
+        // Funcionalidad para agregar al carrito con AJAX real
         document.querySelectorAll('.btn-agregar-carrito').forEach(button => {
             button.addEventListener('click', function () {
                 const productoId = this.dataset.productoId;
@@ -314,29 +369,67 @@
                 this.innerHTML = '<i class="fas fa-spinner fa-spin me-1"></i>Agregando...';
                 this.disabled = true;
                 
-                // Simular tiempo de procesamiento
-                setTimeout(() => {
-                    this.innerHTML = '<i class="fas fa-check me-1"></i>Agregado';
-                    this.classList.remove('btn-primary');
-                    this.classList.add('btn-success');
-                    
-                    // Mostrar mensaje de éxito
-                    if (typeof bootstrap !== 'undefined') {
-                        // Si tienes Bootstrap toasts configurados
-                        console.log(`Producto "${productoNombre}" agregado al carrito`);
+                // Llamada AJAX real
+                fetch('<?= base_url('catalogo/agregarCarrito') ?>', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                        'X-Requested-With': 'XMLHttpRequest'
+                    },
+                    body: `producto_id=${productoId}&cantidad=1`
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        // Éxito
+                        this.innerHTML = '<i class="fas fa-check me-1"></i>Agregado';
+                        this.classList.remove('btn-primary');
+                        this.classList.add('btn-success');
+                        
+                        // Actualizar contador del carrito si existe
+                        const carritoCounter = document.querySelector('#carrito-counter');
+                        if (carritoCounter && data.carrito) {
+                            carritoCounter.textContent = data.carrito.total_items;
+                        }
+                        
+                        // Volver al estado original después de 2 segundos
+                        setTimeout(() => {
+                            this.innerHTML = originalText;
+                            this.classList.remove('btn-success');
+                            this.classList.add('btn-primary');
+                            this.disabled = false;
+                        }, 2000);
+                    } else {
+                        // Error
+                        this.innerHTML = '<i class="fas fa-times me-1"></i>Error';
+                        this.classList.remove('btn-primary');
+                        this.classList.add('btn-danger');
+                        
+                        // Mostrar mensaje de error
+                        alert(data.message || 'Error al agregar producto al carrito');
+                        
+                        // Volver al estado original
+                        setTimeout(() => {
+                            this.innerHTML = originalText;
+                            this.classList.remove('btn-danger');
+                            this.classList.add('btn-primary');
+                            this.disabled = false;
+                        }, 2000);
                     }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    this.innerHTML = '<i class="fas fa-times me-1"></i>Error';
+                    this.classList.remove('btn-primary');
+                    this.classList.add('btn-danger');
                     
-                    // Volver al estado original después de 2 segundos
                     setTimeout(() => {
                         this.innerHTML = originalText;
-                        this.classList.remove('btn-success');
+                        this.classList.remove('btn-danger');
                         this.classList.add('btn-primary');
                         this.disabled = false;
                     }, 2000);
-                }, 1000);
-                
-                // Aquí podrías hacer una llamada AJAX real al servidor
-                // fetch('/catalogo/agregar-carrito', { ... })
+                });
             });
         });
 
@@ -344,6 +437,27 @@
         document.querySelector('select[name="ordenar"]').addEventListener('change', function() {
             this.form.submit();
         });
+
+        // Lazy loading para imágenes (si necesitas mejor rendimiento)
+        if ('IntersectionObserver' in window) {
+            const imageObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const img = entry.target;
+                        if (img.dataset.src) {
+                            img.src = img.dataset.src;
+                            img.classList.remove('img-loading');
+                            imageObserver.unobserve(img);
+                        }
+                    }
+                });
+            });
+
+            document.querySelectorAll('img[data-src]').forEach(img => {
+                img.classList.add('img-loading');
+                imageObserver.observe(img);
+            });
+        }
     </script>
 </body>
 
