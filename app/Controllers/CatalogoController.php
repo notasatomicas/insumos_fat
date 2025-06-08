@@ -51,7 +51,7 @@ class CatalogoController extends Controller
             $totalPages = ceil($totalProductos / $perPage);
 
             $data = [
-                'title' => 'Catálogo de Productos - Insumos_FAT',
+                'titulo' => 'Insumos_FAT - Catálogo',
                 'activo' => 'catalogo',
                 'productos' => $productos,
                 'categorias' => $categorias,
