@@ -26,7 +26,10 @@
                         <i class="fa-solid fa-box me-2"></i> Productos
                     </a>
                     <a href="<?= site_url('admin/categorias') ?>" class="list-group-item list-group-item-action">
-                        <i class="fa-solid fa-table-list me-2"></i> Gestionar categorías
+                        <i class="fa-solid fa-table-list me-2"></i> Categorías
+                    </a>
+                    <a href="<?= site_url('admin/contactos') ?>" class="list-group-item list-group-item-action">
+                        <i class="fa-solid fa-envelope me-2"></i> Mensajes de Contacto
                     </a>
                 </div>
             </div>
