@@ -19,10 +19,7 @@ class ContactoModel extends Model
         'correo',
         'telefono',
         'mensaje',
-        'tipo_contacto',
-        'estado',
-        'ip_address',
-        'user_agent'
+        'estado'
     ];
 
     // Fechas
@@ -37,9 +34,8 @@ class ContactoModel extends Model
         'nombre' => 'required|min_length[2]|max_length[100]',
         'apellido' => 'required|min_length[2]|max_length[100]',
         'correo' => 'required|valid_email|max_length[150]',
-        'telefono' => 'permit_empty|max_length[20]',
-        'mensaje' => 'permit_empty|max_length[2000]',
-        'tipo_contacto' => 'required|in_list[mensaje,llamada]',
+        'telefono' => 'required|max_length[20]',
+        'mensaje' => 'required',
         'estado' => 'permit_empty|in_list[nuevo,leido,respondido,cerrado]'
     ];
 
@@ -60,14 +56,11 @@ class ContactoModel extends Model
             'max_length' => 'El correo no puede exceder 150 caracteres'
         ],
         'telefono' => [
+            'required' => 'El teléfono es obligatorio',
             'max_length' => 'El teléfono no puede exceder 20 caracteres'
         ],
         'mensaje' => [
-            'max_length' => 'El mensaje no puede exceder 2000 caracteres'
-        ],
-        'tipo_contacto' => [
-            'required' => 'El tipo de contacto es obligatorio',
-            'in_list' => 'Tipo de contacto no válido'
+            'required' => 'El mensaje es obligatorio'
         ]
     ];
 
@@ -96,16 +89,6 @@ class ContactoModel extends Model
     }
 
     /**
-     * Obtener contactos por tipo
-     */
-    public function getByTipo(string $tipo)
-    {
-        return $this->where('tipo_contacto', $tipo)
-                   ->orderBy('created_at', 'DESC')
-                   ->findAll();
-    }
-
-    /**
      * Obtener estadísticas de contactos
      */
     public function getEstadisticas()
@@ -115,12 +98,11 @@ class ContactoModel extends Model
         $query = $db->query("
             SELECT 
                 estado,
-                tipo_contacto,
                 COUNT(*) as total,
                 DATE(created_at) as fecha
             FROM contactos 
             WHERE created_at >= DATE_SUB(NOW(), INTERVAL 30 DAY)
-            GROUP BY estado, tipo_contacto, DATE(created_at)
+            GROUP BY estado, DATE(created_at)
             ORDER BY fecha DESC
         ");
 

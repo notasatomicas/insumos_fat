@@ -55,19 +55,10 @@ $routes->group('compras', ['filter' => 'auth'], function($routes) {
 // ===============================================
 // RUTAS PÚBLICAS DE CONTACTO
 // ===============================================
-$routes->group('contacto', function($routes) {
-    // Mostrar página de contacto
-    $routes->get('/', 'ContactoController::index');
-    
-    // Procesar formularios
-    $routes->post('enviar-mensaje', 'ContactoController::enviarMensaje');
-    $routes->post('solicitar-llamada', 'ContactoController::solicitarLlamada');
-});
 
 // Rutas alternativas más cortas para contacto público
 $routes->get('contacto', 'ContactoController::index');
-$routes->post('contacto/mensaje', 'ContactoController::enviarMensaje');
-$routes->post('contacto/llamada', 'ContactoController::solicitarLlamada');
+$routes->post('contacto/enviar-mensaje', 'ContactoController::enviar');
 
 // ===============================================
 // RUTAS PARA ADMINISTRADORES
@@ -147,48 +138,26 @@ $routes->group('admin', ['filter' => 'admin'], function($routes) {
     // ===============================================
     
     // Página principal de contactos (coincide con tu vista)
+    // Página principal de contactos
     $routes->get('contactos', 'ContactoController::listar');
     
     // Rutas específicas para acciones CRUD
     $routes->get('contactos/listar', 'ContactoController::listar');
     $routes->get('contactos/ver/(:num)', 'ContactoController::ver/$1');
+    
+    // Cambiar estado (debe ser POST)
+    $routes->post('contactos/cambiar-estado/(:num)', 'ContactoController::cambiarEstado/$1');
+    
+    // Eliminar contacto
     $routes->get('contactos/eliminar/(:num)', 'ContactoController::eliminar/$1');
     $routes->post('contactos/eliminar/(:num)', 'ContactoController::eliminar/$1');
     
-    // Cambiar estado via AJAX (coincide con tu JavaScript)
-    $routes->post('contactos/cambiar-estado/(:num)', 'ContactoController::cambiarEstado/$1');
-    
-    // Preparar respuesta por email
-    $routes->get('contactos/responder/(:num)', 'ContactoController::prepararRespuesta/$1');
-    
-    // Acciones múltiples
-    $routes->post('contactos/marcar-leido', 'ContactoController::marcarMultipleLeido');
-    
-    // Exportar datos
+    // Otras rutas útiles
     $routes->get('contactos/exportar-csv', 'ContactoController::exportarCSV');
-    
-    // Búsqueda AJAX
-    $routes->get('contactos/buscar', 'ContactoController::buscar');
-    
-    // Filtros por estado y tipo (para URLs amigables)
-    $routes->get('contactos/estado/(:alpha)', 'ContactoController::listar');
-    $routes->get('contactos/tipo/(:alpha)', 'ContactoController::listar');
-    
-    // Estadísticas para dashboard
     $routes->get('contactos/estadisticas', 'ContactoController::getEstadisticasDashboard');
-    $routes->get('contactos/recientes', 'ContactoController::getContactosRecientes');
-    $routes->get('contactos/nuevos-count', 'ContactoController::getContactosNuevosCount');
 });
 
 $routes->get('/debug', 'Depu::index');
-
-// ===============================================
-// API ROUTES PARA AJAX (OPCIONAL)
-// ===============================================
-$routes->group('api/v1/contacto', function($routes) {
-    $routes->post('mensaje', 'ContactoController::enviarMensaje');
-    $routes->post('llamada', 'ContactoController::solicitarLlamada');
-});
 
 // ===============================================
 // RUTAS DEL CATÁLOGO

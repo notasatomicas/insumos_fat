@@ -157,16 +157,9 @@ CREATE TABLE contactos (
     correo VARCHAR(150) NOT NULL,
     telefono VARCHAR(20) NOT NULL,
     mensaje TEXT NOT NULL,
-    tipo_contacto ENUM('mensaje', 'llamada') NOT NULL DEFAULT 'mensaje',
     estado ENUM('nuevo', 'leido', 'respondido', 'cerrado') NOT NULL DEFAULT 'nuevo',
-    ip_address VARCHAR(45) NULL,
-    user_agent TEXT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    INDEX idx_correo (correo),
-    INDEX idx_estado (estado),
-    INDEX idx_tipo_contacto (tipo_contacto),
-    INDEX idx_created_at (created_at)
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 
 INSERT INTO users (email,username,password_hash,nombre,apellido,dni,direccion,type,active,created_at,updated_at)VALUES 

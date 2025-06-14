@@ -29,9 +29,9 @@ class ContactoController extends BaseController
     }
 
     /**
-     * Procesar formulario de mensaje
+     * Procesar formulario de contacto
      */
-    public function enviarMensaje()
+    public function enviar()
     {
         // Verificar que sea una petición POST
         if (!$this->request->isAJAX() && $this->request->getMethod() !== 'POST') {
@@ -46,7 +46,8 @@ class ContactoController extends BaseController
             'nombre' => 'required|min_length[2]|max_length[100]',
             'apellido' => 'required|min_length[2]|max_length[100]',
             'correo' => 'required|valid_email|max_length[150]',
-            'mensaje' => 'required|min_length[10]|max_length[2000]'
+            'telefono' => 'required|max_length[20]',
+            'mensaje' => 'required'
         ];
 
         if (!$this->validate($rules)) {
@@ -62,11 +63,9 @@ class ContactoController extends BaseController
             'nombre' => trim($this->request->getPost('nombre')),
             'apellido' => trim($this->request->getPost('apellido')),
             'correo' => trim($this->request->getPost('correo')),
+            'telefono' => trim($this->request->getPost('telefono')),
             'mensaje' => trim($this->request->getPost('mensaje')),
-            'tipo_contacto' => 'mensaje',
-            'estado' => 'nuevo',
-            'ip_address' => $this->request->getIPAddress(),
-            'user_agent' => $this->request->getUserAgent()->getAgentString()
+            'estado' => 'nuevo'
         ];
 
         try {
@@ -100,78 +99,7 @@ class ContactoController extends BaseController
     }
 
     /**
-     * Procesar formulario de solicitud de llamada
-     */
-    public function solicitarLlamada()
-    {
-        // Verificar que sea una petición POST
-        if (!$this->request->isAJAX() && $this->request->getMethod() !== 'POST') {
-            return $this->response->setJSON([
-                'success' => false,
-                'message' => 'Método no permitido'
-            ])->setStatusCode(405);
-        }
-
-        // Validar datos de entrada
-        $rules = [
-            'nombre' => 'required|min_length[2]|max_length[100]',
-            'apellido' => 'required|min_length[2]|max_length[100]',
-            'correo' => 'required|valid_email|max_length[150]',
-            'telefono' => 'required|min_length[8]|max_length[20]'
-        ];
-
-        if (!$this->validate($rules)) {
-            return $this->response->setJSON([
-                'success' => false,
-                'message' => 'Datos inválidos',
-                'errors' => $this->validator->getErrors()
-            ])->setStatusCode(400);
-        }
-
-        // Preparar datos para insertar
-        $data = [
-            'nombre' => trim($this->request->getPost('nombre')),
-            'apellido' => trim($this->request->getPost('apellido')),
-            'correo' => trim($this->request->getPost('correo')),
-            'telefono' => trim($this->request->getPost('telefono')),
-            'tipo_contacto' => 'llamada',
-            'estado' => 'nuevo',
-            'ip_address' => $this->request->getIPAddress(),
-            'user_agent' => $this->request->getUserAgent()->getAgentString()
-        ];
-
-        try {
-            // Insertar en la base de datos
-            $contactoId = $this->contactoModel->insert($data);
-
-            if ($contactoId) {
-                // Enviar email de notificación (opcional)
-                $this->enviarNotificacionEmail($data, $contactoId);
-
-                return $this->response->setJSON([
-                    'success' => true,
-                    'message' => 'Tu solicitud de llamada ha sido registrada. Te contactaremos a la brevedad.',
-                    'contacto_id' => $contactoId
-                ]);
-            } else {
-                return $this->response->setJSON([
-                    'success' => false,
-                    'message' => 'Error al registrar la solicitud. Por favor, inténtalo nuevamente.'
-                ])->setStatusCode(500);
-            }
-
-        } catch (\Exception $e) {
-            log_message('error', 'Error al solicitar llamada: ' . $e->getMessage());
-            
-            return $this->response->setJSON([
-                'success' => false,
-                'message' => 'Error interno del servidor. Por favor, inténtalo más tarde.'
-            ])->setStatusCode(500);
-        }
-    }
-
-    /**
-     * Listar contactos para administración - MÉTODO CORREGIDO
+     * Listar contactos para administración
      */
     public function listar()
     {
@@ -183,51 +111,47 @@ class ContactoController extends BaseController
         $page = $this->request->getGet('page') ?? 1;
         $perPage = 25;
         $estado = $this->request->getGet('estado');
-        $tipo = $this->request->getGet('tipo');
 
         // Obtener estadísticas
         $stats = $this->obtenerEstadisticas();
 
-        // Construir consulta con filtros - MÉTODO CORREGIDO
+        // Construir consulta con filtros
         $query = $this->contactoModel;
         
         if ($estado) {
             $query = $query->where('estado', $estado);
         }
 
-        if ($tipo) {
-            $query = $query->where('tipo_contacto', $tipo);
-        }
-
         $contactos = $query->orderBy('created_at', 'DESC')->paginate($perPage);
-
-        // Debug temporal - puedes comentar estas líneas después de verificar
-        log_message('debug', 'Total contactos obtenidos: ' . count($contactos));
-        log_message('debug', 'Filtros aplicados - Estado: ' . ($estado ?? 'ninguno') . ', Tipo: ' . ($tipo ?? 'ninguno'));
 
         $data = [
             'contactos' => $contactos,
             'pager' => $this->contactoModel->pager,
             'estado_filtro' => $estado,
-            'tipo_filtro' => $tipo,
             'stats' => $stats,
             'title' => 'Gestión de Mensajes de Contacto - Admin'
         ];
 
-        return view('admin/mensajeria/index', $data);
+        return view('admin/contactos/index', $data);
     }
 
     /**
-     * Cambiar estado de un contacto via AJAX - MÉTODO CORREGIDO
+     * Cambiar estado de un contacto via AJAX
      */
     public function cambiarEstado($id)
     {
         // Verificar que sea una petición POST
         if ($this->request->getMethod() !== 'POST') {
-            return $this->response->setJSON([
-                'success' => false,
-                'message' => 'Método no permitido'
-            ])->setStatusCode(405);
+            if ($this->request->isAJAX()) {
+                return $this->response->setJSON([
+                    'success' => false,
+                    'message' => 'Método no permitido'
+                ])->setStatusCode(405);
+            } else {
+                // Para requests no AJAX, redirect con error
+                session()->setFlashdata('error', 'Método no permitido');
+                return redirect()->to('/admin/contactos');
+            }
         }
 
         $nuevoEstado = $this->request->getPost('estado');
@@ -235,40 +159,67 @@ class ContactoController extends BaseController
         $estadosValidos = ['nuevo', 'leido', 'respondido', 'cerrado'];
         
         if (!in_array($nuevoEstado, $estadosValidos)) {
-            return $this->response->setJSON([
-                'success' => false,
-                'message' => 'Estado no válido'
-            ])->setStatusCode(400);
+            if ($this->request->isAJAX()) {
+                return $this->response->setJSON([
+                    'success' => false,
+                    'message' => 'Estado no válido'
+                ])->setStatusCode(400);
+            } else {
+                session()->setFlashdata('error', 'Estado no válido');
+                return redirect()->to('/admin/contactos');
+            }
         }
 
         try {
             // Verificar que el contacto existe
             $contacto = $this->contactoModel->find($id);
             if (!$contacto) {
-                return $this->response->setJSON([
-                    'success' => false,
-                    'message' => 'Contacto no encontrado'
-                ])->setStatusCode(404);
+                if ($this->request->isAJAX()) {
+                    return $this->response->setJSON([
+                        'success' => false,
+                        'message' => 'Contacto no encontrado'
+                    ])->setStatusCode(404);
+                } else {
+                    session()->setFlashdata('error', 'Contacto no encontrado');
+                    return redirect()->to('/admin/contactos');
+                }
             }
 
+            // Actualizar el estado
             if ($this->contactoModel->update($id, ['estado' => $nuevoEstado])) {
-                return $this->response->setJSON([
-                    'success' => true,
-                    'message' => 'Estado actualizado correctamente'
-                ]);
+                if ($this->request->isAJAX()) {
+                    return $this->response->setJSON([
+                        'success' => true,
+                        'message' => 'Estado actualizado correctamente',
+                        'nuevo_estado' => $nuevoEstado
+                    ]);
+                } else {
+                    session()->setFlashdata('success', 'Estado actualizado correctamente');
+                    return redirect()->to('/admin/contactos');
+                }
             } else {
-                return $this->response->setJSON([
-                    'success' => false,
-                    'message' => 'Error al actualizar el estado'
-                ])->setStatusCode(500);
+                if ($this->request->isAJAX()) {
+                    return $this->response->setJSON([
+                        'success' => false,
+                        'message' => 'Error al actualizar el estado'
+                    ])->setStatusCode(500);
+                } else {
+                    session()->setFlashdata('error', 'Error al actualizar el estado');
+                    return redirect()->to('/admin/contactos');
+                }
             }
         } catch (\Exception $e) {
             log_message('error', 'Error al cambiar estado del contacto: ' . $e->getMessage());
             
-            return $this->response->setJSON([
-                'success' => false,
-                'message' => 'Error interno del servidor'
-            ])->setStatusCode(500);
+            if ($this->request->isAJAX()) {
+                return $this->response->setJSON([
+                    'success' => false,
+                    'message' => 'Error interno del servidor'
+                ])->setStatusCode(500);
+            } else {
+                session()->setFlashdata('error', 'Error interno del servidor');
+                return redirect()->to('/admin/contactos');
+            }
         }
     }
 
@@ -330,7 +281,7 @@ class ContactoController extends BaseController
     }
 
     /**
-     * Obtener estadísticas de contactos - MÉTODO CORREGIDO
+     * Obtener estadísticas de contactos
      */
     private function obtenerEstadisticas()
     {
@@ -357,7 +308,7 @@ class ContactoController extends BaseController
     }
 
     /**
-     * Enviar notificación por email (método privado) - MÉTODO MEJORADO
+     * Enviar notificación por email (método privado)
      */
     private function enviarNotificacionEmail($data, $contactoId)
     {
@@ -370,12 +321,10 @@ class ContactoController extends BaseController
             $email->setSubject('Nuevo contacto desde el sitio web - #' . $contactoId);
             
             // Preparar mensaje
-            $tipoContacto = $data['tipo_contacto'] == 'mensaje' ? 'Mensaje' : 'Solicitud de Llamada';
-            
             $mensaje = "
                 <div style='font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;'>
                     <div style='background: #f8f9fa; padding: 20px; border-radius: 8px; border-left: 4px solid #007bff;'>
-                        <h2 style='color: #007bff; margin-top: 0;'>Nuevo {$tipoContacto} desde el sitio web</h2>
+                        <h2 style='color: #007bff; margin-top: 0;'>Nuevo mensaje de contacto desde el sitio web</h2>
                         <p style='font-size: 16px; color: #6c757d;'>ID del contacto: <strong>#{$contactoId}</strong></p>
                     </div>
                     
@@ -390,39 +339,27 @@ class ContactoController extends BaseController
                                 <td style='padding: 8px 0; border-bottom: 1px solid #eee;'>
                                     <a href='mailto:{$data['correo']}' style='color: #007bff; text-decoration: none;'>{$data['correo']}</a>
                                 </td>
-                            </tr>";
-            
-            if (isset($data['telefono'])) {
-                $mensaje .= "
+                            </tr>
                             <tr>
                                 <td style='padding: 8px 0; border-bottom: 1px solid #eee;'><strong>Teléfono:</strong></td>
                                 <td style='padding: 8px 0; border-bottom: 1px solid #eee;'>
                                     <a href='tel:{$data['telefono']}' style='color: #007bff; text-decoration: none;'>{$data['telefono']}</a>
                                 </td>
-                            </tr>";
-            }
-            
-            $mensaje .= "
+                            </tr>
                         </table>
-                    </div>";
-            
-            if (isset($data['mensaje'])) {
-                $mensaje .= "
+                    </div>
+                    
                     <div style='margin: 20px 0;'>
                         <h4 style='color: #495057; margin-bottom: 10px;'>Mensaje:</h4>
                         <div style='background: #f8f9fa; padding: 15px; border-radius: 6px; border-left: 3px solid #28a745;'>
                             " . nl2br(htmlspecialchars($data['mensaje'])) . "
                         </div>
-                    </div>";
-            }
-            
-            $mensaje .= "
+                    </div>
+                    
                     <hr style='border: none; border-top: 1px solid #eee; margin: 30px 0;'>
                     <div style='font-size: 12px; color: #6c757d;'>
-                        <p><strong>Información técnica:</strong></p>
-                        <p>IP: {$data['ip_address']}<br>
-                        Fecha: " . date('d/m/Y H:i:s') . "<br>
-                        User Agent: " . htmlspecialchars($data['user_agent']) . "</p>
+                        <p><strong>Información:</strong></p>
+                        <p>Fecha: " . date('d/m/Y H:i:s') . "</p>
                     </div>
                 </div>
             ";
