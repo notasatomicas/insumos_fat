@@ -133,6 +133,8 @@
     <!-- Navbar -->
     <?= view('layout/navbar') ?>
 
+    <?= view('layout/carrito_button') ?>
+
     <!-- Contenido específico de la página -->
     <div class="container-fluid">
         <div class="row">

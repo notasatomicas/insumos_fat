@@ -108,6 +108,8 @@
     <!-- Navbar -->
     <?= view('layout/navbar') ?>
 
+    <?= view('layout/carrito_button') ?>
+
     <!-- Contenido específico de la página -->
     <main class="container my-4">
         <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000">
