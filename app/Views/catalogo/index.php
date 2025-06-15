@@ -216,7 +216,7 @@
                             <select name="ordenar" class="form-select" style="width: auto;" onchange="this.form.submit()">
                                 <option value="precio_asc" <?= (isset($filtros['ordenar']) && $filtros['ordenar'] == 'precio_asc') ? 'selected' : '' ?>>Precio: Menor a Mayor</option>
                                 <option value="precio_desc" <?= (isset($filtros['ordenar']) && $filtros['ordenar'] == 'precio_desc') ? 'selected' : '' ?>>Precio: Mayor a Menor</option>
-                                <option value="vendidos" <?= (isset($filtros['ordenar']) && $filtros['ordenar'] == 'vendidos') ? 'selected' : '' ?>>Más Vendidos</option>
+                                <!-- <option value="vendidos" <?= (isset($filtros['ordenar']) && $filtros['ordenar'] == 'vendidos') ? 'selected' : '' ?>>Más Vendidos</option> -->
                                 <option value="recientes" <?= (isset($filtros['ordenar']) && $filtros['ordenar'] == 'recientes') ? 'selected' : '' ?>>Más Recientes</option>
                                 <option value="nombre_asc" <?= (!isset($filtros['ordenar']) || $filtros['ordenar'] == 'nombre_asc') ? 'selected' : '' ?>>Nombre A-Z</option>
                                 <option value="nombre_desc" <?= (isset($filtros['ordenar']) && $filtros['ordenar'] == 'nombre_desc') ? 'selected' : '' ?>>Nombre Z-A</option>

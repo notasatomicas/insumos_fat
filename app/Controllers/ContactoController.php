@@ -31,72 +31,122 @@ class ContactoController extends BaseController
     /**
      * Procesar formulario de contacto
      */
-    public function enviar()
-    {
-        // Verificar que sea una petición POST
-        if (!$this->request->isAJAX() && $this->request->getMethod() !== 'POST') {
+/**
+ * Procesar formulario de contacto
+ */
+public function enviar()
+{
+    // Verificar que sea una petición POST
+    if (!$this->request->isAJAX() && $this->request->getMethod() !== 'POST') {
+        return $this->response->setJSON([
+            'success' => false,
+            'message' => 'Método no permitido'
+        ])->setStatusCode(405);
+    }
+
+    // Log para debug - datos recibidos
+    log_message('info', 'Datos POST recibidos: ' . json_encode($this->request->getPost()));
+
+    // Obtener datos del formulario - manejar usuarios logueados
+    $esUsuarioLogueado = $this->request->getPost('usuario_logueado') === '1';
+    
+    if ($esUsuarioLogueado) {
+        // Si es usuario logueado, usar los datos de campos ocultos
+        $nombre = $this->request->getPost('nombre_usuario');
+        $apellido = $this->request->getPost('apellido_usuario');
+        $correo = $this->request->getPost('correo_usuario');
+        $telefono = $this->request->getPost('telefono_usuario') ?: $this->request->getPost('telefono');
+    } else {
+        // Si no es usuario logueado, usar datos de campos normales
+        $nombre = $this->request->getPost('nombre');
+        $apellido = $this->request->getPost('apellido');
+        $correo = $this->request->getPost('correo');
+        $telefono = $this->request->getPost('telefono');
+    }
+    
+    $mensaje = $this->request->getPost('mensaje');
+
+    // Validar que los datos requeridos estén presentes
+    $errores = [];
+    
+    if (empty($nombre) || strlen(trim($nombre)) < 2) {
+        $errores['nombre'] = 'El nombre es requerido y debe tener al menos 2 caracteres.';
+    }
+    
+    if (empty($apellido) || strlen(trim($apellido)) < 2) {
+        $errores['apellido'] = 'El apellido es requerido y debe tener al menos 2 caracteres.';
+    }
+    
+    if (empty($correo) || !filter_var($correo, FILTER_VALIDATE_EMAIL)) {
+        $errores['correo'] = 'El correo electrónico es requerido y debe ser válido.';
+    }
+    
+    if (empty($telefono)) {
+        $errores['telefono'] = 'El teléfono es requerido.';
+    }
+    
+    if (empty($mensaje) || strlen(trim($mensaje)) < 10) {
+        $errores['mensaje'] = 'El mensaje es requerido y debe tener al menos 10 caracteres.';
+    }
+
+    // Si hay errores, retornar
+    if (!empty($errores)) {
+        log_message('error', 'Errores de validación: ' . json_encode($errores));
+        return $this->response->setJSON([
+            'success' => false,
+            'message' => 'Datos inválidos',
+            'errors' => $errores
+        ])->setStatusCode(400);
+    }
+
+    // Preparar datos para insertar
+    $data = [
+        'nombre' => trim($nombre),
+        'apellido' => trim($apellido),
+        'correo' => trim($correo),
+        'telefono' => trim($telefono),
+        'mensaje' => trim($mensaje),
+        'estado' => 'nuevo'
+    ];
+
+    // Log para debug - datos a insertar
+    log_message('info', 'Datos a insertar: ' . json_encode($data));
+
+    try {
+        // Insertar en la base de datos
+        $contactoId = $this->contactoModel->insert($data);
+
+        if ($contactoId) {
+            // Enviar email de notificación (opcional)
+            $this->enviarNotificacionEmail($data, $contactoId);
+
             return $this->response->setJSON([
-                'success' => false,
-                'message' => 'Método no permitido'
-            ])->setStatusCode(405);
-        }
-
-        // Validar datos de entrada
-        $rules = [
-            'nombre' => 'required|min_length[2]|max_length[100]',
-            'apellido' => 'required|min_length[2]|max_length[100]',
-            'correo' => 'required|valid_email|max_length[150]',
-            'telefono' => 'required|max_length[20]',
-            'mensaje' => 'required'
-        ];
-
-        if (!$this->validate($rules)) {
-            return $this->response->setJSON([
-                'success' => false,
-                'message' => 'Datos inválidos',
-                'errors' => $this->validator->getErrors()
-            ])->setStatusCode(400);
-        }
-
-        // Preparar datos para insertar
-        $data = [
-            'nombre' => trim($this->request->getPost('nombre')),
-            'apellido' => trim($this->request->getPost('apellido')),
-            'correo' => trim($this->request->getPost('correo')),
-            'telefono' => trim($this->request->getPost('telefono')),
-            'mensaje' => trim($this->request->getPost('mensaje')),
-            'estado' => 'nuevo'
-        ];
-
-        try {
-            // Insertar en la base de datos
-            $contactoId = $this->contactoModel->insert($data);
-
-            if ($contactoId) {
-                // Enviar email de notificación (opcional)
-                $this->enviarNotificacionEmail($data, $contactoId);
-
-                return $this->response->setJSON([
-                    'success' => true,
-                    'message' => 'Tu mensaje ha sido enviado correctamente. Te responderemos a la brevedad.',
-                    'contacto_id' => $contactoId
-                ]);
-            } else {
-                return $this->response->setJSON([
-                    'success' => false,
-                    'message' => 'Error al enviar el mensaje. Por favor, inténtalo nuevamente.'
-                ])->setStatusCode(500);
-            }
-
-        } catch (\Exception $e) {
-            log_message('error', 'Error al enviar mensaje de contacto: ' . $e->getMessage());
+                'success' => true,
+                'message' => 'Tu mensaje ha sido enviado correctamente. Te responderemos a la brevedad.',
+                'contacto_id' => $contactoId
+            ]);
+        } else {
+            // Log errores del modelo
+            $modelErrors = $this->contactoModel->errors();
+            log_message('error', 'Errores del modelo: ' . json_encode($modelErrors));
             
             return $this->response->setJSON([
                 'success' => false,
-                'message' => 'Error interno del servidor. Por favor, inténtalo más tarde.'
+                'message' => 'Error al enviar el mensaje. Por favor, inténtalo nuevamente.',
+                'debug_errors' => $modelErrors // Solo para debug, remover en producción
             ])->setStatusCode(500);
         }
+
+    } catch (\Exception $e) {
+        log_message('error', 'Error al enviar mensaje de contacto: ' . $e->getMessage());
+        
+        return $this->response->setJSON([
+            'success' => false,
+            'message' => 'Error interno del servidor. Por favor, inténtalo más tarde.',
+            'debug_message' => $e->getMessage() // Solo para debug, remover en producción
+        ])->setStatusCode(500);
     }
+}
 
     /**
      * Listar contactos para administración
