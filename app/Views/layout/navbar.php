@@ -34,7 +34,7 @@
                     <?php if (session()->get('id_usuario') && session()->get('isLoggedIn') && session()->get('isAdmin')): ?>
                         <!-- Sesión iniciada como administrador -->
                         <li>
-                            <a class="nav-link text-center me-lg-2 px-2 px-xl-4"
+                            <a class="nav-link text-center me-lg-2 px-2 px-xl-3"
                                 href="<?= base_url('admin/dashboard') ?>">
                                 <i class="ms-md-0 me-1 fa-solid fa-dashboard"></i>
                                 Dashboard
@@ -42,7 +42,7 @@
                         </li>
                     <?php else: ?>
                         <li class="<?= esActivo('inicio', $segment) ? 'nav-item mx-5 mx-sm-4 mx-lg-0' : 'hvr-underline-from-center nav-item mx-5 mx-sm-4 mx-lg-0' ?>">
-                            <a class="nav-link text-center me-lg-2 px-2 px-xl-4 <?= esActivo('inicio', $segment) ? 'active' : '' ?>"
+                            <a class="nav-link text-center me-lg-2 px-2 px-xl-3 <?= esActivo('inicio', $segment) ? 'active' : '' ?>"
                                 href="<?= base_url('inicio') ?>">
                                 <i class="ms-md-0 me-1 fa-solid fa-house <?= esActivo('inicio', $segment) ? 'animate__animated animate__heartBeat animate__infinite' : '' ?>"></i>
                                 Inicio
@@ -54,7 +54,7 @@
                     <?php if (session()->get('id_usuario') && session()->get('isLoggedIn') && session()->get('isAdmin')): ?>
                         <!-- Sesión iniciada como administrador -->
                          <li>
-                            <a class="nav-link text-center me-lg-2 px-2 px-xl-4"
+                            <a class="nav-link text-center me-lg-2 px-2 px-xl-3"
                                 href="<?= base_url('admin/users') ?>">
                                 <i class="ms-md-0 me-1 fa-solid fa-user"></i>
                                 Usuarios
@@ -62,7 +62,7 @@
                         </li>
                     <?php else: ?>
                         <li class="<?= esActivo('catalogo', $segment) ? 'nav-item mx-5 mx-sm-4 mx-lg-0' : 'hvr-underline-from-center nav-item mx-5 mx-sm-4 mx-lg-0' ?>">
-                            <a class="nav-link text-center me-lg-2 px-2 px-xl-4 <?= esActivo('catalogo', $segment) ? 'active' : '' ?>"
+                            <a class="nav-link text-center me-lg-2 px-2 px-xl-3 <?= esActivo('catalogo', $segment) ? 'active' : '' ?>"
                                 href="<?= base_url('catalogo') ?>">
                                 <i class="ms-md-0 me-1 fa-solid fa-list-check <?= esActivo('catalogo', $segment) ? 'animate__animated animate__heartBeat animate__infinite' : '' ?>"></i>
                                 Catalogo
@@ -74,7 +74,7 @@
                     <?php if (session()->get('id_usuario') && session()->get('isLoggedIn') && session()->get('isAdmin')): ?>
                         <!-- Sesión iniciada como administrador -->
                          <li>
-                            <a class="nav-link text-center me-lg-2 px-2 px-xl-4"
+                            <a class="nav-link text-center me-lg-2 px-2 px-xl-3"
                                 href="<?= base_url('admin/productos') ?>">
                                 <i class="ms-md-0 me-1 fa-solid fa-magnifying-glass-chart"></i>
                                 Productos
@@ -82,7 +82,7 @@
                         </li>
                     <?php else: ?>
                         <li class="<?= esActivo('nosotros', $segment) ? 'nav-item mx-5 mx-sm-4 mx-lg-0' : 'hvr-underline-from-center nav-item mx-5 mx-sm-4 mx-lg-0' ?>">
-                            <a class="nav-link text-center me-lg-2 px-2 px-xl-4 <?= esActivo('nosotros', $segment) ? 'active' : '' ?>"
+                            <a class="nav-link text-center me-lg-2 px-2 px-xl-3 <?= esActivo('nosotros', $segment) ? 'active' : '' ?>"
                                 href="<?= base_url('nosotros') ?>">
                                 <i class="ms-md-0 me-1 fa-solid fa-face-grin-wink <?= esActivo('nosotros', $segment) ? 'animate__animated animate__heartBeat animate__infinite' : '' ?>"></i>
                                 Quienes somos
@@ -94,7 +94,7 @@
                     <?php if (session()->get('id_usuario') && session()->get('isLoggedIn') && session()->get('isAdmin')): ?>
                         <!-- Sesión iniciada como administrador -->
                          <li>
-                            <a class="nav-link text-center me-lg-2 px-2 px-xl-4"
+                            <a class="nav-link text-center me-lg-2 px-2 px-xl-3"
                                 href="<?= base_url('catalogo') ?>">
                                 <i class="ms-md-0 me-1 fa-solid fa-list-check"></i>
                                 Catalogo
@@ -102,7 +102,7 @@
                         </li>
                     <?php else: ?>
                         <li class="<?= esActivo('contacto', $segment) ? 'nav-item mx-5 mx-sm-4 mx-lg-0' : 'hvr-underline-from-center nav-item mx-5 mx-sm-4 mx-lg-0' ?>">
-                            <a class="nav-link text-center me-lg-2 px-2 px-xl-4 <?= esActivo('contacto', $segment) ? 'active' : '' ?>"
+                            <a class="nav-link text-center me-lg-2 px-2 px-xl-3 <?= esActivo('contacto', $segment) ? 'active' : '' ?>"
                                 href="<?= base_url('contacto') ?>">
                                 <i class="ms-md-0 me-1 fa-solid fa-phone-volume <?= esActivo('contacto', $segment) ? 'animate__animated animate__heartBeat animate__infinite' : '' ?>"></i>
                                 Contacto
@@ -114,7 +114,7 @@
                     <li class="nav-item mx-5 mx-sm-4 mx-lg-0">
                         <?php if (session()->get('id_usuario') || session()->get('isLoggedIn')): ?>
                             <!-- Cerrar sesión -->
-                            <a class="nav-link text-center me-lg-2 px-2 px-xl-4"
+                            <a class="nav-link text-center me-lg-2 px-2 px-xl-3"
                                 href="<?= base_url('auth/logout') ?>"
                                 style="background-color: #dc3545 !important; color: white !important;">
                                 <i class="ms-md-0 me-1 fa-solid fa-sign-out-alt"></i>
@@ -122,7 +122,7 @@
                             </a>
                         <?php else: ?>
                             <!-- Iniciar sesión -->
-                            <a class="nav-link text-center me-lg-2 px-2 px-xl-4 <?= esActivo('auth', $segment) ? 'active' : '' ?>"
+                            <a class="nav-link text-center me-lg-2 px-2 px-xl-3 <?= esActivo('auth', $segment) ? 'active' : '' ?>"
                                 href="<?= base_url('auth') ?>"
                                 style="<?= esActivo('auth', $segment) ? 'background-color:#18a79b !important; color: white !important;' : '' ?>">
                                 <i class="ms-md-0 me-1 fa-solid fa-sign-in-alt <?= esActivo('auth', $segment) ? 'animate__animated animate__heartBeat animate__infinite' : '' ?>"></i>
