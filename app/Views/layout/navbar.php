@@ -118,15 +118,15 @@
                                 href="<?= base_url('auth/logout') ?>"
                                 style="background-color: #dc3545 !important; color: white !important;">
                                 <i class="ms-md-0 me-1 fa-solid fa-sign-out-alt"></i>
-                                Cerrar sesión
+                                Logout
                             </a>
                         <?php else: ?>
                             <!-- Iniciar sesión -->
                             <a class="nav-link text-center me-lg-2 px-2 px-xl-4 <?= esActivo('auth', $segment) ? 'active' : '' ?>"
                                 href="<?= base_url('auth') ?>"
-                                style="background-color:rgb(24, 167, 155) !important; color: white !important;">
+                                style="<?= esActivo('auth', $segment) ? 'background-color:#18a79b !important; color: white !important;' : '' ?>">
                                 <i class="ms-md-0 me-1 fa-solid fa-sign-in-alt <?= esActivo('auth', $segment) ? 'animate__animated animate__heartBeat animate__infinite' : '' ?>"></i>
-                                Iniciar sesión
+                                Login
                             </a>
                         <?php endif; ?>
                     </li>
