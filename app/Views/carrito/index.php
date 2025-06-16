@@ -66,12 +66,6 @@
             padding: 60px 20px;
         }
 
-        .carrito-vacio i {
-            font-size: 4rem;
-            color: #6c757d;
-            margin-bottom: 20px;
-        }
-
         .loading-spinner {
             text-align: center;
             padding: 60px 20px;
@@ -115,11 +109,12 @@
 
         <!-- Carrito Vacío -->
         <div id="carrito-vacio" class="carrito-vacio" style="display: none;">
-            <i class="fas fa-shopping-cart"></i>
+            <i class="fas fa-shopping-cart" style="font-size: 4rem; color: #6c757d; margin-bottom: 20px;"></i>
             <h4 class="text-muted">Tu carrito está vacío</h4>
             <p class="text-muted">¡Agrega algunos productos para comenzar a comprar!</p>
+            
             <a href="<?= base_url('catalogo') ?>" class="btn btn-primary">
-                <i class="fas fa-arrow-left me-2"></i>
+                <i class="fa-solid fa-arrow-left"></i>
                 Ir al Catálogo
             </a>
         </div>
