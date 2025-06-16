@@ -125,6 +125,18 @@
                 background-position: -200% 0;
             }
         }
+
+        /* Estilo para botones agregados al carrito */
+        .btn-agregado {
+            background-color: #28a745 !important;
+            border-color: #28a745 !important;
+            cursor: not-allowed;
+        }
+
+        .btn-agregado:hover {
+            background-color: #28a745 !important;
+            border-color: #28a745 !important;
+        }
     </style>
 </head>
 
@@ -351,6 +363,59 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
 
     <script>
+        // Funciones para manejo del carrito en localStorage
+        const CarritoLocalStorage = {
+            // Obtener carrito del localStorage
+            obtenerCarrito: function() {
+                const carrito = localStorage.getItem('carrito');
+                return carrito ? JSON.parse(carrito) : {};
+            },
+
+            // Guardar carrito en localStorage
+            guardarCarrito: function(carrito) {
+                localStorage.setItem('carrito', JSON.stringify(carrito));
+            },
+
+            // Agregar producto al carrito
+            agregarProducto: function(productoId) {
+                const carrito = this.obtenerCarrito();
+                const id = productoId.toString();
+
+                if (carrito[id]) {
+                    // Si ya existe, incrementar cantidad
+                    carrito[id].cantidad += 1;
+                } else {
+                    // Si no existe, agregar nuevo producto
+                    carrito[id] = {
+                        id: id,
+                        cantidad: 1
+                    };
+                }
+
+                this.guardarCarrito(carrito);
+                return carrito;
+            },
+
+            // Verificar si un producto está en el carrito
+            productoEnCarrito: function(productoId) {
+                const carrito = this.obtenerCarrito();
+                return carrito.hasOwnProperty(productoId.toString());
+            }
+        };
+
+        // Función para verificar y actualizar estado de botones al cargar la página
+        function actualizarEstadoBotones() {
+            document.querySelectorAll('.btn-agregar-carrito').forEach(button => {
+                const productoId = button.dataset.productoId;
+                if (CarritoLocalStorage.productoEnCarrito(productoId)) {
+                    button.innerHTML = '<i class="fas fa-check me-1"></i>En Carrito';
+                    button.classList.remove('btn-primary');
+                    button.classList.add('btn-success', 'btn-agregado');
+                    button.disabled = true;
+                }
+            });
+        }
+
         // Funcionalidad para las categorías del sidebar
         document.querySelectorAll('.category-item').forEach(item => {
             item.addEventListener('click', function (e) {
@@ -360,78 +425,75 @@
             });
         });
 
-        // Funcionalidad para agregar al carrito con AJAX real
+        // Funcionalidad para agregar al carrito con localStorage
         document.querySelectorAll('.btn-agregar-carrito').forEach(button => {
             button.addEventListener('click', function () {
                 const productoId = this.dataset.productoId;
                 const productoNombre = this.dataset.productoNombre;
                 const originalText = this.innerHTML;
                 
+                // Verificar si ya está en el carrito
+                if (CarritoLocalStorage.productoEnCarrito(productoId)) {
+                    return; // No hacer nada si ya está agregado
+                }
+                
                 // Cambiar apariencia del botón
                 this.innerHTML = '<i class="fas fa-spinner fa-spin me-1"></i>Agregando...';
                 this.disabled = true;
                 
-                // Llamada AJAX real
-                fetch('<?= base_url('catalogo/agregarCarrito') ?>', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/x-www-form-urlencoded',
-                        'X-Requested-With': 'XMLHttpRequest'
-                    },
-                    body: `producto_id=${productoId}&cantidad=1`
-                })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.success) {
-                        // Éxito
-                        this.innerHTML = '<i class="fas fa-check me-1"></i>Agregado';
-                        this.classList.remove('btn-primary');
-                        this.classList.add('btn-success');
-                        
-                        // Actualizar contador del carrito si existe
-                        const carritoCounter = document.querySelector('#carrito-counter');
-                        if (carritoCounter && data.carrito) {
-                            carritoCounter.textContent = data.carrito.total_items;
+                // Agregar al localStorage
+                try {
+                    const carritoActualizado = CarritoLocalStorage.agregarProducto(productoId);
+                    
+                    // Éxito con localStorage
+                    this.innerHTML = '<i class="fas fa-check me-1"></i>En Carrito';
+                    this.classList.remove('btn-primary');
+                    this.classList.add('btn-success', 'btn-agregado');
+                    
+                    // Mostrar feedback temporal
+                    const toast = document.createElement('div');
+                    toast.className = 'position-fixed top-0 end-0 p-3';
+                    toast.style.zIndex = '9999';
+                    toast.innerHTML = `
+                        <div class="toast show" role="alert">
+                            <div class="toast-header">
+                                <i class="fas fa-shopping-cart text-success me-2"></i>
+                                <strong class="me-auto">Carrito</strong>
+                                <button type="button" class="btn-close" data-bs-dismiss="toast"></button>
+                            </div>
+                            <div class="toast-body">
+                                Producto agregado al carrito correctamente
+                            </div>
+                        </div>
+                    `;
+                    document.body.appendChild(toast);
+                    
+                    // Remover toast después de 3 segundos
+                    setTimeout(() => {
+                        if (toast.parentNode) {
+                            toast.parentNode.removeChild(toast);
                         }
-                        
-                        // Volver al estado original después de 2 segundos
-                        setTimeout(() => {
-                            this.innerHTML = originalText;
-                            this.classList.remove('btn-success');
-                            this.classList.add('btn-primary');
-                            this.disabled = false;
-                        }, 2000);
-                    } else {
-                        // Error
-                        this.innerHTML = '<i class="fas fa-times me-1"></i>Error';
-                        this.classList.remove('btn-primary');
-                        this.classList.add('btn-danger');
-                        
-                        // Mostrar mensaje de error
-                        alert(data.message || 'Error al agregar producto al carrito');
-                        
-                        // Volver al estado original
-                        setTimeout(() => {
-                            this.innerHTML = originalText;
-                            this.classList.remove('btn-danger');
-                            this.classList.add('btn-primary');
-                            this.disabled = false;
-                        }, 2000);
-                    }
-                })
-                .catch(error => {
-                    console.error('Error:', error);
+                    }, 3000);
+                    
+                } catch (error) {
+                    console.error('Error al agregar al localStorage:', error);
+                    
+                    // Error
                     this.innerHTML = '<i class="fas fa-times me-1"></i>Error';
                     this.classList.remove('btn-primary');
                     this.classList.add('btn-danger');
                     
+                    // Mostrar mensaje de error
+                    alert('Error al agregar producto al carrito');
+                    
+                    // Volver al estado original
                     setTimeout(() => {
                         this.innerHTML = originalText;
                         this.classList.remove('btn-danger');
                         this.classList.add('btn-primary');
                         this.disabled = false;
                     }, 2000);
-                });
+                }
             });
         });
 
@@ -460,6 +522,11 @@
                 imageObserver.observe(img);
             });
         }
+
+        // Inicializar estado de la página
+        document.addEventListener('DOMContentLoaded', function() {
+            actualizarEstadoBotones();
+        });
     </script>
 </body>
 

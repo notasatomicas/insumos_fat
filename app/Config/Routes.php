@@ -1,5 +1,6 @@
 <?php
 
+use App\Controllers\CarritoController;
 use CodeIgniter\Router\RouteCollection;
 
 /**
@@ -36,15 +37,6 @@ $routes->group('perfil', ['filter' => 'auth'], function($routes) {
     $routes->get('/', 'Perfil::index');
     $routes->get('editar', 'Perfil::editar');
     $routes->post('actualizar', 'Perfil::actualizar');
-});
-
-$routes->group('carrito', ['filter' => 'auth'], function($routes) {
-    $routes->get('/', 'Carrito::index');
-    $routes->post('agregar', 'Carrito::agregar');
-    $routes->post('actualizar', 'Carrito::actualizar');
-    $routes->get('eliminar/(:num)', 'Carrito::eliminar/$1');
-    $routes->get('vaciar', 'Carrito::vaciar');
-    $routes->get('checkout', 'Carrito::checkout');
 });
 
 $routes->group('compras', ['filter' => 'auth'], function($routes) {
@@ -159,6 +151,24 @@ $routes->group('admin', ['filter' => 'admin'], function($routes) {
 
 $routes->get('/debug', 'Depu::index');
 
+//carrito rutas rutas
+$routes->get('carrito', 'CarritoController::index');
+$routes->get('checkout', 'CheckoutController::index'); // Si tienes checkout
+
+// API Routes para el carrito
+$routes->group('api', function($routes) {
+    $routes->group('productos', function($routes) {
+        $routes->post('obtener-por-ids', 'CarritoController::obtenerPorIds');
+    });
+    
+    $routes->group('carrito', function($routes) {
+        $routes->post('obtener-productos', 'CarritoController::obtenerProductos');
+        $routes->post('actualizar-cantidad', 'CarritoController::actualizarCantidad');
+        $routes->post('validar-disponibilidad', 'CarritoController::validarDisponibilidad');
+        $routes->post('resumen', 'CarritoController::resumen');
+    });
+});
+
 // ===============================================
 // RUTAS DEL CATÁLOGO
 // ===============================================
@@ -166,9 +176,9 @@ $routes->group('catalogo', function($routes) {
     $routes->get('/', 'CatalogoController::index');
     $routes->get('producto/(:num)', 'CatalogoController::producto/$1');
     $routes->post('buscar', 'CatalogoController::buscar');
-    $routes->post('agregar-carrito', 'CatalogoController::agregarCarrito');
     $routes->get('categoria/(:num)', 'CatalogoController::porCategoria/$1');
 });
+
 
 /*
 RESUMEN DE URLS DE CONTACTOS GENERADAS:
