@@ -287,7 +287,7 @@
         function mostrarCarritoContenido() {
             document.getElementById('carrito-loading').style.display = 'none';
             document.getElementById('carrito-vacio').style.display = 'none';
-            document.getElementById('carrito-contenido').style.display = 'block';
+            document.getElementById('carrito-contenido').style.display = '';//en este caso elimina simplemente el none
             document.getElementById('carrito-error').style.display = 'none';
         }
 
