@@ -59,6 +59,19 @@
 
         .cantidad-input {
             width: 70px;
+
+        }
+
+                /* Para navegadores WebKit (Chrome, Safari, Edge, Opera) */
+        .cantidad-input::-webkit-inner-spin-button,
+        .cantidad-input::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        /* Para Firefox */
+        .cantidad-input[type="number"] {
+            -moz-appearance: textfield;
         }
 
         .carrito-vacio {
@@ -88,10 +101,8 @@
     <!-- Navbar -->
     <?= view('layout/navbar') ?>
 
-    <?= view('layout/carrito_button') ?>
-
     <!-- Contenido específico de la página -->
-    <div class="container my-5">
+    <div class="container my-4">
         <div class="row">
             <div class="col-12">
                 <h2 class="mb-4">
@@ -130,13 +141,13 @@
                             (<span id="contador-productos">0</span> artículos)
                         </h5>
                     </div>
-                    <div class="card-body p-0" id="lista-productos">
+                    <div class="card-body p-0 my-3" id="lista-productos">
                         <!-- Los productos se cargarán aquí dinámicamente -->
                     </div>
                 </div>
 
                 <!-- Botones de acción -->
-                <div class="row mt-3">
+                <div class="row my-3">
                     <div class="col-6">
                         <a href="<?= base_url('catalogo') ?>" class="btn btn-outline-primary">
                             <i class="fas fa-arrow-left me-2"></i>
@@ -431,7 +442,7 @@
                     <div class="col-md-2 text-center">
                         <strong>$${producto.subtotal.toFixed(2)}</strong>
                     </div>
-                    <div class="col-md-2 text-end">
+                    <div class="col-md-2 text-center">
                         <button class="btn btn-sm btn-outline-danger btn-eliminar" 
                                 data-producto-id="${producto.id}"
                                 data-producto-nombre="${producto.nombre}">

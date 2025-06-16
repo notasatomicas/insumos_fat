@@ -145,7 +145,7 @@
     <!-- Navbar -->
     <?= view('layout/navbar') ?>
 
-    <?= view('layout/carrito_button') ?>
+    <?= view('carrito/carrito_button') ?>
 
     <!-- Contenido específico de la página -->
     <div class="container-fluid">
@@ -444,7 +444,7 @@
                 // Agregar al localStorage
                 try {
                     const carritoActualizado = CarritoLocalStorage.agregarProducto(productoId);
-                    
+                    actualizarAnimacionCarrito();
                     // Éxito con localStorage
                     this.innerHTML = '<i class="fas fa-check me-1"></i>En Carrito';
                     this.classList.remove('btn-primary');

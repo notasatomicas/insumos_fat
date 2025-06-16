@@ -108,7 +108,7 @@
     <!-- Navbar -->
     <?= view('layout/navbar') ?>
 
-    <?= view('layout/carrito_button') ?>
+    <?= view('carrito/carrito_button') ?>
 
     <!-- Contenido específico de la página -->
     <main class="container my-4">
