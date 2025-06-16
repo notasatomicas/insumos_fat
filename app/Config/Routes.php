@@ -1,6 +1,5 @@
 <?php
 
-use App\Controllers\CarritoController;
 use CodeIgniter\Router\RouteCollection;
 
 /**
@@ -31,18 +30,6 @@ $routes->post('/auth/login', 'Auth::login');
 $routes->get('/auth/register', 'Auth::register');
 $routes->post('/auth/doRegister', 'Auth::doRegister');
 $routes->get('/auth/logout', 'Auth::logout');
-
-// Rutas protegidas para usuarios
-$routes->group('perfil', ['filter' => 'auth'], function($routes) {
-    $routes->get('/', 'Perfil::index');
-    $routes->get('editar', 'Perfil::editar');
-    $routes->post('actualizar', 'Perfil::actualizar');
-});
-
-$routes->group('compras', ['filter' => 'auth'], function($routes) {
-    $routes->get('/', 'Compras::index');
-    $routes->get('detalle/(:num)', 'Compras::detalle/$1');
-});
 
 // ===============================================
 // RUTAS PÚBLICAS DE CONTACTO
@@ -143,17 +130,10 @@ $routes->group('admin', ['filter' => 'admin'], function($routes) {
     // Eliminar contacto
     $routes->get('contactos/eliminar/(:num)', 'ContactoController::eliminar/$1');
     $routes->post('contactos/eliminar/(:num)', 'ContactoController::eliminar/$1');
-    
-    // Otras rutas útiles
-    $routes->get('contactos/exportar-csv', 'ContactoController::exportarCSV');
-    $routes->get('contactos/estadisticas', 'ContactoController::getEstadisticasDashboard');
 });
-
-$routes->get('/debug', 'Depu::index');
 
 //carrito rutas rutas
 $routes->get('carrito', 'CarritoController::index');
-$routes->get('checkout', 'CheckoutController::index'); // Si tienes checkout
 
 // API Routes para el carrito
 $routes->group('api', function($routes) {
@@ -178,36 +158,3 @@ $routes->group('catalogo', function($routes) {
     $routes->post('buscar', 'CatalogoController::buscar');
     $routes->get('categoria/(:num)', 'CatalogoController::porCategoria/$1');
 });
-
-
-/*
-RESUMEN DE URLS DE CONTACTOS GENERADAS:
-
-PÚBLICAS:
-- GET  /contacto                                -> Mostrar página de contacto
-- POST /contacto/enviar-mensaje                 -> Enviar mensaje
-- POST /contacto/solicitar-llamada              -> Solicitar llamada
-
-ADMINISTRACIÓN:
-- GET  /admin/contactos                         -> Listar contactos (página principal)
-- GET  /admin/contactos/ver/123                 -> Ver detalles del contacto 123
-- GET  /admin/contactos/eliminar/123            -> Eliminar contacto 123
-- POST /admin/contactos/cambiar-estado/123      -> Cambiar estado del contacto 123
-- GET  /admin/contactos/responder/123           -> Preparar respuesta al contacto 123
-- POST /admin/contactos/marcar-leido            -> Marcar múltiples como leídos
-- GET  /admin/contactos/exportar-csv            -> Exportar contactos a CSV
-- GET  /admin/contactos/buscar?q=termino        -> Buscar contactos
-- GET  /admin/contactos/estadisticas            -> Obtener estadísticas
-- GET  /admin/contactos/recientes               -> Obtener contactos recientes
-- GET  /admin/contactos/nuevos-count            -> Contar contactos nuevos
-
-FILTROS:
-- GET  /admin/contactos?estado=nuevo            -> Filtrar por estado
-- GET  /admin/contactos?tipo=mensaje            -> Filtrar por tipo
-- GET  /admin/contactos/estado/nuevo            -> URL amigable por estado
-- GET  /admin/contactos/tipo/mensaje            -> URL amigable por tipo
-
-API:
-- POST /api/v1/contacto/mensaje                 -> API para enviar mensaje
-- POST /api/v1/contacto/llamada                 -> API para solicitar llamada
-*/
