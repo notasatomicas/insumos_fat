@@ -36,7 +36,7 @@
       </li>
 
       <li class="nav-item">
-        <a onclick="window.open(this.href, '_blank', 'width=600,height=400'); return false;" href="https://github.com" class="nav-link mx-2 fw-bold text-white">
+        <a onclick="window.open(this.href, '_blank', 'width=600,height=400'); return false;" href="https://github.com/notasatomicas/insumos_fat" class="nav-link mx-2 fw-bold text-white">
           <i class="fa-brands fa-github"></i>
         </a>
       </li>
