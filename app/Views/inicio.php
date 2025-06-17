@@ -100,6 +100,18 @@
             font-size: 0.75rem;
             font-weight: bold;
         }
+
+        /* Estilo para botones agregados al carrito */
+        .btn-agregado {
+            background-color: #28a745 !important;
+            border-color: #28a745 !important;
+            cursor: not-allowed;
+        }
+
+        .btn-agregado:hover {
+            background-color: #28a745 !important;
+            border-color: #28a745 !important;
+        }
     </style>
 </head>
 
@@ -275,28 +287,147 @@
 
     <!-- Script para manejar el carrito -->
     <script>
+        // Funciones para manejo del carrito en localStorage
+        const CarritoLocalStorage = {
+            // Obtener carrito del localStorage
+            obtenerCarrito: function() {
+                const carrito = localStorage.getItem('carrito');
+                return carrito ? JSON.parse(carrito) : {};
+            },
+
+            // Guardar carrito en localStorage
+            guardarCarrito: function(carrito) {
+                localStorage.setItem('carrito', JSON.stringify(carrito));
+            },
+
+            // Agregar producto al carrito
+            agregarProducto: function(productoId) {
+                const carrito = this.obtenerCarrito();
+                const id = productoId.toString();
+
+                if (carrito[id]) {
+                    // Si ya existe, incrementar cantidad
+                    carrito[id].cantidad += 1;
+                } else {
+                    // Si no existe, agregar nuevo producto
+                    carrito[id] = {
+                        id: id,
+                        cantidad: 1
+                    };
+                }
+
+                this.guardarCarrito(carrito);
+                return carrito;
+            },
+
+            // Verificar si un producto está en el carrito
+            productoEnCarrito: function(productoId) {
+                const carrito = this.obtenerCarrito();
+                return carrito.hasOwnProperty(productoId.toString());
+            }
+        };
+
+        // Función para verificar y actualizar estado de botones al cargar la página
+        function actualizarEstadoBotones() {
+            document.querySelectorAll('.btn-agregar-carrito').forEach(button => {
+                const productoId = button.dataset.productoId;
+                if (CarritoLocalStorage.productoEnCarrito(productoId)) {
+                    button.innerHTML = '<i class="fas fa-check me-1"></i>En Carrito';
+                    button.classList.remove('btn-primary');
+                    button.classList.add('btn-success', 'btn-agregado');
+                    button.disabled = true;
+                }
+            });
+        }
+
         document.addEventListener('DOMContentLoaded', function() {
+            // Actualizar estado inicial de los botones
+            actualizarEstadoBotones();
+            
             // Manejar clicks en botones de agregar al carrito
             document.querySelectorAll('.btn-agregar-carrito').forEach(function(button) {
                 button.addEventListener('click', function() {
                     const productoId = this.getAttribute('data-producto-id');
                     const productoNombre = this.getAttribute('data-producto-nombre');
-                    
-                    // Aquí puedes implementar la lógica para agregar al carrito
-                    // Por ahora, mostrar una alerta simple
-                    alert('Producto "' + productoNombre + '" agregado al carrito (funcionalidad en desarrollo)');
-                    
-                    // Opcional: cambiar temporalmente el texto del botón
                     const originalText = this.innerHTML;
-                    this.innerHTML = '<i class="fas fa-check me-1"></i>Agregado';
-                    this.classList.remove('btn-primary');
-                    this.classList.add('btn-success');
                     
-                    setTimeout(() => {
-                        this.innerHTML = originalText;
-                        this.classList.remove('btn-success');
-                        this.classList.add('btn-primary');
-                    }, 2000);
+                    // Verificar si ya está en el carrito
+                    if (CarritoLocalStorage.productoEnCarrito(productoId)) {
+                        return; // No hacer nada si ya está agregado
+                    }
+                    
+                    // Cambiar apariencia del botón mientras se procesa
+                    this.innerHTML = '<i class="fas fa-spinner fa-spin me-1"></i>Agregando...';
+                    this.disabled = true;
+                    
+                    // Agregar al localStorage
+                    try {
+                        const carritoActualizado = CarritoLocalStorage.agregarProducto(productoId);
+                        actualizarAnimacionCarrito();
+                        
+                        // Éxito - cambiar botón a estado "agregado"
+                        setTimeout(() => {
+                            this.innerHTML = '<i class="fas fa-check me-1"></i>En Carrito';
+                            this.classList.remove('btn-primary');
+                            this.classList.add('btn-success', 'btn-agregado');
+                            
+                            // Mostrar feedback temporal con toast
+                            const toast = document.createElement('div');
+                            toast.className = 'position-fixed top-0 end-0 p-3';
+                            toast.style.zIndex = '9999';
+                            toast.innerHTML = `
+                                <div class="toast show" role="alert">
+                                    <div class="toast-header">
+                                        <i class="fas fa-shopping-cart text-success me-2"></i>
+                                        <strong class="me-auto">Carrito</strong>
+                                        <button type="button" class="btn-close" data-bs-dismiss="toast"></button>
+                                    </div>
+                                    <div class="toast-body">
+                                        "${productoNombre}" agregado al carrito
+                                    </div>
+                                </div>
+                            `;
+                            document.body.appendChild(toast);
+                            
+                            // Remover toast después de 3 segundos
+                            setTimeout(() => {
+                                if (toast.parentNode) {
+                                    toast.parentNode.removeChild(toast);
+                                }
+                            }, 3000);
+                            
+                            // Agregar evento para cerrar toast manualmente
+                            const closeButton = toast.querySelector('.btn-close');
+                            if (closeButton) {
+                                closeButton.addEventListener('click', () => {
+                                    if (toast.parentNode) {
+                                        toast.parentNode.removeChild(toast);
+                                    }
+                                });
+                            }
+                        }, 500);
+                        
+                    } catch (error) {
+                        console.error('Error al agregar al localStorage:', error);
+                        
+                        // Error - mostrar mensaje y revertir botón
+                        setTimeout(() => {
+                            this.innerHTML = '<i class="fas fa-times me-1"></i>Error';
+                            this.classList.remove('btn-primary');
+                            this.classList.add('btn-danger');
+                            
+                            // Mostrar mensaje de error
+                            alert('Error al agregar producto al carrito. Por favor, intenta nuevamente.');
+                            
+                            // Volver al estado original después de 2 segundos
+                            setTimeout(() => {
+                                this.innerHTML = originalText;
+                                this.classList.remove('btn-danger');
+                                this.classList.add('btn-primary');
+                                this.disabled = false;
+                            }, 2000);
+                        }, 500);
+                    }
                 });
             });
         });
