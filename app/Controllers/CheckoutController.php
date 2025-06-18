@@ -5,6 +5,7 @@ namespace App\Controllers;
 use App\Models\FacturaModel;
 use App\Models\DetalleFacturaModel;
 use App\Models\ProductoModel;
+use App\Models\UserModel;
 use CodeIgniter\Controller;
 
 class CheckoutController extends BaseController
@@ -12,6 +13,7 @@ class CheckoutController extends BaseController
     protected $facturaModel;
     protected $detalleFacturaModel;
     protected $productoModel;
+    protected $userModel;
     protected $validation;
 
     public function __construct()
@@ -19,6 +21,7 @@ class CheckoutController extends BaseController
         $this->facturaModel = new FacturaModel();
         $this->detalleFacturaModel = new DetalleFacturaModel();
         $this->productoModel = new ProductoModel();
+        $this->userModel = new UserModel();
         $this->validation = \Config\Services::validation();
     }
 
@@ -71,6 +74,15 @@ class CheckoutController extends BaseController
             $carrito = $carritoData['carrito'];
             $userId = session()->get('id_usuario');
 
+            // Obtener datos del usuario para la factura
+            $usuario = $this->userModel->find($userId);
+            if (!$usuario) {
+                return $this->response->setJSON([
+                    'success' => false,
+                    'message' => 'Usuario no encontrado'
+                ]);
+            }
+
             // Validar productos y stock
             $validacion = $this->validarCarrito($carrito);
             if (!$validacion['valido']) {
@@ -106,13 +118,23 @@ class CheckoutController extends BaseController
                 ];
             }
 
+            // Preparar datos del cliente para la factura
+            $clienteData = [
+                'nombre' => $usuario['nombre'],
+                'apellido' => $usuario['apellido'],
+                'email' => $usuario['email'],
+                'dni' => $usuario['dni'],
+                'direccion' => $usuario['direccion']
+            ];
+
             return $this->response->setJSON([
                 'success' => true,
                 'message' => 'Compra realizada correctamente',
                 'factura_id' => $facturaId,
                 'total' => $validacion['total'],
-                'fecha' => date('d/m/Y'),
-                'productos' => $productosComprados
+                'fecha' => date('d/m/Y H:i'),
+                'productos' => $productosComprados,
+                'cliente' => $clienteData
             ]);
 
         } catch (\Exception $e) {
