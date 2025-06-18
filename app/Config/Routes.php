@@ -158,3 +158,11 @@ $routes->group('catalogo', function($routes) {
     $routes->post('buscar', 'CatalogoController::buscar');
     $routes->get('categoria/(:num)', 'CatalogoController::porCategoria/$1');
 });
+
+//rutas para el checkout
+// Agregar estas rutas en tu app/Config/Routes.php:
+
+// Checkout
+$routes->get('checkout', 'CheckoutController::index');
+$routes->get('checkout/resumen/(:num)', 'CheckoutController::obtenerResumen/$1');
+$routes->post('checkout/procesarCompraDirecta', 'CheckoutController::procesarCompraDirecta');
