@@ -352,7 +352,7 @@
                         </div>
                         <div class="empresa-datos">
                             <h1>Insumos FAT</h1>
-                            <p>Suministros y Equipamiento Industrial</p>
+                            <p>Suministros y Equipamiento Informático para gordas</p>
                         </div>
                     </div>
                     
